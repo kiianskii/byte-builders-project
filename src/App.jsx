@@ -1,3 +1,4 @@
+
 import { Route, Routes } from 'react-router-dom'
 import { Suspense, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -20,17 +21,17 @@ function App() {
 		dispatch(refreshThunk())
 	}, [dispatch])
 
+
   return (
     <Suspense fallback={null}>
-       <Routes>
-					<Route path='/' element={<Layout />}>
-					<Route index element={<HomeTab />} />
-					</Route>
-					<Route path='*' element={<ErrorPage />} />
-		</Routes>
-
-</Suspense>
-  )
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomeTab />} />
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </Suspense>
+  );
 }
 
-export default App
+export default App;
