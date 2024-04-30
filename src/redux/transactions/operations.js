@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { transactionsApi } from '../../config/transactionsAPI'
 
 
-
 export const transactionsCategoriesThunk = createAsyncThunk('trans/categories', async (_, thunkApi) => {
 	try {
 		const { data } = await transactionsApi.get('/api/transaction-categories')
@@ -49,9 +48,34 @@ export const deleteTransactionThunk = createAsyncThunk('trans/delete-transaction
 
 export const transactionByDateThunk = createAsyncThunk('trans/transaction-by-date', async (credentials, thunkApi) => {
 	try {
-		const { data } = await transactionsApi.post('/api/transactions-summary', credentials)
+		const { data } = await transactionsApi.get('/api/transactions-summary', credentials)
 		return data
 	} catch (error) {
 		return thunkApi.rejectWithValue(error.message)
 	}
 })
+
+// ЩО ПОТРІБНО ПЕРЕДАВАТИ
+// const foredit = {
+// id: "bb480de9-b9ab-4c81-87cc-a5dc7618c134",
+// credentials: {
+//   transactionDate: "2024-01-02",
+//   type: "INCOME",
+//   categoryId: "063f1132-ba5d-42b4-951d-44011ca46262",
+//   comment: "ALALALALA",
+//   amount: 0 
+//    }
+// }
+
+// const forSend = {
+//   transactionDate: "2024-01-01",
+//   type: "INCOME",
+//   categoryId: "063f1132-ba5d-42b4-951d-44011ca46262",
+//   comment: "Test",
+//   amount: 10000
+// }
+
+//   const forTransactionsByDate = {
+//     month: 1,
+//     year: 2024
+// }
