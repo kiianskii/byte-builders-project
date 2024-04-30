@@ -1,8 +1,11 @@
 
 
 function HomeTab() {
+  
   return (
-    <div>HomeTab</div>
+    <div>
+     Homepage
+    </div>
   )
 }
 
