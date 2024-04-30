@@ -5,6 +5,7 @@ import HomeTab from './pages/HomeTab/HomeTab'
 
 
 import Layout from './components/Layout/Layout'
+import ErrorPage from './pages/ErrorPage/ErrorPage'
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
 					<Route path='/' element={<Layout />}>
 					<Route index element={<HomeTab />} />
 					</Route>
-					<Route path='*' element={<HomeTab />} />
+					<Route path='*' element={<ErrorPage />} />
 		</Routes>
 
 </Suspense>
