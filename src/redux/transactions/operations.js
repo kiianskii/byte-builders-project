@@ -46,3 +46,12 @@ export const deleteTransactionThunk = createAsyncThunk('trans/delete-transaction
 		return thunkAPI.rejectWithValue(error.message)
 	}
 })
+
+export const transactionByDateThunk = createAsyncThunk('trans/transaction-by-date', async (credentials, thunkApi) => {
+	try {
+		const { data } = await transactionsApi.post('/api/transactions-summary', credentials)
+		return data
+	} catch (error) {
+		return thunkApi.rejectWithValue(error.message)
+	}
+})

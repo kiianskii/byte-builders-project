@@ -44,3 +44,5 @@ export const refreshThunk = createAsyncThunk('auth/refresh', async (_, thunkApi)
 		return thunkApi.rejectWithValue(error.message)
 	}
 })
+
+
