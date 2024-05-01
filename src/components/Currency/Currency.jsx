@@ -4,6 +4,7 @@ import s from "./Currency.module.css";
 const Currency = () => {
   const exchangeRates = useSelector((state) => state.exchangeRates);
   const isLoading = useSelector((state) => state.isLoading);
+  console.log(exchangeRates);
 
   if (isLoading) {
     return <div>Loading...</div>;

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { currencyThunk } from "../../store/thunks/currencyThunk";
+import { currencyThunk } from "../../redux/currency/operations";
 
 import s from "./CurrencyTab.module.css";
 import Currency from "../../components/Currency/Currency";

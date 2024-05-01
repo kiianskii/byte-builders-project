@@ -10,18 +10,19 @@ import { currencyThunk } from "./redux/currency/operations";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ButtonAddTransactions from "./components/ButtonAddTransactions/ButtonAddTransactions";
+import HomeTab from "./pages/HomeTab/HomeTab";
+import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
+import { userTransactionsThunk } from "./redux/transactions/operations";
+import CurrencyTab from "./pages/CurrencyTab/CurrencyTab";
 
 function App() {
   const dispatch = useDispatch();
   // const isRefreshing = useSelector(selectIsRefreshing)
 
   useEffect(() => {
-    dispatch(currencyThunk());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(refreshThunk());
     dispatch(userTransactionsThunk());
+    dispatch(currencyThunk());
   }, [dispatch]);
 
   // const isRefreshing = useSelector(selectIsRefreshing)
@@ -35,6 +36,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/statistics" element={<StatisticsTab />} />
+          <Route path="/currency" element={<CurrencyTab />} />
           <Route
             path="/btnAddTransactions"
             element={<ButtonAddTransactions />}
