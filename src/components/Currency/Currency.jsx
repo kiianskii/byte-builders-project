@@ -8,14 +8,24 @@ const Currency = () => {
 
   return (
     <div className={s.currency}>
-      <h2>Exchange Rates</h2>
-      <ul>
-        {exchangeRates.map((rate) => (
-          <li key={rate.currency}>
-            {rate.currency} - {rate.rate}
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Currency</th>
+            <th>Purchase</th>
+            <th>Sale</th>
+          </tr>
+        </thead>
+        <tbody>
+          {exchangeRates.map((rate) => (
+            <tr key={rate.currency}>
+              <td>{rate.currency}</td>
+              <td>{rate.rateBuy}</td>
+              <td>{rate.rateSell}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
