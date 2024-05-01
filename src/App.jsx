@@ -9,27 +9,26 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 // import { selectIsRefreshing } from './redux/auth/authSlice'
 import { refreshThunk } from "./redux/auth/operations";
 import ButtonAddTransactions from "./components/ButtonAddTransactions/ButtonAddTransactions";
-import RegistrationPage from './pages/RegistrationPage/RegistrationPage'
-import LoginPage from './pages/LoginPage/LoginPage'
-
+import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
 
 function App() {
   const dispatch = useDispatch();
   // const isRefreshing = useSelector(selectIsRefreshing)
 
-
   useEffect(() => {
     dispatch(refreshThunk());
   }, [dispatch]);
 
-	// const isRefreshing = useSelector(selectIsRefreshing)
+  // const isRefreshing = useSelector(selectIsRefreshing)
 
   return (
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomeTab />} />
-
+          <Route path="/statistics" element={<StatisticsTab />} />
           <Route
             path="/btnAddTransactions"
             element={<ButtonAddTransactions />}
