@@ -12,6 +12,8 @@ function StatisticsTab() {
     dispatch(transactionByDateThunk(date));
   }, [date]);
 
+  const summary = useSelector(selectSummary);
+
   return (
     <div className={css.box}>
       <div className={css.SearchBox}>
@@ -56,6 +58,24 @@ function StatisticsTab() {
           <option value="2013">2013</option>
         </select>
       </div>
+      <table className={css.table}>
+        <thead className={css.thead}>
+          <tr>
+            <th className={css.th}>Category</th>
+            <th className={css.th}>Sum</th>
+          </tr>
+        </thead>
+        {summary.categoriesSummary?.map((el) => {
+          return (
+            <tbody key={el.id} className={css.tbody}>
+              <tr>
+                <td className={css.thtd}>{el.name}</td>
+                <td className={css.tht}>{el.total}</td>
+              </tr>
+            </tbody>
+          );
+        })}
+      </table>
     </div>
   );
 }
