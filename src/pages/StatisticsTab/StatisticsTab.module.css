@@ -24,9 +24,7 @@
 
 .SearchBox {
   display: flex;
-  box-sizing: border-box;
-  padding: 10px;
-  border-radius: 12px;
+  gap: 32px;
   margin: 0;
 }
 
@@ -64,3 +62,8 @@
 /* .tbody:nth-child(2n + 1) {
     background-color: #d3d3d3;
   } */
+
+.box {
+  position: absolute;
+  right: 0;
+}
