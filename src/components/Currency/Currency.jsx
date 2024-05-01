@@ -5,7 +5,6 @@ const Currency = () => {
   const exchangeRates = useSelector(
     (state) => state.exchangeRates.exchangeRates
   );
-  console.log(exchangeRates);
 
   return (
     <div className={s.currency}>
