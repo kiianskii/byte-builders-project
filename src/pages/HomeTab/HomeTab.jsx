@@ -1,3 +1,4 @@
+import TransactionList from "../../components/TransactionList/TransactionList"
 
 
 
@@ -5,7 +6,7 @@ function HomeTab() {
 
   return (
     <div>
-      HomePage  
+      <TransactionList/>
     </div>
   )
 }

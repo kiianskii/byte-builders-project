@@ -2,16 +2,18 @@ import { Route, Routes } from "react-router-dom";
 import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
-import HomeTab from "./pages/HomeTab/HomeTab";
-
 import Layout from "./components/Layout/Layout";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 // import { selectIsRefreshing } from './redux/auth/authSlice'
 import { refreshThunk } from "./redux/auth/operations";
 import ButtonAddTransactions from "./components/ButtonAddTransactions/ButtonAddTransactions";
-import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
+import RegistrationPage from './pages/RegistrationPage/RegistrationPage'
+import LoginPage from './pages/LoginPage/LoginPage'
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import HomeTab from "./pages/HomeTab/HomeTab";
+import { userTransactionsThunk } from "./redux/transactions/operations";
 import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshThunk());
+    dispatch(userTransactionsThunk())
   }, [dispatch]);
 
   // const isRefreshing = useSelector(selectIsRefreshing)
@@ -27,7 +30,10 @@ function App() {
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<HomeTab />} />
+          <Route index element={<DashboardPage />} />
+          <Route path="/home" element={<HomeTab />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegistrationPage />} />
           <Route path="/statistics" element={<StatisticsTab />} />
           <Route
             path="/btnAddTransactions"
@@ -35,8 +41,6 @@ function App() {
           />
         </Route>
         <Route path="*" element={<ErrorPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Suspense>
   );

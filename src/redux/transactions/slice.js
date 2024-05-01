@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sendTransactionThunk, transactionByDateThunk } from "./operations";
+import { sendTransactionThunk, transactionByDateThunk, userTransactionsThunk } from "./operations";
 
 const initialState = {
   transactions: [],
@@ -13,13 +13,22 @@ const slice = createSlice({
   initialState,
   selectors: {
     selectTransactions: (state) => state.transactions,
+    selectLoading: (state)=>state.loading
   },
   extraReducers: (builder) => {
-    builder
+    builder.addCase(sendTransactionThunk.fulfilled, (state, { payload }) => {
+      state.transactions.push(payload);
+    })
+      .addCase(userTransactionsThunk.fulfilled, (state, { payload }) => {
+        state.transactions = payload;
+        state.loading = false
+      })
+      .addCase(userTransactionsThunk.pending, (state) => {
+        state.loading = true
+      })
       .addCase(sendTransactionThunk.fulfilled, (state, { payload }) => {
         state.transactions.push(payload);
       })
-
       .addCase(transactionByDateThunk.fulfilled, (state, { payload }) => {
         state.summary = payload;
         state.loading = false;
@@ -35,4 +44,4 @@ const slice = createSlice({
 });
 
 export const transactionReducer = slice.reducer;
-export const { selectTransactions } = slice.selectors;
+export const { selectTransactions, selectLoading } = slice.selectors;
