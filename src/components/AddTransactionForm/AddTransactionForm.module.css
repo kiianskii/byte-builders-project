@@ -1,0 +1,75 @@
+.switch_wrapper {
+  display: flex;
+  width: 254px;
+  height: 44px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle_container {
+  position: relative;
+  width: 80px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 30px;
+  background: rgb(251, 251, 251);
+}
+
+.toggle_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 6px 15px 0px rgba(255, 199, 39, 0.5);
+  background: rgb(255, 182, 39);
+  border-radius: 50%;
+  position: absolute;
+  transition: all 200ms ease;
+  width: 44px;
+  height: 44px;
+  left: -1px;
+  top: -2px;
+}
+
+.disable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  transition: all 200ms ease;
+  width: 44px;
+  height: 44px;
+  box-shadow: 0px 6px 15px 0px rgba(255, 134, 141, 0.5);
+  left: 38px;
+  top: -2px;
+  background: rgb(255, 134, 141);
+}
+
+.switcher_text {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.income {
+  color: rgb(255, 182, 39);
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: right;
+}
+
+.expense {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: rgba(177, 24, 24, 0.6);
+  text-align: left;
+}
