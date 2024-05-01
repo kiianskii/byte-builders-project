@@ -2,8 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
-
-
 import Layout from "./components/Layout/Layout";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 // import { selectIsRefreshing } from './redux/auth/authSlice'
@@ -14,19 +12,19 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import HomeTab from "./pages/HomeTab/HomeTab";
 import { userTransactionsThunk } from "./redux/transactions/operations";
+import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
 
 
 function App() {
   const dispatch = useDispatch();
   // const isRefreshing = useSelector(selectIsRefreshing)
 
-
   useEffect(() => {
     dispatch(refreshThunk());
     dispatch(userTransactionsThunk())
   }, [dispatch]);
 
-	// const isRefreshing = useSelector(selectIsRefreshing)
+  // const isRefreshing = useSelector(selectIsRefreshing)
 
   return (
     <Suspense fallback={null}>
@@ -36,6 +34,7 @@ function App() {
           <Route path="/home" element={<HomeTab />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/statistics" element={<StatisticsTab />} />
           <Route
             path="/btnAddTransactions"
             element={<ButtonAddTransactions />}
