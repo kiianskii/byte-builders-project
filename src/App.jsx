@@ -9,7 +9,9 @@ import HomeTab from './pages/HomeTab/HomeTab'
 import Layout from './components/Layout/Layout'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 // import { selectIsRefreshing } from './redux/auth/authSlice'
-import { refreshThunk } from './redux/auth/operations'
+// import { refreshThunk } from './redux/auth/operations'
+import RegistrationPage from './pages/RegistrationPage/RegistrationPage'
+import LoginPage from './pages/LoginPage/LoginPage'
 
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
 	// const isRefreshing = useSelector(selectIsRefreshing)
 
 	useEffect(() => {
-		dispatch(refreshThunk())
+		// dispatch(refreshThunk())
 	}, [dispatch])
 
 
@@ -27,8 +29,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomeTab />} />
+        
         </Route>
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Suspense>
   );
