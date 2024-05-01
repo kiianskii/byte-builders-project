@@ -9,7 +9,7 @@
 }
 .content {
   position: relative;
-  background-color: white;
+  background-color: rgb(226, 17, 233);
   padding: 20px;
   overflow: hidden;
   max-width: 1000px;
