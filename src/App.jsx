@@ -9,7 +9,7 @@ import { refreshThunk } from "./redux/auth/operations";
 import ButtonAddTransactions from "./components/ButtonAddTransactions/ButtonAddTransactions";
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage'
 import LoginPage from './pages/LoginPage/LoginPage'
-import DashboardPage from "./pages/DashboardPage/DashboardPage";
+// import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import HomeTab from "./pages/HomeTab/HomeTab";
 import { userTransactionsThunk } from "./redux/transactions/operations";
 import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
@@ -30,7 +30,7 @@ function App() {
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<DashboardPage />} />
+          {/* <Route index element={<DashboardPage />} /> */}
           <Route path="/home" element={<HomeTab />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} />
