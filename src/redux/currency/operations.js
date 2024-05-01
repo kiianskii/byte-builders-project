@@ -25,7 +25,8 @@ export const currencyThunk = createAsyncThunk(
             )
             .map((item) => ({
               currency: item.currencyCodeA,
-              rate: item.rateSell,
+              rateBuy: item.rateBuy,
+              rateSell: item.rateSell,
             }));
 
           localStorage.setItem(
@@ -46,7 +47,8 @@ export const currencyThunk = createAsyncThunk(
           )
           .map((item) => ({
             currency: item.currencyCodeA,
-            rate: item.rateSell,
+            rateBuy: item.rateBuy,
+            rateSell: item.rateSell,
           }));
 
         localStorage.setItem(
