@@ -26,9 +26,6 @@ const slice = createSlice({
       .addCase(userTransactionsThunk.pending, (state) => {
         state.loading = true
       })
-      .addCase(sendTransactionThunk.fulfilled, (state, { payload }) => {
-        state.transactions.push(payload);
-      })
       .addCase(transactionByDateThunk.fulfilled, (state, { payload }) => {
         state.summary = payload;
         state.loading = false;

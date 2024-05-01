@@ -1,8 +1,6 @@
 
-// import { useEffect } from 'react'
 import s from './TransactionList.module.css'
 import {  useSelector } from 'react-redux'
-// import { userTransactionsThunk } from '../../redux/transactions/operations'
 import TransactionItem from '../TransactionItem/TransactionItem'
 import { selectLoading, selectTransactions } from '../../redux/transactions/slice'
 
@@ -10,12 +8,7 @@ function TransactionList() {
 
     const transactions = useSelector(selectTransactions)
     const isLoading = useSelector(selectLoading)
-    console.log(transactions);
-    // const dispatch = useDispatch()
-
-    // useEffect(() => {
-    // dispatch(userTransactionsThunk())
-    // }, [dispatch])
+   
 
     if (!transactions.length) {
         return <h3 className={s.header}>No transactions yet</h3>
