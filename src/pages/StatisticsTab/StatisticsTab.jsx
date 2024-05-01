@@ -65,16 +65,16 @@ function StatisticsTab() {
             <th className={css.th}>Sum</th>
           </tr>
         </thead>
-        {summary.categoriesSummary?.map((el) => {
-          return (
-            <tbody key={el.id} className={css.tbody}>
+        <tbody className={css.tbody}>
+          {summary.categoriesSummary?.map((el) => {
+            return (
               <tr>
                 <td className={css.thtd}>{el.name}</td>
                 <td className={css.tht}>{el.total}</td>
               </tr>
-            </tbody>
-          );
-        })}
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );
