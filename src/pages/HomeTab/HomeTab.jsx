@@ -1,13 +1,12 @@
-
-
+import Currency from "../../components/Currency/Currency";
 
 function HomeTab() {
-
   return (
     <div>
-      HomePage  
+      HomePage
+      <Currency />
     </div>
-  )
+  );
 }
 
-export default HomeTab
+export default HomeTab;
