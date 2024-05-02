@@ -11,8 +11,6 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import HomeTab from "./pages/HomeTab/HomeTab";
 // import { userTransactionsThunk } from "./redux/transactions/operations";
 import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
-import { userTransactionsThunk } from "./redux/transactions/operations";
-import CurrencyTab from "./pages/CurrencyTab/CurrencyTab";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import { PrivateRoute } from "./routes/PrivateRoute";
 import { RestrictedRoute } from "./routes/RestrictedRoute";
