@@ -1,0 +1,16 @@
+.wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  background-image: url("../../../img/background/mobilebackMobile.jpg");
+  background-size: cover;
+  height: 100vh;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(7px);
+  margin-top: 60px;
+  @media (min-width: 768px) {
+    margin-top: 0;
+    /* background-image: none; */
+  }
+}
