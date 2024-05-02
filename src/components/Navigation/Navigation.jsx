@@ -4,7 +4,7 @@ function Navigation() {
   return (
     <ul>
       <li>
-        <NavLink to="/home">Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
         <NavLink to="/statistics">Statistics</NavLink>

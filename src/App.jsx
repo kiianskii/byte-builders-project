@@ -7,14 +7,15 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 // import { selectIsRefreshing } from './redux/auth/authSlice'
 import { refreshThunk } from "./redux/auth/operations";
 import ButtonAddTransactions from "./components/ButtonAddTransactions/ButtonAddTransactions";
-import RegistrationPage from './pages/RegistrationPage/RegistrationPage'
-import LoginPage from './pages/LoginPage/LoginPage'
+import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 // import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import HomeTab from "./pages/HomeTab/HomeTab";
-import { userTransactionsThunk } from "./redux/transactions/operations";
+// import { userTransactionsThunk } from "./redux/transactions/operations";
 import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
-
+import { PrivateRoute } from "./routes/PrivateRoute";
+import { RestrictedRoute } from "./routes/RestrictedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshThunk());
-    dispatch(userTransactionsThunk())
+    // dispatch(userTransactionsThunk())
   }, [dispatch]);
 
   // const isRefreshing = useSelector(selectIsRefreshing)
@@ -30,17 +31,26 @@ function App() {
   return (
     <Suspense fallback={null}>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={<PrivateRoute redirectTo="/login" component={<Layout />} />}
+        >
+          <Route index element={<HomeTab />} />
           <Route path="dashboard" element={<DashboardPage />} />
-          <Route path="home" element={<HomeTab />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegistrationPage />} />
           <Route path="statistics" element={<StatisticsTab />} />
           <Route
             path="btnAddTransactions"
             element={<ButtonAddTransactions />}
           />
         </Route>
+        <Route
+          path="login"
+          element={<RestrictedRoute component={<LoginPage />} />}
+        />
+        <Route
+          path="register"
+          element={<RestrictedRoute component={<RegistrationPage />} />}
+        />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Suspense>

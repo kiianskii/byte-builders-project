@@ -1,9 +1,11 @@
-
+import Navigation from "../../components/Navigation/Navigation";
 
 function DashboardPage() {
   return (
-    <div>DashboardPage</div>
-  )
+    <>
+      <Navigation />
+    </>
+  );
 }
 
-export default DashboardPage
+export default DashboardPage;

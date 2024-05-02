@@ -27,16 +27,12 @@ const AddTransactionForm = ({ closeModal }) => {
             onClick={() => setToggle(!toggle)}
           >
             <div className={toggle ? css.disable : css.toggle_btn}>
-              {!toggle ? (
-                <Icon size={20} id="plus" />
-              ) : (
-                <Icon size={20} id="minus" />
-              )}
+                <Icon size={20} id={!toggle ? 'plus' : 'minus'} />
             </div>
           </div>
           <p className={!toggle ? css.switcher_text : css.expense}>Expense</p>
         </div>
-        {toggle ? (
+        {toggle &&
           <Field as="select" name="category">
             <option value="main_expenses">Main expenses</option>
             <option value="products">Products</option>
@@ -47,9 +43,7 @@ const AddTransactionForm = ({ closeModal }) => {
             <option value="education">Education</option>
             <option value="leisure">Leisure</option>
           </Field>
-        ) : (
-          ""
-        )}
+}
         <Field type="number" placeholder="0.00" name="amount" />
         {/* <Field type="date" /> */}
         <SelectDate />
