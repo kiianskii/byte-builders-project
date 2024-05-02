@@ -18,11 +18,7 @@ export default function RegistrationPage() {
             }
          dispatch(registerThunk(info));
             navigate('/dashboard');
-        } else
-        if    (error) {
-            console.error('Error:', error);
-         
-        }
+        } 
     };
 
     const initialValues = {
