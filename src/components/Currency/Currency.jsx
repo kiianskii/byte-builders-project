@@ -24,8 +24,8 @@ const Currency = () => {
         <tbody>
           {exchangeRates &&
             exchangeRates.map((rate) => (
-              <tr key={rate.currencyCodeA}>
-                <td>{rate.currencyCodeA === 978 ? "EUR" : "USD"}</td>
+              <tr key={rate.currency}>
+                <td>{rate.currency === 978 ? "EUR" : "USD"}</td>
                 <td>{rate.rateBuy}</td>
                 <td>{rate.rateSell}</td>
               </tr>

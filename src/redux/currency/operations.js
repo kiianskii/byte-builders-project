@@ -28,7 +28,5 @@ export const currencyThunk = createAsyncThunk("bank/currency", async () => {
     JSON.stringify({ time: new Date(), exchangeRates })
   );
 
-  console.log(exchangeRates);
-
   return exchangeRates;
 });
