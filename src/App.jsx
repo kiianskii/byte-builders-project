@@ -14,6 +14,7 @@ import HomeTab from "./pages/HomeTab/HomeTab";
 import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
 import { userTransactionsThunk } from "./redux/transactions/operations";
 import CurrencyTab from "./pages/CurrencyTab/CurrencyTab";
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,14 +32,14 @@ function App() {
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* <Route index element={<DashboardPage />} /> */}
-          <Route path="/home" element={<HomeTab />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/statistics" element={<StatisticsTab />} />
-          <Route path="/currency" element={<CurrencyTab />} />
+          <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="home" element={<HomeTab />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegistrationPage />} />
+          <Route path="statistics" element={<StatisticsTab />} />
+          <Route path="currency" element={<CurrencyTab />} />
           <Route
-            path="/btnAddTransactions"
+            path="btnAddTransactions"
             element={<ButtonAddTransactions />}
           />
         </Route>

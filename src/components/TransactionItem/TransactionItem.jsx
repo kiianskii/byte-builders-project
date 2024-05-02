@@ -2,7 +2,8 @@ import s from './TransactionItem.module.css'
 
 function TransactionItem({transaction}) {
   return (
-                <tr className={s.rowline} key={transaction.transactionDate}>
+                <tr className={s.rowline}>
+                <td className={s.row}>{transaction.transactionDate}</td>
                 <td className={s.row}>{transaction.type === "INCOME"? "+":"-"}</td>
                 <td className={s.row}>{transaction.categoryId}</td>
                 <td className={s.row}>{transaction.comment}</td>
