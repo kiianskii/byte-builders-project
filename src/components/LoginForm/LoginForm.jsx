@@ -140,12 +140,10 @@
 //   );
 // }
 
-
-
 import React, { useState, useEffect } from "react";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { NavLink } from "react-router-dom";
-import Validation from "./Validation";
+// import Validation from "./Validation";
 import { Icon } from "../../img/Icon";
 import s from "./LoginForm.module.css";
 import { RegisterGrad } from "./RegistrGrad";
@@ -190,7 +188,7 @@ export default function LoginForm({ type, onSubmit, initialValues }) {
           <Formik
             initialValues={initialValues}
             onSubmit={onSubmit}
-            validationSchema={Validation(type)}
+            // validationSchema={Validation(type)}
             context={{ type }}
           >
             {({ isSubmitting }) => (
@@ -240,18 +238,18 @@ export default function LoginForm({ type, onSubmit, initialValues }) {
                 </div>
                 {type === "register" && (
                   <div className={s.inputContainer}>
-                  <Field
-                    className={s.formInput}
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                  />
-                  <ErrorMessage
-                    name="confirmPassword"
-                    component="div"
-                    className={s.confirm_error}
-                  />
-                </div>
+                    <Field
+                      className={s.formInput}
+                      type="password"
+                      name="confirmPassword"
+                      placeholder="Confirm Password"
+                    />
+                    <ErrorMessage
+                      name="confirmPassword"
+                      component="div"
+                      className={s.confirm_error}
+                    />
+                  </div>
                 )}
                 {type === "login" ? (
                   <div className={s.button_cont}>
