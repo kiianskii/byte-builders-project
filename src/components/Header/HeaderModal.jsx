@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { signOutThunk } from "../../redux/auth/operations";
-import { NavLink } from "react-router-dom";
+
 import css from "./HeaderModal.module.css";
 
-const HeaderModal = () => {
+const HeaderModal = ({ closeModal }) => {
   const dispatch = useDispatch();
   return (
     <div className={css.modal}>
@@ -18,8 +18,8 @@ const HeaderModal = () => {
           </button>
         </li>
         <li>
-          <button className={css.button_cancel}>
-            <NavLink to="/home">Cancel</NavLink>
+          <button onClick={() => closeModal()} className={css.button_cancel}>
+            Cancel
           </button>
         </li>
       </ul>
