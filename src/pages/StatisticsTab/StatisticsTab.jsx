@@ -10,7 +10,7 @@ function StatisticsTab() {
   const [date, setDate] = useState({ month: 1, year: 2024 });
   useEffect(() => {
     dispatch(transactionByDateThunk(date));
-  }, [date]);
+  }, [date, dispatch]);
 
   const summary = useSelector(selectSummary);
 

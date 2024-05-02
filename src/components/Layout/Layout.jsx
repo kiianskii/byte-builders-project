@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 
-import Navigation from "../Navigation/Navigation";
 import Header from "../Header/Header";
+import DashboardPage from "../../pages/DashboardPage/DashboardPage";
 
 function Layout() {
   return (
     <div>
       <Header />
-      <Navigation />
+      <DashboardPage />
       <Outlet />
     </div>
   );
