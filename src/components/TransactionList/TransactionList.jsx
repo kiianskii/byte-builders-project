@@ -10,7 +10,7 @@ function TransactionList() {
 
   return (
     <table className={s.table}>
-      <thead>
+      <thead className={s.thead}>
         <tr>
           <th className={s.headline}>Date</th>
           <th className={s.headline}>Type</th>

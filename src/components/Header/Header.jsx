@@ -38,7 +38,7 @@ const Header = () => {
           </button>
           {isOpen && (
             <Modal closeModal={closeModal}>
-              <HeaderModal />
+              <HeaderModal closeModal={closeModal} />
             </Modal>
           )}
         </li>
