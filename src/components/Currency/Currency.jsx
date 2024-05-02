@@ -5,15 +5,11 @@ const Currency = () => {
   const exchangeRates = useSelector((state) => state.exchangeRates);
   const isLoading = useSelector((state) => state.isLoading);
 
+  console.log(exchangeRates);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  // if (exchangeRates.currencyCodeA === "978") {
-  //   exchangeRates.currencyCodeA = "EUR";
-  // }
-  // if (exchangeRates.currencyCodeA === "840") {
-  //   exchangeRates.currencyCodeA = "USD";
-  // }
 
   return (
     <div className={s.currency}>
@@ -29,7 +25,7 @@ const Currency = () => {
           {exchangeRates &&
             exchangeRates.map((rate) => (
               <tr key={rate.currencyCodeA}>
-                <td>{rate.currencyCodeA}</td>
+                <td>{rate.currencyCodeA === 978 ? "EUR" : "USD"}</td>
                 <td>{rate.rateBuy}</td>
                 <td>{rate.rateSell}</td>
               </tr>
