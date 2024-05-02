@@ -1,0 +1,27 @@
+.row {
+  padding: 16px 20px;
+  border-bottom: 1px solid white;
+  text-align: center;
+
+  font-size: 14px;
+
+  font-weight: 400;
+}
+
+.plus {
+  padding: 16px 20px;
+  border-bottom: 1px solid white;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffb627;
+}
+
+.minus {
+  padding: 16px 20px;
+  border-bottom: 1px solid white;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ff868d;
+}

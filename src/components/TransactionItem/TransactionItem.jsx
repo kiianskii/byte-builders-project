@@ -15,7 +15,9 @@ function TransactionItem({ transaction }) {
       <td className={s.row}>{transaction.type === "INCOME" ? "+" : "-"}</td>
       <td className={s.row}>{categoryName?.name}</td>
       <td className={s.row}>{transaction.comment}</td>
-      <td className={s.row}>{transaction.amount}</td>
+      <td className={transaction.type === "INCOME" ? s.plus : s.minus}>
+        {transaction.amount}
+      </td>
       <td className={s.row}>
         <button>Edit</button>
         <button
