@@ -38,29 +38,21 @@ const Header = () => {
           <p className={css.logo}>Money Guard</p>
         </li>
       </ul>
-      <ul className={css.list}>
-        <li className={css.name}>
-          <p>{user.name}Name</p>
-          {/* <Icon size={20} id="Vector-beetween-logo" /> */}
-        </li>
-        <li className={css.name}>
-          <button
-            style={{
-              border: "none",
-              background: "transparent",
-              cursor: "pointer",
-            }}
-            onClick={openModal}
-          >
-            <Icon size={18} id="exit" />
-          </button>
-          {isOpen && (
-            <Modal closeModal={closeModal}>
-              <HeaderModal />
-            </Modal>
-          )}
-        </li>
-      </ul>
+      <div className={css.list}>
+        <p className={css.name}>{user.name}Name</p>
+        {windowWidth >= 768 ? (
+          <Icon size={30} id="Vector-beetween-logo" className={css.icon} />
+        ) : null}
+        <button className={css.button_exit} onClick={openModal}>
+          <Icon size={18} id="exit" />
+        </button>
+        {isOpen && (
+          <ModalMobile>
+            <HeaderModal closeModal={closeModal} />
+          </ModalMobile>
+        )}
+        {windowWidth >= 768 ? <p className={css.name}>Exit</p> : null}
+      </div>
     </div>
   );
 };
