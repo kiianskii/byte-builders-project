@@ -6,10 +6,8 @@ import Layout from "./components/Layout/Layout";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 // import { selectIsRefreshing } from './redux/auth/authSlice'
 import { refreshThunk } from "./redux/auth/operations";
-import ButtonAddTransactions from "./components/ButtonAddTransactions/ButtonAddTransactions";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-// import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import HomeTab from "./pages/HomeTab/HomeTab";
 // import { userTransactionsThunk } from "./redux/transactions/operations";
 import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
@@ -23,7 +21,6 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshThunk());
-    // dispatch(userTransactionsThunk())
   }, [dispatch]);
 
   // const isRefreshing = useSelector(selectIsRefreshing)
@@ -38,10 +35,6 @@ function App() {
           <Route index element={<HomeTab />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="statistics" element={<StatisticsTab />} />
-          <Route
-            path="btnAddTransactions"
-            element={<ButtonAddTransactions />}
-          />
         </Route>
         <Route
           path="login"

@@ -7,8 +7,10 @@ function Layout() {
   return (
     <div>
       <Header />
-      <DashboardPage />
-      <Outlet />
+      <div className="layout-box">
+        <DashboardPage />
+        <Outlet />
+      </div>
     </div>
   );
 }
