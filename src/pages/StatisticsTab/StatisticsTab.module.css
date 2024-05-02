@@ -1,0 +1,143 @@
+.label {
+  text-transform: capitalize;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: left;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.input {
+  display: flex;
+  height: 50px;
+  width: 182px;
+  border-radius: 8px;
+  border: 1px solid var(--white-60, rgba(255, 255, 255, 0.6));
+  background: rgba(74, 86, 226, 0.1);
+  color: var(--white, #fbfbfb);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.input.option {
+  background-color: transparent;
+  border-radius: 16px;
+
+  padding-right: 15px;
+  height: 31px;
+  width: 220px;
+}
+
+.SearchBox {
+  display: flex;
+  gap: 32px;
+  margin-right: 16px;
+}
+
+.table {
+  border-collapse: collapse;
+  border: none;
+  border-radius: 8px;
+  margin: auto;
+  overflow: hidden;
+  width: 395px;
+  margin: 0;
+}
+
+.th {
+  overflow: hidden;
+  width: 280px;
+  /* text-align: center; */
+  font-size: 22px;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 5px 0 5px;
+}
+
+.th:nth-child(2n + 1) {
+  border-radius: 8px 0px 0 8px;
+}
+
+.th:nth-child(2n) {
+  border-radius: 0px 8px 8px 0px;
+}
+
+.thtd {
+  overflow: hidden;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.41); */
+  /* text-align: center; */
+  /* font-size: 22px; */
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 16px 0 16px 29px;
+}
+
+.tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.41);
+}
+
+/* .tr:first-child {
+  border: none;
+} */
+
+.tht {
+  overflow: hidden;
+  /* border-top: 1px solid rgba(255, 255, 255, 0.41); */
+  text-align: right;
+
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 16px 29px 16px 0;
+}
+
+.thead {
+  border: none;
+  border-radius: 8px 8px 8px 8px;
+  overflow: hidden;
+  background: rgba(82, 59, 126, 0.6);
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
+  color: aliceblue;
+  width: 395px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.tbody {
+  color: var(--white, #fbfbfb);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.box {
+  background: wheat;
+  position: absolute;
+  right: 0;
+  display: flex;
+}
+
+.span {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: block;
+}
+
+.doughnut {
+  display: block;
+  width: 288px;
+  height: 288px;
+  margin: 0 32px 0 0;
+  padding: 0;
+}
+
+/* .selectAndTable{
+  display: ;
+} */
