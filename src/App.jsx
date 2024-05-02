@@ -13,6 +13,7 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import HomeTab from "./pages/HomeTab/HomeTab";
 import { userTransactionsThunk } from "./redux/transactions/operations";
 import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
 
 
 function App() {
@@ -30,13 +31,13 @@ function App() {
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* <Route index element={<DashboardPage />} /> */}
-          <Route path="/home" element={<HomeTab />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/statistics" element={<StatisticsTab />} />
+          <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="home" element={<HomeTab />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegistrationPage />} />
+          <Route path="statistics" element={<StatisticsTab />} />
           <Route
-            path="/btnAddTransactions"
+            path="btnAddTransactions"
             element={<ButtonAddTransactions />}
           />
         </Route>

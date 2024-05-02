@@ -23,7 +23,7 @@ function TransactionList() {
                     <th>Category</th>
                     <th>Comment</th>
                     <th>Sum</th>
-                    <th> </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
