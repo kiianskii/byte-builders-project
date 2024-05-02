@@ -279,7 +279,16 @@
   width: 100%;
   text-align: center;
 }
-
+.formInput{
+background: none;
+border: none;
+}
+input{
+  font-family: "Poppins", sans-serif;
+font-weight: 400;
+font-size: 18px;
+color: rgba(255, 255, 255, 0.6);
+}
 @media screen and (min-width: 768px) {
   .loginSections {
     background-position: top left, bottom right;
