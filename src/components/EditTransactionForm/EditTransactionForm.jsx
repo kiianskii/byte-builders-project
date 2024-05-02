@@ -20,6 +20,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
   const onChange = (date) => setStartDate(date);
 
   const dispatch = useDispatch();
+
   const categoriesTransaction = useSelector(categories);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
   );
 
   const handleSubmit = (values) => {
+    console.log("Submitting form with values:", values);
     const id = transaction.id;
     const formattedDate = startDate.toISOString().slice(0, 10);
     const editedTransaction = {
@@ -53,7 +55,10 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
 
   return (
     <Formik
-      initialValues={{ amount: transaction?.amount || "" }}
+      initialValues={{
+        amount: transaction ? transaction.amount : "",
+        comment: transaction ? transaction.comment : "",
+      }}
       onSubmit={handleSubmit}
     >
       <Form className={s.edit_body}>
