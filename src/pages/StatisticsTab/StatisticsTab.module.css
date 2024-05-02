@@ -119,4 +119,25 @@
   background: wheat;
   position: absolute;
   right: 0;
+  display: flex;
 }
+
+.span {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: block;
+}
+
+.doughnut {
+  display: block;
+  width: 288px;
+  height: 288px;
+  margin: 0 32px 0 0;
+  padding: 0;
+}
+
+/* .selectAndTable{
+  display: ;
+} */
