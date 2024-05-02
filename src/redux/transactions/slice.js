@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sendTransactionThunk, transactionByDateThunk, userTransactionsThunk } from "./operations";
+import { deleteTransactionThunk, sendTransactionThunk, transactionByDateThunk, userTransactionsThunk } from "./operations";
 
 const initialState = {
   transactions: [],
@@ -36,7 +36,21 @@ const slice = createSlice({
       .addCase(transactionByDateThunk.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
-      });
+      })
+      .addCase(deleteTransactionThunk.fulfilled, (state, { payload }) => {
+        state.transactions = state.transactions.filter(item => item.id !== payload)
+        state.loading = false
+					state.error = false
+      })
+      .addCase(deleteTransactionThunk.pending, state => {
+        state.loading = true
+					state.error = false
+        
+				})
+      .addCase(deleteTransactionThunk.rejected, (state, {payload}) => {
+        state.loading = false
+					state.error = payload
+			});
   },
 });
 
