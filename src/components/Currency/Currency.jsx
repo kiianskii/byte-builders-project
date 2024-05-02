@@ -4,20 +4,25 @@ import s from "./Currency.module.css";
 const Currency = () => {
   const exchangeRates = useSelector((state) => state.exchangeRates);
   const isLoading = useSelector((state) => state.isLoading);
-  console.log(exchangeRates);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
+  // if (exchangeRates.currencyCodeA === "978") {
+  //   exchangeRates.currencyCodeA = "EUR";
+  // }
+  // if (exchangeRates.currencyCodeA === "840") {
+  //   exchangeRates.currencyCodeA = "USD";
+  // }
 
   return (
     <div className={s.currency}>
-      <table>
-        <thead>
-          <tr>
-            <th>Currency</th>
-            <th>Purchase</th>
-            <th>Sale</th>
+      <table className={s.table}>
+        <thead className={s.thead}>
+          <tr className={s.tr}>
+            <th className={s.th}>Currency</th>
+            <th className={s.th}>Purchase</th>
+            <th className={s.th}>Sale</th>
           </tr>
         </thead>
         <tbody>

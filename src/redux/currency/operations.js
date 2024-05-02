@@ -59,7 +59,7 @@ export const currencyThunk = createAsyncThunk(
         return thunkApi.rejectWithValue(error.message);
       }
     }
-
+    console.log(exchangeRates);
     return exchangeRates;
   }
 );
