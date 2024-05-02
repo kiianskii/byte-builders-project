@@ -68,12 +68,20 @@ function StatisticsTab() {
         <tbody className={css.tbody}>
           {summary.categoriesSummary?.map((el) => {
             return (
-              <tr>
+              <tr className={css.tr}>
                 <td className={css.thtd}>{el.name}</td>
                 <td className={css.tht}>{el.total}</td>
               </tr>
             );
           })}
+          <tr>
+            <td className={css.thtd}>Expenses</td>
+            <td className={css.tht}>{summary.expenseSummary}</td>
+          </tr>
+          <tr>
+            <td className={css.thtd}>Income</td>
+            <td className={css.tht}>{summary.incomeSummary}</td>
+          </tr>
         </tbody>
       </table>
     </div>
