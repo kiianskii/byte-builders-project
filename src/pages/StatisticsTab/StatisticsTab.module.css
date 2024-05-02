@@ -22,6 +22,15 @@
   line-height: normal;
 }
 
+.input.option {
+  background-color: transparent;
+  border-radius: 16px;
+
+  padding-right: 15px;
+  height: 31px;
+  width: 220px;
+}
+
 .SearchBox {
   display: flex;
   gap: 32px;
@@ -58,7 +67,7 @@
 
 .thtd {
   overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.41);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.41); */
   /* text-align: center; */
   /* font-size: 22px; */
   font-weight: 500;
@@ -66,9 +75,17 @@
   padding: 16px 0 16px 29px;
 }
 
+.tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.41);
+}
+
+/* .tr:first-child {
+  border: none;
+} */
+
 .tht {
   overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.41);
+  /* border-top: 1px solid rgba(255, 255, 255, 0.41); */
   text-align: right;
 
   font-weight: 500;
@@ -102,4 +119,25 @@
   background: wheat;
   position: absolute;
   right: 0;
+  display: flex;
 }
+
+.span {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: block;
+}
+
+.doughnut {
+  display: block;
+  width: 288px;
+  height: 288px;
+  margin: 0 32px 0 0;
+  padding: 0;
+}
+
+/* .selectAndTable{
+  display: ;
+} */

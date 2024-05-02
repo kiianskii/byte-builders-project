@@ -1,4 +1,3 @@
-
 import * as Yup from "yup";
 
 export default function Validation(type) {
@@ -11,17 +10,13 @@ export default function Validation(type) {
           is: "register",
           then: Yup.string().required("Name is required"),
         }),
-      email: Yup.string()
-        .email("Invalid email address")
-        .required(""),
+      email: Yup.string().email("Invalid email address").required(""),
       password: Yup.string()
         .min(6, "Password must be longer than 8 characters")
         .required(""),
-        confirmPassword: Yup.string()
-        .required('confirmPassRequired')
-        .oneOf([Yup.ref('password')], ('matchPassword'))
-    
-        
+      confirmPassword: Yup.string()
+        .required("confirmPassRequired")
+        .oneOf([Yup.ref("password")], "matchPassword"),
     });
 
   return validationSchema();
