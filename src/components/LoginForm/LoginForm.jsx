@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from "react";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { NavLink } from "react-router-dom";
@@ -98,18 +97,18 @@ export default function LoginForm({ type, onSubmit, initialValues }) {
                 </div>
                 {type === "register" && (
                   <div className={s.inputContainer}>
-                  <Field
-                    className={s.formInput}
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                  />
-                  <ErrorMessage
-                    name="confirmPassword"
-                    component="div"
-                    className={s.confirm_error}
-                  />
-                </div>
+                    <Field
+                      className={s.formInput}
+                      type="password"
+                      name="confirmPassword"
+                      placeholder="Confirm Password"
+                    />
+                    <ErrorMessage
+                      name="confirmPassword"
+                      component="div"
+                      className={s.confirm_error}
+                    />
+                  </div>
                 )}
                 {type === "login" ? (
                   <div className={s.button_cont}>

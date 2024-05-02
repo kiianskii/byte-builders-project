@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 
 export default function Validation(type) {
+
   const validationSchema = Yup.object().shape({
     username:
       type === "register"
@@ -22,6 +23,7 @@ export default function Validation(type) {
             .oneOf([Yup.ref("password")], "Passwords must match")
         : Yup.string(),
   });
+
 
   return validationSchema;
 }
