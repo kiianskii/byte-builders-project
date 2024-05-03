@@ -157,3 +157,14 @@ img {
   line-height: normal;
   fill: #734aef;
 }
+.layout-box {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 1280px) {
+  .layout-box {
+    display: flex;
+    flex-direction: row;
+  }
+}
