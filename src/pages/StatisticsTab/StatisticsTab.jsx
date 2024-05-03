@@ -6,6 +6,8 @@ import css from "./StatisticsTab.module.css";
 import { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import Select from "react-select";
+import "./MySelect.css";
 
 function StatisticsTab() {
   const categoryes = [
@@ -23,6 +25,52 @@ function StatisticsTab() {
   ];
 
   // ==============================================================================================
+  const selectMonth = [
+    { value: "1", label: "January" },
+    { value: "2", label: "February" },
+    { value: "3", label: "March" },
+    { value: "4", label: "April" },
+    { value: "5", label: "May" },
+    { value: "6", label: "June" },
+    { value: "7", label: "July" },
+    { value: "8", label: "August" },
+    { value: "9", label: "September" },
+    { value: "10", label: "October" },
+    { value: "11", label: "November" },
+    { value: "12", label: "December" },
+  ];
+
+  const selectYear = [
+    { value: "2024", label: "2024" },
+    { value: "2023", label: "2023" },
+    { value: "2022", label: "2022" },
+    { value: "2021", label: "2021" },
+    { value: "2020", label: "2020" },
+    { value: "2019", label: "2019" },
+    { value: "2018", label: "2018" },
+    { value: "2017", label: "2017" },
+    { value: "2016", label: "2016" },
+    { value: "2015", label: "2015" },
+    { value: "2014", label: "2014" },
+    { value: "2013", label: "2013" },
+  ];
+
+  const [selectedMonth, setSelectedMonth] = useState("1");
+  const [selectedYear, setSelectedYear] = useState("1");
+  const customStyles = {
+    menu: (provided, state) => ({
+      ...provided,
+      // overflowY: "scroll",
+    }),
+
+    input: (provided, state) => ({
+      ...provided,
+      height: 50,
+      width: 181,
+    }),
+  };
+
+  // ============================================================================================
 
   ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -30,13 +78,33 @@ function StatisticsTab() {
     labels: [],
     datasets: [
       {
-        label: "# of Votes",
+        // label: "# of Votes",
         data: [],
         backgroundColor: [],
         borderColor: [],
-        borderWidth: 1,
+
+        borderWidth: 0,
+        shadowOffsetX: 6,
+        shadowOffsetY: 6,
+        shadowBlur: 16,
+        shadowColor: "rgba(0, 0, 0, 0.5)",
+        bevelWidth: 5,
+        bevelShadowColor: "rgba(0, 0, 0, 0.5)",
+        boxShadow: "0px 0px 8px 0px #000 inset",
       },
     ],
+  };
+  const options = {
+    cutout: 100,
+    plugins: {
+      tooltips: {
+        shadowOffsetX: 6,
+        shadowOffsetY: 6,
+        shadowBlur: 16,
+        shadowColor: "rgba(0, 0, 0, 0.7)",
+        boxShadow: "0px 0px 8px 0px #000 inset",
+      },
+    },
   };
 
   // ===================================================================================================
@@ -44,8 +112,14 @@ function StatisticsTab() {
   const dispatch = useDispatch();
   const [date, setDate] = useState({ month: 1, year: 2024 });
   useEffect(() => {
-    dispatch(transactionByDateThunk(date));
-  }, [date, dispatch]);
+    console.log(selectedMonth);
+    dispatch(
+      transactionByDateThunk({
+        month: selectedMonth.value,
+        year: selectedYear.value,
+      })
+    );
+  }, [date, dispatch, selectedMonth, selectedYear]);
 
   const summary = useSelector(selectSummary);
 
@@ -54,13 +128,13 @@ function StatisticsTab() {
       {/* ================================================================================================ */}
 
       <div className={css.doughnut}>
-        <Doughnut data={data} />
+        <Doughnut data={data} options={options} />
       </div>
 
       {/* ========================================================================================== */}
       <div className={css.selectAndTable}>
         <div className={css.SearchBox}>
-          <select
+          {/* <select
             name="month"
             onChange={(e) => setDate({ ...date, month: +e.target.value })}
             className={css.input}
@@ -79,7 +153,28 @@ function StatisticsTab() {
             <option value="10">October</option>
             <option value="11">November</option>
             <option value="12">December</option>
-          </select>
+          </select> */}
+          <div className="inputSelect">
+            <Select
+              options={selectMonth}
+              defaultValue={selectedMonth}
+              onChange={setSelectedMonth}
+              classNamePrefix="input"
+              styles={customStyles}
+              className="selectInput"
+            />
+          </div>
+
+          <Select
+            options={selectYear}
+            defaultValue={selectedYear}
+            onChange={setSelectedYear}
+            classNamePrefix="input"
+            styles={customStyles}
+            className="selectInput"
+          />
+
+          {/* 
           <select
             name="year"
             onChange={(e) => setDate({ ...date, year: +e.target.value })}
@@ -99,7 +194,7 @@ function StatisticsTab() {
             <option value="2015">2015</option>
             <option value="2014">2014</option>
             <option value="2013">2013</option>
-          </select>
+          </select> */}
         </div>
 
         {/* ===================================================================================================*/}

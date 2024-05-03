@@ -1,13 +1,15 @@
 import { useToggle } from "../../hooks/useToggle";
+import { Icon } from "../../img/Icon";
 import { deleteTransactionThunk } from "../../redux/transactions/operations";
 import { selectCategories } from "../../redux/transactions/slice";
-import AddTransactionForm from "../AddTransactionForm/AddTransactionForm";
+import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
 import Modal from "../Modal/Modal";
 import s from "./TransactionItem.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
 function TransactionItem({ transaction }) {
   const dispatch = useDispatch();
+
   const { openModal, closeModal, isOpen } = useToggle();
 
   const categories = useSelector(selectCategories);
@@ -17,30 +19,36 @@ function TransactionItem({ transaction }) {
   return (
     <tr className={s.rowline}>
       <td className={s.row}>{transaction.transactionDate}</td>
-      <td className={s.row}>{transaction.type === "INCOME" ? "+" : "-"}</td>
+      <td className={s.row + " " + s.rowCenter}>
+        {transaction.type === "INCOME" ? "+" : "-"}
+      </td>
       <td className={s.row}>{categoryName?.name}</td>
       <td className={s.row}>{transaction.comment}</td>
       <td className={transaction.type === "INCOME" ? s.plus : s.minus}>
-        {transaction.amount}
+        {transaction.type === "INCOME"
+          ? transaction.amount
+          : transaction.amount.toString().slice(1)}
       </td>
       <td className={s.row}>
-        <button
-          onClick={() => {
-            openModal();
-          }}
-        >
-          Edit
-        </button>
+        <div className={s.rowbox}>
+          <button className={s.editbtn} onClick={openModal}>
+            <Icon size={14} id="edit-pen" />
+          </button>
+          <button
+            className={s.delete_btn}
+            onClick={() => dispatch(deleteTransactionThunk(transaction.id))}
+          >
+            Delete
+          </button>
+        </div>
         {isOpen && (
-          <Modal title="Add Transaction" closeModal={closeModal}>
-            <AddTransactionForm closeModal={closeModal} />
+          <Modal title="Edit Transaction" closeModal={closeModal}>
+            <EditTransactionForm
+              transaction={transaction}
+              closeModal={closeModal}
+            />
           </Modal>
         )}
-        <button
-          onClick={() => dispatch(deleteTransactionThunk(transaction.id))}
-        >
-          Delete
-        </button>
       </td>
     </tr>
   );

@@ -148,3 +148,10 @@ img {
     padding: 0 16px;
   }
 }
+
+.active {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+  fill: #734aef;
+}
