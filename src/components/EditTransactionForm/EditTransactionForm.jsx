@@ -4,10 +4,7 @@ import s from "./EditTransactionForm.module.css";
 import { Icon } from "../../img/Icon";
 import { useDispatch, useSelector } from "react-redux";
 import { editTransactionThunk } from "../../redux/transactions/operations";
-import {
-  categories,
-  transactionForEdit,
-} from "../../redux/transactions/selectors";
+import { categories } from "../../redux/transactions/selectors";
 
 import "react-datepicker/dist/react-datepicker.css";
 import ReactDatePicker from "react-datepicker";
