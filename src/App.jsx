@@ -12,6 +12,7 @@ import HomeTab from "./pages/HomeTab/HomeTab";
 // import { userTransactionsThunk } from "./redux/transactions/operations";
 import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import CurrencyTab from "./pages/CurrencyTab/CurrencyTab";
 import { PrivateRoute } from "./routes/PrivateRoute";
 import { RestrictedRoute } from "./routes/RestrictedRoute";
 import { currencyThunk } from "./redux/currency/operations";
@@ -37,6 +38,7 @@ function App() {
           <Route index element={<HomeTab />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="statistics" element={<StatisticsTab />} />
+          <Route path="/currency" element={<CurrencyTab />} />
         </Route>
         <Route
           path="login"

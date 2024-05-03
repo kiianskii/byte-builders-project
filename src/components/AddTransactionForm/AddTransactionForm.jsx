@@ -5,7 +5,7 @@ import { Icon } from "../../img/Icon";
 import SelectDate from "../SelectDate/SelectDate";
 import { selectCategories } from "../../redux/transactions/slice";
 import { useSelector } from "react-redux";
-// import Select from "react-select";
+import Select from "react-select";
 
 const AddTransactionForm = ({ closeModal }) => {
   const categories = useSelector(selectCategories);

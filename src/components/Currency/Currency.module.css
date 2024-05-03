@@ -68,7 +68,7 @@
   @media only screen and (min-device-pixel-ratio: 2) {
     .currency {
       background-image: url(../../img/background/currencyBG/tab_currency@2x.png);
-      background-size: 768px 214px;
+      background-size: 336px 214px;
     }
   }
   .thead {
