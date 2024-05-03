@@ -7,7 +7,7 @@
 }
 
 .table {
-  /* table-layout: fixed; */
+  table-layout: fixed;
   /* width: 100%; */
   border-collapse: collapse;
 }
@@ -33,4 +33,10 @@
 }
 .headlineRight {
   text-align: right;
+}
+
+.container {
+  max-height: 520px;
+  overflow: scroll;
+  /* display: block; */
 }
