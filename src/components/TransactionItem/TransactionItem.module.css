@@ -1,7 +1,7 @@
 .row {
   padding: 16px 20px;
   border-bottom: 1px solid white;
-  text-align: center;
+  text-align: left;
 
   font-size: 14px;
 
@@ -11,7 +11,7 @@
 .plus {
   padding: 16px 20px;
   border-bottom: 1px solid white;
-  text-align: center;
+  text-align: right;
   font-size: 14px;
   font-weight: 600;
   color: #ffb627;
@@ -20,8 +20,49 @@
 .minus {
   padding: 16px 20px;
   border-bottom: 1px solid white;
-  text-align: center;
+  text-align: right;
   font-size: 14px;
   font-weight: 600;
   color: #ff868d;
+}
+
+.delete_btn {
+  display: flex;
+  padding: 4px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border-radius: 20px;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
+  );
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+
+  color: var(--white, #fbfbfb);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.rowbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0;
+  gap: 8px;
+}
+
+.editbtn {
+  border: none;
+  background: transparent;
+  stroke-opacity: 0.6;
+  padding: 0;
+}
+
+.rowCenter {
+  text-align: center;
 }
