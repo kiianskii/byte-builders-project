@@ -1,13 +1,14 @@
 import { useToggle } from "../../hooks/useToggle";
 import { deleteTransactionThunk } from "../../redux/transactions/operations";
 import { selectCategories } from "../../redux/transactions/slice";
-import AddTransactionForm from "../AddTransactionForm/AddTransactionForm";
+import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
 import Modal from "../Modal/Modal";
 import s from "./TransactionItem.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
 function TransactionItem({ transaction }) {
   const dispatch = useDispatch();
+
   const { openModal, closeModal, isOpen } = useToggle();
 
   const categories = useSelector(selectCategories);
@@ -24,16 +25,13 @@ function TransactionItem({ transaction }) {
         {transaction.amount}
       </td>
       <td className={s.row}>
-        <button
-          onClick={() => {
-            openModal();
-          }}
-        >
-          Edit
-        </button>
+        <button onClick={openModal}>Edit</button>
         {isOpen && (
-          <Modal title="Add Transaction" closeModal={closeModal}>
-            <AddTransactionForm closeModal={closeModal} />
+          <Modal title="Edit Transaction" closeModal={closeModal}>
+            <EditTransactionForm
+              transaction={transaction}
+              closeModal={closeModal}
+            />
           </Modal>
         )}
         <button
