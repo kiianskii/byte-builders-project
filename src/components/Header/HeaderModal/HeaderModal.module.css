@@ -1,37 +1,57 @@
 .modal {
-  height: 400px;
-  width: 100%;
-  background-image: url("../../img/background/mobilebackMobile.jpg");
-  background-size: cover;
-  backdrop-filter: blur(100px);
-  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 30px;
-}
 
+  @media (min-width: 768px) {
+    padding: 60px 117px;
+    width: 533px;
+    height: 447px;
+    margin: 288px 118px 289px 80px;
+    border-radius: 8px;
+    background: var(--Form-color, rgba(255, 255, 255, 0.1));
+    /* form effects */
+    box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(50px);
+  }
+  @media (min-width: 1280px) {
+    margin: 136px 373px 137px 374px;
+  }
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .question {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
   font-size: 18px;
   text-align: center;
   color: #ebe2e2;
-  margin-bottom: 40px;
+  margin-bottom: 52px;
   width: 214px;
+  margin-top: 239px;
+  @media (min-width: 768px) {
+    margin-top: 0;
+    width: 299px;
+  }
+}
+
+.logo_text {
+  margin-top: 10px;
+  font-size: 26px;
+  color: #fbfbfb;
+  margin-bottom: 67px;
 }
 
 .button_out {
-  font-family: "Circe", sans-serif;
-  font-weight: 400;
   font-size: 18px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
   color: #fbfbfb;
 
-  cursor: pointer;
   width: 280px;
   height: 50px;
   border-radius: 20px;
@@ -41,26 +61,30 @@
   );
   /* Button shadow */
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  @media (min-width: 768px) {
+    width: 300px;
+  }
 }
-
 .button_cancel {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
   font-size: 18px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
   color: #623f8b;
 
-  cursor: pointer;
   width: 280px;
   height: 50px;
   border-radius: 20px;
   background: var(--white, #fbfbfb);
   /* Button shadow */
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  @media (min-width: 768px) {
+    width: 300px;
+  }
 }
 
 .btn_list {
-  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
