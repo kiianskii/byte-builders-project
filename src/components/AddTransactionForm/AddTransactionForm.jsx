@@ -19,7 +19,7 @@ const AddTransactionForm = ({ closeModal }) => {
   );
   const [toggle, setToggle] = useState(true);
   const initialValues = {
-    category: "car",
+    category: "",
     amount: "",
     date: "",
     comment: "",
@@ -46,6 +46,7 @@ const AddTransactionForm = ({ closeModal }) => {
         </div>
         {toggle && (
           <Select
+            name="category"
             placeholder="Select a category"
             styles={{
               control: (styles) => ({
