@@ -39,19 +39,20 @@ const Header = () => {
         </li>
       </ul>
       <div className={css.list}>
-        <p className={css.name}>{user.name}Name</p>
+        <p className={css.name}>{user.name}</p>
         {windowWidth >= 768 ? (
-          <Icon size={30} id="Vector-beetween-logo" className={css.icon} />
+          <Icon size={27} id="Vector-beetween-logo" className={css.icon} />
         ) : null}
         <button className={css.button_exit} onClick={openModal}>
           <Icon size={18} id="exit" />
+          {windowWidth >= 768 ? <p className={css.name}>Exit</p> : null}
         </button>
+
         {isOpen && (
           <ModalMobile>
             <HeaderModal closeModal={closeModal} />
           </ModalMobile>
         )}
-        {windowWidth >= 768 ? <p className={css.name}>Exit</p> : null}
       </div>
     </div>
   );

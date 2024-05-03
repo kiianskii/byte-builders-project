@@ -1,13 +1,13 @@
 .headline {
   padding: 16px 20px;
   background: rgba(82, 59, 126, 0.6);
-
+  text-align: left;
   /* backdrop-filter: blur(50px); */
   border-collapse: collapse;
 }
 
 .table {
-  /* table-layout: fixed; */
+  table-layout: fixed;
   /* width: 100%; */
   border-collapse: collapse;
 }
@@ -30,4 +30,13 @@
 .thead th:nth-child(6) {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+.headlineRight {
+  text-align: right;
+}
+
+.container {
+  max-height: 520px;
+  overflow: scroll;
+  /* display: block; */
 }

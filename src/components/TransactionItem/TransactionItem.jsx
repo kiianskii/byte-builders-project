@@ -1,4 +1,5 @@
 import { useToggle } from "../../hooks/useToggle";
+import { Icon } from "../../img/Icon";
 import { deleteTransactionThunk } from "../../redux/transactions/operations";
 import { selectCategories } from "../../redux/transactions/slice";
 import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
@@ -17,15 +18,29 @@ function TransactionItem({ transaction }) {
   );
   return (
     <tr className={s.rowline}>
-      <td className={s.row}>{transaction.transactionDate}</td>
-      <td className={s.row}>{transaction.type === "INCOME" ? "+" : "-"}</td>
+      <td className={s.row}>{transaction.transactionDate.slice(0, 10)}</td>
+      <td className={s.row + " " + s.rowCenter}>
+        {transaction.type === "INCOME" ? "+" : "-"}
+      </td>
       <td className={s.row}>{categoryName?.name}</td>
       <td className={s.row}>{transaction.comment}</td>
       <td className={transaction.type === "INCOME" ? s.plus : s.minus}>
-        {transaction.amount}
+        {transaction.type === "INCOME"
+          ? transaction.amount
+          : transaction.amount.toString().slice(1)}
       </td>
       <td className={s.row}>
-        <button onClick={openModal}>Edit</button>
+        <div className={s.rowbox}>
+          <button className={s.editbtn} onClick={openModal}>
+            <Icon size={14} id="edit-pen" />
+          </button>
+          <button
+            className={s.delete_btn}
+            onClick={() => dispatch(deleteTransactionThunk(transaction.id))}
+          >
+            Delete
+          </button>
+        </div>
         {isOpen && (
           <Modal title="Edit Transaction" closeModal={closeModal}>
             <EditTransactionForm
@@ -34,11 +49,6 @@ function TransactionItem({ transaction }) {
             />
           </Modal>
         )}
-        <button
-          onClick={() => dispatch(deleteTransactionThunk(transaction.id))}
-        >
-          Delete
-        </button>
       </td>
     </tr>
   );

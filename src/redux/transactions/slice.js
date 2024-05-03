@@ -26,8 +26,15 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(sendTransactionThunk.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(sendTransactionThunk.fulfilled, (state, { payload }) => {
         state.transactions.push(payload);
+      })
+      .addCase(sendTransactionThunk.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
       })
       .addCase(userTransactionsThunk.fulfilled, (state, { payload }) => {
         state.transactions = payload;
