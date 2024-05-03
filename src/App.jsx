@@ -14,6 +14,7 @@ import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import { PrivateRoute } from "./routes/PrivateRoute";
 import { RestrictedRoute } from "./routes/RestrictedRoute";
+import { currencyThunk } from "./redux/currency/operations";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshThunk());
+    dispatch(currencyThunk());
   }, [dispatch]);
 
   // const isRefreshing = useSelector(selectIsRefreshing)

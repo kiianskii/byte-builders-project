@@ -2,10 +2,10 @@ import { useSelector } from "react-redux";
 import s from "./Currency.module.css";
 
 const Currency = () => {
-  const exchangeRates = useSelector((state) => state.exchangeRates);
+  const exchangeRates = useSelector(
+    (state) => state.exchangeRates.exchangeRates
+  );
   const isLoading = useSelector((state) => state.isLoading);
-
-  console.log(exchangeRates);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -22,14 +22,13 @@ const Currency = () => {
           </tr>
         </thead>
         <tbody>
-          {exchangeRates &&
-            exchangeRates.map((rate) => (
-              <tr key={rate.currency}>
-                <td>{rate.currency === 978 ? "EUR" : "USD"}</td>
-                <td>{rate.rateBuy}</td>
-                <td>{rate.rateSell}</td>
-              </tr>
-            ))}
+          {exchangeRates?.map((rate) => (
+            <tr key={rate.currency} className={s.tr}>
+              <td className={s.td}>{rate.currency === 978 ? "EUR" : "USD"}</td>
+              <td className={s.td}>{rate.rateBuy}</td>
+              <td className={s.td}>{rate.rateSell}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
