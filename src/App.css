@@ -61,6 +61,7 @@ body {
       url("./img/background/tabletbackTab.jpg") 1x,
       url("./img/background/tabletbackTab@2x.jpg") 2x
     );
+    height: 1024px;
   }
 }
 
@@ -72,6 +73,7 @@ body {
       url("./img/background/iMac.webp") 1x,
       url("./img/background/iMac@2x.webp") 2x
     );
+    height: 720px;
   }
 }
 
