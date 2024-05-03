@@ -108,3 +108,41 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   }
 }
+
+.button_out {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fbfbfb;
+
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
+  );
+  /* Button shadow */
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  @media (min-width: 768px) {
+    width: 300px;
+  }
+}
+.button_cancel {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #623f8b;
+
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  background: var(--white, #fbfbfb);
+  /* Button shadow */
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  @media (min-width: 768px) {
+    width: 300px;
+  }
+}
