@@ -4,6 +4,7 @@
   height: 44px;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
 }
 
 .toggle_container {
@@ -70,6 +71,40 @@
   font-weight: 600;
   line-height: 24px;
   letter-spacing: 0%;
-  color: rgba(177, 24, 24, 0.6);
+  color: rgb(255, 134, 141);
   text-align: left;
+}
+
+.edit_amount {
+  width: 181px;
+  text-align: center;
+  background-color: transparent;
+  color: white;
+  outline: transparent;
+  border: none;
+  font-size: 18px;
+  border-bottom: 1px solid #ffffff;
+  padding-bottom: 8px;
+}
+
+@media only screen and (max-width: 767.98px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+  }
+
+  .btn_wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .input {
+    width: 280px;
+    height: 35px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  }
 }
