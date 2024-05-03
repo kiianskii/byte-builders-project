@@ -30,22 +30,27 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
     (category) => category.id === transaction?.categoryId
   );
 
-  const handleSubmit = (values) => {
-    console.log("Submitting form with values:", values);
-    const id = transaction.id;
-    const formattedDate = startDate.toISOString().slice(0, 10);
-    const editedTransaction = {
-      transactionDate: `${formattedDate}`,
-      type: `${transaction?.type}`,
-      categoryId: `${transaction?.categoryId}`,
-      comment: `${values.comment}`,
-      amount:
-        transaction?.type === "INCOME"
-          ? Number(values.amount)
-          : Number(-values.amount),
-    };
-    dispatch(editTransactionThunk({ id, transaction: editedTransaction }));
-    closeModal();
+  const handleSubmit = async (values) => {
+    try {
+      console.log("Submitting form with values:", values);
+      const id = transaction.id;
+      const formattedDate = startDate.toISOString().slice(0, 10);
+      const editedTransaction = {
+        transactionDate: formattedDate,
+        type: transaction?.type,
+        categoryId: transaction?.categoryId,
+        comment: values.comment,
+        amount:
+          transaction?.type === "INCOME"
+            ? Number(values.amount)
+            : -Number(values.amount),
+      };
+      console.log("Edited transaction:", editedTransaction);
+      dispatch(editTransactionThunk({ id, transaction: editedTransaction }));
+      closeModal();
+    } catch (error) {
+      console.error("Error editing transaction:", error);
+    }
   };
 
   const amountPlaceholder = Math.abs(transaction?.amount);
@@ -95,6 +100,8 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
               onChange={onChange}
               dateFormat="dd.MM.yyyy"
               maxDate={today}
+              showIcon
+              icon={<Icon size={18} id="calendar" />}
             />
           </div>
         </div>
@@ -104,7 +111,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
           required
           name="comment"
           placeholder={transaction?.comment}
-          maxLength={12}
+          // maxLength={12}
         />
 
         <div className={s.edit_buttons_wrapper}>

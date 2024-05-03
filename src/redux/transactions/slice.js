@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   deleteTransactionThunk,
+  editTransactionThunk,
   sendTransactionThunk,
   transactionByDateThunk,
   transactionsCategoriesThunk,
@@ -63,6 +64,12 @@ const slice = createSlice({
       .addCase(deleteTransactionThunk.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
+      })
+      .addCase(editTransactionThunk.fulfilled, (state, { payload }) => {
+        const transactionIndex = state.transactions.findIndex(
+          (t) => t.id === payload.id
+        );
+        state.transactions[transactionIndex] = payload;
       });
   },
 });
