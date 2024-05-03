@@ -1,0 +1,12 @@
+.item {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  display: block;
+}
+
+.navlink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
