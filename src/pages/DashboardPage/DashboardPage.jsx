@@ -6,10 +6,10 @@ function DashboardPage() {
   const isDesktop = useMediaQuery({ minWidth: 321 });
 
   return (
-    <>
+    <div>
       <Navigation />
       {isDesktop && <Currency />}
-    </>
+    </div>
   );
 }
 
