@@ -1,24 +1,21 @@
-import { Form, Formik, Field } from "formik";
-import { useState } from "react";
+import { Formik, Form, Field } from "formik";
+import { useState, useEffect } from "react";
 import s from "./EditTransactionForm.module.css";
 import { Icon } from "../../img/Icon";
 import { useDispatch, useSelector } from "react-redux";
 import { editTransactionThunk } from "../../redux/transactions/operations";
-import { categories } from "../../redux/transactions/selectors";
-
 import "react-datepicker/dist/react-datepicker.css";
 import ReactDatePicker from "react-datepicker";
-import { useEffect } from "react";
+import { selectCategories } from "../../redux/transactions/slice";
 
 const EditTransactionForm = ({ transaction, closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
+  const categoriesTransaction = useSelector(selectCategories);
+
   const today = new Date();
 
   const onChange = (date) => setStartDate(date);
-
-  const dispatch = useDispatch();
-
-  const categoriesTransaction = useSelector(categories);
 
   useEffect(() => {
     if (transaction) {
@@ -30,7 +27,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
     (category) => category.id === transaction?.categoryId
   );
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = (values) => {
     try {
       console.log("Submitting form with values:", values);
       const id = transaction.id;
@@ -43,10 +40,10 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
         amount:
           transaction?.type === "INCOME"
             ? Number(values.amount)
-            : -Number(values.amount),
+            : -Math.abs(Number(values.amount)),
       };
-      console.log("Edited transaction:", editedTransaction);
-      dispatch(editTransactionThunk({ id, transaction: editedTransaction }));
+
+      dispatch(editTransactionThunk({ id, credentials: editedTransaction }));
       closeModal();
     } catch (error) {
       console.error("Error editing transaction:", error);
@@ -111,7 +108,6 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
           required
           name="comment"
           placeholder={transaction?.comment}
-          // maxLength={12}
         />
 
         <div className={s.edit_buttons_wrapper}>

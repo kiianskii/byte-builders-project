@@ -73,10 +73,16 @@ const slice = createSlice({
         state.error = payload;
       })
       .addCase(editTransactionThunk.fulfilled, (state, { payload }) => {
-        const transactionIndex = state.transactions.findIndex(
-          (t) => t.id === payload.id
+        const index = state.transactions.findIndex(
+          (transaction) => transaction.id === payload.id
         );
-        state.transactions[transactionIndex] = payload;
+        if (index !== -1) {
+          state.transactions[index] = payload;
+        } else {
+          state.transactions.push(payload);
+        }
+        // state.isLoading = false;
+        // toast.success("Your transaction was edited successfully");
       });
   },
 });
