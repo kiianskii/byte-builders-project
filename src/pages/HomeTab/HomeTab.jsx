@@ -10,7 +10,6 @@ import css from "../../components/ButtonAddTransactions/ButtonAddTransactions.mo
 import AddTransactionForm from "../../components/AddTransactionForm/AddTransactionForm";
 import Modal from "../../components/Modal/Modal";
 import { Icon } from "../../img/Icon";
-import Currency from "../../components/Currency/Currency";
 
 function HomeTab() {
   const dispatch = useDispatch();
@@ -22,7 +21,6 @@ function HomeTab() {
   }, [dispatch]);
   return (
     <div>
-      <Currency />
       <TransactionList />
       <button className={css.add_btn} type="button" onClick={openModal}>
         <Icon size={20} id="plus" />

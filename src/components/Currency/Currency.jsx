@@ -21,12 +21,12 @@ const Currency = () => {
             <th className={s.th}>Sale</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={s.tbody}>
           {exchangeRates?.map((rate) => (
             <tr key={rate.currency} className={s.tr}>
               <td className={s.td}>{rate.currency === 978 ? "EUR" : "USD"}</td>
-              <td className={s.td}>{rate.rateBuy}</td>
-              <td className={s.td}>{rate.rateSell}</td>
+              <td className={s.td}>{rate.rateBuy.toFixed(1)}</td>
+              <td className={s.td}>{rate.rateSell.toFixed(1)}</td>
             </tr>
           ))}
         </tbody>

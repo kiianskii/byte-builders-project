@@ -6,7 +6,7 @@ import css from "./StatisticsTab.module.css";
 import { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import Select from "react-select";
+// import Select from "react-select";
 import "./MySelect.css";
 
 function StatisticsTab() {
