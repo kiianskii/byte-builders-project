@@ -16,7 +16,7 @@ function TransactionList() {
           <th className={s.headline}>Type</th>
           <th className={s.headline}>Category</th>
           <th className={s.headline}>Comment</th>
-          <th className={s.headline}>Sum</th>
+          <th className={s.headline + " " + s.headlineRight}>Sum</th>
           <th className={s.headline}></th>
         </tr>
       </thead>
