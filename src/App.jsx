@@ -5,8 +5,8 @@ import "./App.css";
 import Layout from "./components/Layout/Layout";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
-import { useSelector } from "react-redux";
-import Loader from "./components/Loader/Loader";
+// import { useSelector } from "react-redux";
+// import Loader from "./components/Loader/Loader";
 import { refreshThunk } from "./redux/auth/operations";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
