@@ -1,22 +1,16 @@
 .edit_body {
-  gap: 40px;
-  border-radius: 0 0 5px 5px;
   display: flex;
-  flex-direction: column;
+  width: 254px;
+  height: 44px;
+  justify-content: space-between;
   align-items: center;
-  padding: 40px 73px;
-  position: relative;
-  width: 540px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 8px;
-  background-position: center center;
+  margin: 0 auto;
 }
+
 .edit_toggle {
-  display: flex;
-  gap: 20px;
-  align-items: center;
+  position: relative;
+  cursor: pointer;
+  border-radius: 30px;
 }
 .expense_active {
   color: rgb(251, 189, 32);
@@ -25,53 +19,47 @@
   color: rgb(251, 189, 32);
 }
 .edit_select {
-  width: 394px;
+  width: 280px;
+  padding-left: 20px;
   border-bottom: 1px solid #ffffff;
   padding-bottom: 8px;
-  padding-left: 8px;
   font-size: 18px;
   text-align: left;
 }
 .edit_modal_select {
-  width: 394px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 32px;
+  gap: 40px;
   color: #fbfbfb;
 }
 .edit_amount {
-  width: 181px;
-  height: 35px;
-  text-align: center;
-  background-color: transparent;
-  color: white;
-  outline: transparent;
-  border: none;
-  font-size: 18px;
-  border-bottom: 1px solid #ffffff;
-  padding-bottom: 8px;
-  padding-left: 0px;
+  width: 280px;
+  padding-left: 20px;
+  text-align: start;
 }
 .edit_comment_input {
-  width: 394px;
-  padding-left: 8px;
-  height: 35px;
+  width: 280px;
+  padding-left: 20px;
+  border-bottom: 1px solid #ffffff;
+  padding-bottom: 8px;
+  font-size: 18px;
+  text-align: left;
+}
+/* .edit_comment {
+  margin: 0px auto 15px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
-  font-family: "Poppins Regular";
   font-size: 18px;
   border: none;
   color: white;
   border-bottom: 1px solid #ffffff;
   outline: transparent;
   resize: none;
-}
-.edit_comment {
-  margin: 0px auto 15px;
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  align-items: center;
-}
+} */
 .edit_buttons_wrapper {
   display: flex;
   flex-direction: column;
@@ -116,4 +104,58 @@
   color: #734aef;
   width: 24px;
   height: 24px;
+}
+@media only screen and (max-width: 767.98px) {
+  .edit_body {
+    gap: 40px;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    background-position: center center;
+  }
+  .edit_toggle {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .edit_amount {
+    /* height: 35px;
+    text-align: center;
+    background-color: transparent;
+    color: white;
+    outline: transparent;
+    border: none;
+    font-size: 18px;
+    border-bottom: 1px solid #ffffff;
+    padding-bottom: 8px;
+    padding-left: 0px; */
+  }
+  .edit_comment_input {
+    /* width: 394px;
+  padding-left: 8px;
+  height: 35px;
+  background-color: transparent;
+  font-family: "Poppins Regular";
+  font-size: 18px;
+  border: none;
+  color: white;
+  border-bottom: 1px solid #ffffff;
+  outline: transparent;
+  resize: none; */
+  }
+  /* .edit_comment_input {
+  width: 280px;
+  padding-left: 20px;
+  height: 35px;
+  background-color: transparent;
+  color: white;
+  outline: transparent;
+  resize: none;
+} */
 }

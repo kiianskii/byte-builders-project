@@ -7,6 +7,7 @@ import { editTransactionThunk } from "../../redux/transactions/operations";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactDatePicker from "react-datepicker";
 import { selectCategories } from "../../redux/transactions/slice";
+import * as Yup from "yup";
 
 const EditTransactionForm = ({ transaction, closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -14,6 +15,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
   const categoriesTransaction = useSelector(selectCategories);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   const today = new Date();
 
@@ -28,6 +30,10 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
   const categoryName = categoriesTransaction?.find(
     (category) => category.id === transaction?.categoryId
   );
+  const schema = Yup.object().shape({
+    amount: Yup.number().required("Please enter amount"),
+    comment: Yup.string().required("Please enter a comment"),
+  });
 
   const handleSubmit = async (values) => {
     try {
@@ -59,7 +65,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
     }
   };
 
-  const amountPlaceholder = Math.abs(transaction?.amount);
+  // const amountPlaceholder = Math.abs(transaction?.amount);
 
   return (
     <Formik
@@ -68,6 +74,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
         comment: transaction ? transaction.comment : "",
       }}
       onSubmit={handleSubmit}
+      validationSchema={schema}
     >
       <Form className={s.edit_body}>
         <div className={s.edit_toggle}>
@@ -93,7 +100,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
             className={s.edit_amount}
             name="amount"
             type="number"
-            placeholder={amountPlaceholder}
+            placeholder="Enter amount"
             required
           />
 
@@ -116,7 +123,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
             className={s.edit_comment_input}
             required
             name="comment"
-            placeholder={transaction?.comment}
+            placeholder="Enter a comment"
           />
         </div>
 
