@@ -4,6 +4,7 @@
   height: 44px;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
 }
 
 .toggle_container {
@@ -70,6 +71,78 @@
   font-weight: 600;
   line-height: 24px;
   letter-spacing: 0%;
-  color: rgba(177, 24, 24, 0.6);
+  color: rgb(255, 134, 141);
   text-align: left;
+}
+
+.edit_amount {
+  width: 181px;
+  text-align: center;
+  background-color: transparent;
+  color: white;
+  outline: transparent;
+  border: none;
+  font-size: 18px;
+  border-bottom: 1px solid #ffffff;
+  padding-bottom: 8px;
+}
+
+@media only screen and (max-width: 767.98px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+  }
+
+  .btn_wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .input {
+    width: 280px;
+    height: 35px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  }
+}
+
+.button_out {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fbfbfb;
+
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
+  );
+  /* Button shadow */
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  @media (min-width: 768px) {
+    width: 300px;
+  }
+}
+.button_cancel {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #623f8b;
+
+  width: 280px;
+  height: 50px;
+  border-radius: 20px;
+  background: var(--white, #fbfbfb);
+  /* Button shadow */
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  @media (min-width: 768px) {
+    width: 300px;
+  }
 }

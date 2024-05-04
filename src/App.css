@@ -34,12 +34,47 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
+  color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-image: image-set(
+    url("./img/background/mobilebackMobile.jpg") 1x,
+    url("./img/background/mobilebackMobile@2x.jpg") 2x,
+    url("./img/background/mobilebackMobile.webp") 1x,
+    url("./img/background/mobilebackMobile@2x.webp") 2x
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    background-image: image-set(
+      url("./img/background/tabletbackTab.jpg") 1x,
+      url("./img/background/tabletbackTab@2x.jpg") 2x
+    );
+    height: 1024px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  body {
+    background-image: image-set(
+      url("./img/background/iMac.jpg") 1x,
+      url("./img/background/iMac@2x.jpg") 2x,
+      url("./img/background/iMac.webp") 1x,
+      url("./img/background/iMac@2x.webp") 2x
+    );
+    height: 720px;
+  }
 }
 
 html {
@@ -113,5 +148,23 @@ img {
   .container {
     max-width: 1280px;
     padding: 0 16px;
+  }
+}
+
+.active {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+  fill: #734aef;
+}
+.layout-box {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 1280px) {
+  .layout-box {
+    display: flex;
+    flex-direction: row;
   }
 }

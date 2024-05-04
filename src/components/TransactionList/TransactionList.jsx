@@ -9,25 +9,27 @@ function TransactionList() {
   //   const isLoading = useSelector(selectIsLoading);
 
   return (
-    <table className={s.table}>
-      <thead className={s.headline}>
-        <tr>
-          <th>Date</th>
-          <th>Type</th>
-          <th>Category</th>
-          <th>Comment</th>
-          <th>Sum</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {transactions.map((transaction) => {
-          return (
-            <TransactionItem key={transaction.id} transaction={transaction} />
-          );
-        })}
-      </tbody>
-    </table>
+    <div className={s.container}>
+      <table className={s.table}>
+        <thead className={s.thead}>
+          <tr>
+            <th className={s.headline}>Date</th>
+            <th className={s.headline}>Type</th>
+            <th className={s.headline}>Category</th>
+            <th className={s.headline}>Comment</th>
+            <th className={s.headline + " " + s.headlineRight}>Sum</th>
+            <th className={s.headline}></th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions.map((transaction) => {
+            return (
+              <TransactionItem key={transaction.id} transaction={transaction} />
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
