@@ -106,9 +106,9 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
               onChange={onChange}
               dateFormat="dd.MM.yyyy"
               maxDate={today}
+              showIcon
+              icon={<Icon size={24} id="calendar" className={s.adit_svg} />}
             />
-
-            <Icon size={24} id="calendar" className={s.adit_svg} />
           </div>
         </div>
         <div className={s.edit_comment}>
