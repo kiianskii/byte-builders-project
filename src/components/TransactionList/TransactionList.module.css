@@ -1,5 +1,5 @@
 .headline {
-  padding: 16px 20px;
+  padding: 16px 22px;
   background: rgba(82, 59, 126, 0.6);
   text-align: left;
   /* backdrop-filter: blur(50px); */
@@ -36,7 +36,9 @@
 }
 
 .container {
+  width: 715px;
   max-height: 520px;
   overflow: scroll;
+  margin: 46px 16px 46px 69px;
   /* display: block; */
 }
