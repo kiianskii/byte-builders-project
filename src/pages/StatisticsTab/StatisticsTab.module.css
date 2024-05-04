@@ -12,6 +12,7 @@
   gap: 32px;
   margin-right: 16px;
   margin-bottom: 20px;
+  margin-top: 97px;
 }
 
 .table {
@@ -100,8 +101,9 @@
 .box {
   /* background: wheat; */
   /* position: absolute; */
-  right: 0;
+  /* right: 0; */
   display: flex;
+  margin-left: auto;
 }
 
 .span {
@@ -118,18 +120,10 @@
   display: block;
   width: 288px;
   height: 288px;
-  margin: 0 32px 0 0;
+  margin: 32px 32px 0 0;
   padding: 0;
   /* position: relative; */
 }
-
-/* .selectAndTable{
-  display: ;
-} */
-
-/* .doughnut canvas {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
-} */
 
 .classExpenses {
   color: var(--white, #fbfbfb);
@@ -163,6 +157,7 @@
 .doughnutText {
   color: var(--white, #fbfbfb);
   margin-left: 20px;
+  margin-bottom: 20px;
   font-family: Poppins;
   font-size: 30px;
   font-style: normal;
@@ -176,4 +171,9 @@
 
   width: 40px !important;
   height: 40px !important;
+}
+
+.shadowData {
+  z-index: 222;
+  position: absolute;
 }

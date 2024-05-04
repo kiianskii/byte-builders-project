@@ -10,6 +10,10 @@ import Select from "react-select";
 import "./MySelect.css";
 import clsx from "clsx";
 import { selectBalance } from "../../redux/auth/selectors";
+import "chartjs-plugin-annotation";
+import "chartjs-plugin-style";
+import { StyleDoughnutController } from "chartjs-plugin-style";
+// Chart.register(StyleDoughnutController);
 
 function StatisticsTab() {
   const balance = useSelector(selectBalance);
@@ -90,28 +94,29 @@ function StatisticsTab() {
         // label: "# of Votes",
         data: [],
         backgroundColor: [],
-        borderColor: [],
-
-        borderWidth: 0,
-        shadowOffsetX: 6,
-        shadowOffsetY: 6,
-        shadowBlur: 16,
-        shadowColor: "rgba(0, 0, 0, 0.5)",
-        bevelWidth: 5,
-        bevelShadowColor: "rgba(0, 0, 0, 0.5)",
-        boxShadow: "0px 0px 8px 0px #000 inset",
+        borderColor: "transparent",
       },
     ],
   };
   const options = {
     cutout: 100,
     plugins: {
-      tooltips: {
-        shadowOffsetX: 6,
-        shadowOffsetY: 6,
-        shadowBlur: 16,
-        shadowColor: "rgba(0, 0, 0, 0.7)",
-        boxShadow: "0px 0px 8px 0px #000 inset",
+      style: {
+        // Налаштування ефекту bevel
+        bevel: {
+          // Розмір фаски
+          size: 5,
+          // Колір фаски
+          backgroundColor: "rgba(255, 255, 255, 0.5)",
+          // Колір тіні
+          shadowColor: "rgba(0, 0, 0, 0.5)",
+          // Прозорість тіні
+          shadowBlur: 10,
+          // Зсув тіні по горизонталі
+          shadowOffsetX: 3,
+          // Зсув тіні по вертикалі
+          shadowOffsetY: 3,
+        },
       },
     },
   };
@@ -121,7 +126,6 @@ function StatisticsTab() {
     beforeDatasetsDraw(chart, args, pluginOptions) {
       const { ctx, data } = chart;
       console.log(balance);
-      // Перевірка, чи існують дані датасету
       if (
         chart.data.datasets.length > 0 &&
         chart.data.datasets[0].data.length > 0
@@ -136,7 +140,7 @@ function StatisticsTab() {
           chart.getDatasetMeta(0).data[0].x,
           chart.getDatasetMeta(0).data[0].y
         );
-        ctx.restore(); // Відновлення контексту канвасу
+        ctx.restore();
       }
     },
   };
