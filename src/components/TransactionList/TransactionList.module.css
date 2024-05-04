@@ -53,3 +53,11 @@
     margin: 46px 16px 46px 69px;
   }
 }
+
+.moblist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 375px;
+  overflow: scroll;
+}
