@@ -36,9 +36,20 @@
 }
 
 .container {
-  width: 715px;
-  max-height: 520px;
+  width: 716px;
+  max-height: 600px;
   overflow: scroll;
-  margin: 46px 16px 46px 69px;
+  margin: 20px 32px;
   /* display: block; */
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-height: 500px;
+    width: 715px;
+
+    display: flex;
+    flex-direction: row;
+    margin: 46px 16px 46px 69px;
+  }
 }
