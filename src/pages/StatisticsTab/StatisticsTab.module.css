@@ -11,6 +11,7 @@
   display: flex;
   gap: 32px;
   margin-right: 16px;
+  margin-bottom: 20px;
 }
 
 .table {
@@ -30,11 +31,13 @@
   font-size: 22px;
   font-weight: 500;
   text-transform: capitalize;
-  padding: 5px 0 5px;
 }
 
 .th:nth-child(2n + 1) {
   border-radius: 8px 0px 0 8px;
+  padding: 16px 0 16px 29px;
+  display: flex;
+  align-items: center;
 }
 
 .th:nth-child(2n) {
@@ -49,6 +52,9 @@
   font-weight: 500;
   text-transform: capitalize;
   padding: 16px 0 16px 29px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
 .tr {
@@ -92,18 +98,20 @@
 }
 
 .box {
-  background: wheat;
-  position: absolute;
+  /* background: wheat; */
+  /* position: absolute; */
   right: 0;
   display: flex;
 }
 
 .span {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   border: 1px solid black;
   box-sizing: border-box;
   display: block;
+  align-items: start;
+  border-radius: 2px;
 }
 
 .doughnut {
@@ -112,7 +120,7 @@
   height: 288px;
   margin: 0 32px 0 0;
   padding: 0;
-  position: relative;
+  /* position: relative; */
 }
 
 /* .selectAndTable{
@@ -122,3 +130,50 @@
 /* .doughnut canvas {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
 } */
+
+.classExpenses {
+  color: var(--white, #fbfbfb);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.classExpensesValue {
+  color: var(--dashboard-text, #ff868d);
+  text-align: right;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.classIncomeValue {
+  color: var(--yellow, #ffb627);
+  text-align: right;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.doughnutText {
+  color: var(--white, #fbfbfb);
+  margin-left: 20px;
+  font-family: Poppins;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.svg {
+  stroke: white;
+  fill: white;
+
+  width: 40px !important;
+  height: 40px !important;
+}
