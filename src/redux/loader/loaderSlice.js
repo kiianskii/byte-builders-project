@@ -1,5 +1,8 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
+  deleteTransactionThunk,
+  editTransactionThunk,
+  sendTransactionThunk,
   transactionByDateThunk,
   userTransactionsThunk,
 } from "../transactions/operations";
@@ -16,7 +19,13 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addMatcher(
-        isAnyOf(userTransactionsThunk.pending, transactionByDateThunk.pending),
+        isAnyOf(
+          userTransactionsThunk.pending,
+          transactionByDateThunk.pending,
+          sendTransactionThunk.pending,
+          editTransactionThunk.pending,
+          deleteTransactionThunk.pending
+        ),
         (state) => {
           state.isLoading = true;
         }
@@ -24,7 +33,10 @@ const slice = createSlice({
       .addMatcher(
         isAnyOf(
           userTransactionsThunk.fulfilled,
-          transactionByDateThunk.fulfilled
+          transactionByDateThunk.fulfilled,
+          sendTransactionThunk.fulfilled,
+          editTransactionThunk.fulfilled,
+          deleteTransactionThunk.fulfilled
         ),
         (state) => {
           state.isLoading = false;
@@ -33,7 +45,10 @@ const slice = createSlice({
       .addMatcher(
         isAnyOf(
           userTransactionsThunk.rejected,
-          transactionByDateThunk.rejected
+          transactionByDateThunk.rejected,
+          sendTransactionThunk.rejected,
+          editTransactionThunk.rejected,
+          deleteTransactionThunk.rejected
         ),
         (state) => {
           state.isLoading = false;
