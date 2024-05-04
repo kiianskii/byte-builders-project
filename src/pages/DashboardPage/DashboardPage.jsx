@@ -6,8 +6,8 @@ function DashboardPage() {
   const isDesktop = useMediaQuery({ minWidth: 321 });
 
   return (
-    <div>
-      <Navigation />
+    <div className="dashboard">
+      <Navigation className="navigation_panel" />
       {isDesktop && <Currency />}
     </div>
   );
