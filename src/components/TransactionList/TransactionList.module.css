@@ -1,13 +1,13 @@
 .headline {
-  padding: 16px 20px;
+  padding: 16px 22px;
   background: rgba(82, 59, 126, 0.6);
-
+  text-align: left;
   /* backdrop-filter: blur(50px); */
   border-collapse: collapse;
 }
 
 .table {
-  /* table-layout: fixed; */
+  table-layout: fixed;
   /* width: 100%; */
   border-collapse: collapse;
 }
@@ -30,4 +30,26 @@
 .thead th:nth-child(6) {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+.headlineRight {
+  text-align: right;
+}
+
+.container {
+  width: 716px;
+  max-height: 600px;
+  overflow: scroll;
+  margin: 20px 32px;
+  /* display: block; */
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-height: 500px;
+    width: 715px;
+
+    display: flex;
+    flex-direction: row;
+    margin: 46px 16px 46px 69px;
+  }
 }

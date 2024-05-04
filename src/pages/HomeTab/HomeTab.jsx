@@ -20,7 +20,7 @@ function HomeTab() {
     dispatch(transactionsCategoriesThunk());
   }, [dispatch]);
   return (
-    <div>
+    <div className={css.container}>
       <TransactionList />
       <button className={css.add_btn} type="button" onClick={openModal}>
         <Icon size={20} id="plus" />

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   deleteTransactionThunk,
+  editTransactionThunk,
   sendTransactionThunk,
   transactionByDateThunk,
   transactionsCategoriesThunk,
@@ -25,8 +26,15 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(sendTransactionThunk.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(sendTransactionThunk.fulfilled, (state, { payload }) => {
         state.transactions.push(payload);
+      })
+      .addCase(sendTransactionThunk.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
       })
       .addCase(userTransactionsThunk.fulfilled, (state, { payload }) => {
         state.transactions = payload;
@@ -63,6 +71,18 @@ const slice = createSlice({
       .addCase(deleteTransactionThunk.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
+      })
+      .addCase(editTransactionThunk.fulfilled, (state, { payload }) => {
+        const index = state.transactions.findIndex(
+          (transaction) => transaction.id === payload.id
+        );
+        if (index !== -1) {
+          state.transactions[index] = payload;
+        } else {
+          state.transactions.push(payload);
+        }
+        // state.isLoading = false;
+        // toast.success("Your transaction was edited successfully");
       });
   },
 });

@@ -1,0 +1,29 @@
+.item {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  display: block;
+}
+
+.navlink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  fill: white;
+}
+
+.list {
+  margin: 40px 0px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media screen and (min-width: 1280px) {
+  .list {
+    margin: 40px 0px 28px 16px;
+    /* display: flex;
+    flex-direction: column; */
+    gap: 12px;
+  }
+}

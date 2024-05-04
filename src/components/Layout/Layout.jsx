@@ -7,7 +7,7 @@ function Layout() {
   return (
     <div>
       <Header />
-      <div className="layout-box">
+      <div className="layout-box container">
         <DashboardPage />
         <Outlet />
       </div>

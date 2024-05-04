@@ -21,6 +21,7 @@
   font-size: 16px;
   text-align: right;
   color: rgba(255, 255, 255, 0.6);
+  padding-left: 8px;
 }
 
 .list {
@@ -43,7 +44,6 @@
 
 .list_logo {
   padding-bottom: 12px;
-
   width: 86px;
   display: flex;
   flex-direction: column;
@@ -53,23 +53,19 @@
     width: 115px;
   }
 }
-/* .li {
-  height: 17px;
-  @media (min-width: 768px) {
-    height: 26px;
-  }
-} */
+
 .icon {
-  fill: var(--white-60, rgba(255, 255, 255, 0.6));
-  stroke-width: 1px;
-  stroke: var(--white-60, rgba(255, 255, 255, 0.6));
+  color: rgba(255, 255, 255, 0.6);
+  fill: rgba(255, 255, 255, 0.6);
+  stroke: rgba(255, 255, 255, 0.6);
 }
 
 .button_exit {
+  display: inline-flex;
   border: none;
   background: transparent;
   padding: 3px 0px 3px 6px;
   @media (min-width: 768px) {
-    padding: 2px 0px 0px 1px;
+    padding: 2px 4px 0px 1px;
   }
 }
