@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import { selectIsRefreshing } from './redux/auth/authSlice'
-import { useSelector } from 'react-redux';
-import Loader from "./components/Loader/Loader"
+
+import { useSelector } from "react-redux";
+import Loader from "./components/Loader/Loader";
 import { refreshThunk } from "./redux/auth/operations";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -18,21 +18,18 @@ import CurrencyTab from "./pages/CurrencyTab/CurrencyTab";
 import { PrivateRoute } from "./routes/PrivateRoute";
 import { RestrictedRoute } from "./routes/RestrictedRoute";
 import { currencyThunk } from "./redux/currency/operations";
+// import { selectIsLoading } from "./redux/loader/loaderSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing)
+  // const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(refreshThunk());
     dispatch(currencyThunk());
   }, [dispatch]);
-
-  // const isRefreshing = useSelector(selectIsRefreshing)
-  console.log("Is refreshing:", isRefreshing);
-  return isRefreshing ? (
-    <Loader />
-  ) : (
+  // isLoading ? <Loader /> : console.log("Is refreshing:", isLoading);
+  return (
     <Suspense fallback={null}>
       <Routes>
         <Route
