@@ -4,7 +4,9 @@ import { useDispatch } from "react-redux";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-// import { selectIsRefreshing } from './redux/auth/authSlice'
+import { selectIsRefreshing } from './redux/auth/authSlice'
+import { useSelector } from 'react-redux';
+import Loader from "./components/Loader/Loader"
 import { refreshThunk } from "./redux/auth/operations";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -19,7 +21,7 @@ import { currencyThunk } from "./redux/currency/operations";
 
 function App() {
   const dispatch = useDispatch();
-  // const isRefreshing = useSelector(selectIsRefreshing)
+  const isRefreshing = useSelector(selectIsRefreshing)
 
   useEffect(() => {
     dispatch(refreshThunk());
@@ -27,8 +29,10 @@ function App() {
   }, [dispatch]);
 
   // const isRefreshing = useSelector(selectIsRefreshing)
-
-  return (
+  console.log("Is refreshing:", isRefreshing);
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Suspense fallback={null}>
       <Routes>
         <Route
