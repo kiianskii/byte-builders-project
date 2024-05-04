@@ -14,6 +14,7 @@ const initialState = {
   token: "",
   isLoggedIn: false,
   isRefreshing: false,
+  balance: "",
 };
 
 const slice = createSlice({
@@ -28,14 +29,12 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
-
         state.user.name = payload.username;
         state.user.email = payload.email;
         state.token = payload.token;
         state.isLoggedIn = true;
       })
       .addCase(signInThunk.fulfilled, (state, { payload }) => {
-
         state.user.name = payload.username;
         state.user.email = payload.email;
         state.token = payload.token;
@@ -45,7 +44,7 @@ const slice = createSlice({
         return initialState;
       })
       .addCase(refreshThunk.fulfilled, (state, { payload }) => {
-
+        state.balance = payload.balance;
         state.user.name = payload.username;
         state.user.email = payload.email;
         state.isLoggedIn = true;

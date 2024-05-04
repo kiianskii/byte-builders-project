@@ -1,4 +1,6 @@
 import { useCallback, useEffect } from "react";
+import { Icon } from "../../img/Icon";
+import { useMediaQuery } from "react-responsive";
 
 import s from "./Modal.module.css";
 const Modal = ({ children, title = "Default modal", closeModal }) => {
@@ -25,15 +27,20 @@ const Modal = ({ children, title = "Default modal", closeModal }) => {
     }
   };
 
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+
   return (
     <div className={s.wrapper} onClick={handleBackdropClick}>
       <div className={s.content}>
         <>
-          <h1 className={s.title}>{title}</h1>
+          <h2 className={s.title}>{title}</h2>
         </>
-        <button onClick={closeModal} className={s.closeBtn}>
-          ×
-        </button>
+        {!isMobile && (
+          <button onClick={closeModal} className={s.closeBtn}>
+            <Icon size={16} id="close-btn" />
+          </button>
+        )}
+
         {children}
       </div>
     </div>

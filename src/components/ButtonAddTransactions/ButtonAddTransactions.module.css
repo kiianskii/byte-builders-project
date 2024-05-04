@@ -10,4 +10,13 @@
     rgb(158, 64, 186) 181.695%,
     rgb(112, 0, 255) 327.061%
   );
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1;
+}
+
+.container {
+  height: 640px;
+  padding-bottom: 40px;
 }

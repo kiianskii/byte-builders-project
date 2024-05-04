@@ -8,8 +8,12 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Select from "react-select";
 import "./MySelect.css";
+import clsx from "clsx";
+import { selectBalance } from "../../redux/auth/selectors";
 
 function StatisticsTab() {
+  const balance = useSelector(selectBalance);
+
   const categoryes = [
     { categoryName: "Main expenses", categoryColor: "#FED057" },
     { categoryName: "Products", categoryColor: "#FFD8D0" },
@@ -60,9 +64,14 @@ function StatisticsTab() {
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
-      // overflowY: "scroll",
+      width: 181,
+      height: 157,
     }),
-
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : null,
+      transition: "transform 0.2s ease-in-out",
+    }),
     input: (provided, state) => ({
       ...provided,
       height: 50,
@@ -107,12 +116,36 @@ function StatisticsTab() {
     },
   };
 
+  const textCenter = {
+    id: "textCenter",
+    beforeDatasetsDraw(chart, args, pluginOptions) {
+      const { ctx, data } = chart;
+      console.log(balance);
+      // Перевірка, чи існують дані датасету
+      if (
+        chart.data.datasets.length > 0 &&
+        chart.data.datasets[0].data.length > 0
+      ) {
+        ctx.save();
+        ctx.font = "600 18px Poppins";
+        ctx.fillStyle = "#FBFBFB";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "center";
+        ctx.fillText(
+          balance,
+          chart.getDatasetMeta(0).data[0].x,
+          chart.getDatasetMeta(0).data[0].y
+        );
+        ctx.restore(); // Відновлення контексту канвасу
+      }
+    },
+  };
+
   // ===================================================================================================
 
   const dispatch = useDispatch();
   const [date, setDate] = useState({ month: 1, year: 2024 });
   useEffect(() => {
-    console.log(selectedMonth);
     dispatch(
       transactionByDateThunk({
         month: selectedMonth.value,
@@ -123,47 +156,32 @@ function StatisticsTab() {
 
   const summary = useSelector(selectSummary);
 
+  const classExpenses = clsx(css.thtd, css.classExpenses);
+  const classExpensesValue = clsx(css.tht, css.classExpensesValue);
+  const classIncomeValue = clsx(css.tht, css.classIncomeValue);
+
   return (
     <div className={css.box}>
       {/* ================================================================================================ */}
 
       <div className={css.doughnut}>
-        <Doughnut data={data} options={options} />
+        <h2 className={css.doughnutText}>Statistics</h2>
+        <Doughnut data={data} options={options} plugins={[textCenter]} />
       </div>
 
       {/* ========================================================================================== */}
       <div className={css.selectAndTable}>
         <div className={css.SearchBox}>
-          {/* <select
-            name="month"
-            onChange={(e) => setDate({ ...date, month: +e.target.value })}
-            className={css.input}
-          >
-            <option value="1" selected>
-              January
-            </option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select> */}
-          <div className="inputSelect">
-            <Select
-              options={selectMonth}
-              defaultValue={selectedMonth}
-              onChange={setSelectedMonth}
-              classNamePrefix="input"
-              styles={customStyles}
-              className="selectInput"
-            />
-          </div>
+          {/* <div className="inputSelect"> */}
+          <Select
+            options={selectMonth}
+            defaultValue={selectedMonth}
+            onChange={setSelectedMonth}
+            classNamePrefix="input"
+            styles={customStyles}
+            className="selectInput"
+          />
+          {/* </div> */}
 
           <Select
             options={selectYear}
@@ -173,28 +191,6 @@ function StatisticsTab() {
             styles={customStyles}
             className="selectInput"
           />
-
-          {/* 
-          <select
-            name="year"
-            onChange={(e) => setDate({ ...date, year: +e.target.value })}
-            className={css.input}
-          >
-            <option value="2024" selected>
-              2024
-            </option>
-            <option value="2023">2023</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-            <option value="2017">2017</option>
-            <option value="2016">2016</option>
-            <option value="2015">2015</option>
-            <option value="2014">2014</option>
-            <option value="2013">2013</option>
-          </select> */}
         </div>
 
         {/* ===================================================================================================*/}
@@ -227,12 +223,12 @@ function StatisticsTab() {
               );
             })}
             <tr>
-              <td className={css.thtd}>Expenses</td>
-              <td className={css.tht}>{summary.expenseSummary}</td>
+              <td className={classExpenses}>Expenses</td>
+              <td className={classExpensesValue}>{summary.expenseSummary}</td>
             </tr>
             <tr>
-              <td className={css.thtd}>Income</td>
-              <td className={css.tht}>{summary.incomeSummary}</td>
+              <td className={classExpenses}>Income</td>
+              <td className={classIncomeValue}>{summary.incomeSummary}</td>
             </tr>
           </tbody>
         </table>

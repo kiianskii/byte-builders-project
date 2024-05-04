@@ -6,23 +6,25 @@ import { useToggle } from "../../hooks/useToggle";
 import HeaderModal from "./HeaderModal/HeaderModal";
 import { useEffect, useState } from "react";
 import ModalMobile from "./ModalHeaderMobile/ModalMobile";
+import { useDispatch } from "react-redux";
+import { refreshThunk } from "../../redux/auth/operations";
 
 const Header = () => {
   const user = useSelector(selectUser);
   const { openModal, isOpen, closeModal } = useToggle();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
 
     window.addEventListener("resize", handleResize);
-
+    dispatch(refreshThunk());
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={css.header}>

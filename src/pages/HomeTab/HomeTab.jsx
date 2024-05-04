@@ -10,18 +10,30 @@ import css from "../../components/ButtonAddTransactions/ButtonAddTransactions.mo
 import AddTransactionForm from "../../components/AddTransactionForm/AddTransactionForm";
 import Modal from "../../components/Modal/Modal";
 import { Icon } from "../../img/Icon";
+import { useMediaQuery } from "react-responsive";
+import TransactionListMob from "../../components/TransactionList/TransactionListMob";
 
 function HomeTab() {
   const dispatch = useDispatch();
   const { openModal, closeModal, isOpen } = useToggle();
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   useEffect(() => {
     dispatch(userTransactionsThunk());
     dispatch(transactionsCategoriesThunk());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
+
   return (
-    <div>
-      <TransactionList />
+    <div className={css.container}>
+      {isMobile ? <TransactionListMob /> : <TransactionList />}
       <button className={css.add_btn} type="button" onClick={openModal}>
         <Icon size={20} id="plus" />
       </button>

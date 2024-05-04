@@ -15,37 +15,60 @@
   /* form effects */
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(50px);
-  /* width: 182px;
-  max-height: 157px; */
+  /* width: 182px; */
+  /* height: 300px; */
   color: var(--white, #fbfbfb);
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  /* padding-top: 30px; */
-  position: absolute;
+  /* position: absolute; */
+  padding: 0;
+  margin: auto;
+  flex: 1;
+  /* transform: translateY(-50%); */
+  scrollbar-width: none;
 }
 
 .inputSelect {
+  background: transparent;
+  overflow: hidden;
   position: relative;
+  z-index: 9;
+  /* box-sizing: content-box; */
+  display: block;
+  /* position: static; */
   width: 182px;
-  max-height: 157px;
+  height: 290px;
 }
 
-/* .input__menu::-webkit-scrollbar {
+.input__menu::-webkit-scrollbar {
   background-color: rgba(0, 0, 0, 0.2);
-} */
+  scrollbar-width: 0;
+  scrollbar-width: none;
+}
 
-/* Стилізація опцій випадаючого меню */
-/* .input__option {
-  color: black;
-  position: relative;
-} */
+.input__menu-list::-webkit-scrollbar {
+  background-color: transparent;
+  scrollbar-width: 0;
+  scrollbar-width: none;
+  height: 600px;
+}
 
-/* Стилізація виділеної опції */
+.input__menu-list {
+  height: 157px;
+  overflow: hidden;
+}
+
 .input__option--is-selected {
-  background-color: yellow;
+  background: transparent !important;
+  /* color: #ff868d !important;
+  font-family: Poppins !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important; */
 }
 
 /* Стилізація опцій при наведенні */
@@ -62,4 +85,81 @@
 .input__control {
   width: 181px;
   max-height: 157px;
+}
+
+.input__indicator-separator {
+  display: none;
+}
+
+.input__control {
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--white, #fbfbfb) !important;
+  font-family: Poppins !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+}
+
+.selectInput {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid var(--white-60, rgba(255, 255, 255, 0.6));
+  border-radius: 8px;
+  color: var(--white, #fbfbfb) !important;
+  font-family: Poppins !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+}
+
+.input__placeholder {
+  color: var(--white, #fbfbfb) !important;
+  font-family: Poppins !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+}
+
+.input__value-container {
+  color: var(--white, #fbfbfb) !important;
+  font-family: Poppins !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+}
+
+.input__single-value {
+  color: var(--white, #fbfbfb) !important;
+  font-family: Poppins !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+}
+
+.css-tj5bde-Svg {
+  width: 40px !important;
+  height: 40px !important;
+  stroke-width: 0.003rem !important;
+}
+
+.css-tj5bde-Svg:hover,
+.css-tj5bde-Svg:hover:focus,
+.css-tj5bde-Svg:hover:active {
+  stroke: white !important;
+  fill: white !important;
+}
+
+._svg_rvwpd_345 {
+  stroke: white;
+  fill: white;
+  display: block;
+  width: 40px !important;
+  height: 40px !important;
 }
