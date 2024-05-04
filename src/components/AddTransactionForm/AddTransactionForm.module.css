@@ -91,6 +91,8 @@
   .form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     row-gap: 40px;
   }
 
@@ -105,7 +107,13 @@
     height: 35px;
     background-color: transparent;
     border: none;
+    padding-left: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .textarea {
+    height: 79px;
+    resize: none;
   }
 }
 
@@ -113,6 +121,7 @@
   font-size: 18px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  padding: 13px 120px;
   text-align: center;
   color: #fbfbfb;
 
@@ -135,6 +144,7 @@
   text-transform: uppercase;
   text-align: center;
   color: #623f8b;
+  padding: 13px 100px;
 
   width: 280px;
   height: 50px;
@@ -145,4 +155,9 @@
   @media (min-width: 768px) {
     width: 300px;
   }
+}
+
+.wrapper {
+  position: relative;
+  width: 280px;
 }

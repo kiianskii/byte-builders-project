@@ -7,6 +7,7 @@ import { selectCategories } from "../../redux/transactions/slice";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { sendTransactionThunk } from "../../redux/transactions/operations";
+import * as Yup from "yup";
 
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -28,6 +29,18 @@ const AddTransactionForm = ({ closeModal }) => {
     comment: "",
   };
 
+  const schema = Yup.object().shape({
+    // categoryId: Yup.string().required("Please choose any category"),
+    categoryId:
+      toggle &&
+      Yup.object().shape({
+        value: Yup.string().required("Please choose any category"),
+        label: Yup.string().required("Please choose any category"),
+      }),
+    amount: Yup.number().required("Please enter amount"),
+    comment: Yup.string().required("Please enter a comment"),
+    // transactionDate: Yup.string().required("Please choose a date"),
+  });
   function handleSubmit(data, options) {
     const query = {
       ...data,
@@ -42,7 +55,11 @@ const AddTransactionForm = ({ closeModal }) => {
     options.resetForm();
   }
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={schema}
+    >
       <Form className={css.form}>
         <div className={css.switch_wrapper}>
           <p className={toggle ? css.switcher_text : css.income}>Income</p>
@@ -67,6 +84,17 @@ const AddTransactionForm = ({ closeModal }) => {
                     backgroundColor: "transparent",
                     border: "none",
                     borderBottom: "1px solid rgba(255, 255, 255, 0.4)",
+                    paddingLeft: "20px",
+                    width: "280px",
+                    height: "35px",
+                  }),
+                  indicatorsContainer: (styles) => ({
+                    ...styles,
+                    height: "35px",
+                  }),
+                  valueContainer: (styles) => ({
+                    ...styles,
+                    paddingLeft: "0",
                   }),
                   // option: (styles) => ({
                   //   ...styles,
@@ -99,6 +127,12 @@ const AddTransactionForm = ({ closeModal }) => {
                   dropdownIndicator: (styles) => ({
                     ...styles,
                     color: "rgb(251, 251, 251)",
+                    // width: "18px",
+                    // height: "9px",
+                  }),
+                  indicatorSeparator: (styles) => ({
+                    ...styles,
+                    display: "none",
                   }),
                 }}
                 options={categoriesArr}
@@ -116,7 +150,9 @@ const AddTransactionForm = ({ closeModal }) => {
           name="amount"
           className={`${css.input} ${css.input_number}`}
         />
-        <SelectDate startDate={startDate} setStartDate={setStartDate} />
+        <div className={css.wrapper}>
+          <SelectDate startDate={startDate} setStartDate={setStartDate} />
+        </div>
 
         <Field
           as="textarea"

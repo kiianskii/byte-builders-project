@@ -22,6 +22,15 @@ function HomeTab() {
     dispatch(userTransactionsThunk());
     dispatch(transactionsCategoriesThunk());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
+
   return (
     <div className={css.container}>
       {isMobile ? <TransactionListMob /> : <TransactionList />}

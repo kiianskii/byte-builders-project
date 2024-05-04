@@ -1,8 +1,4 @@
 .add_btn {
-  /* margin: 0 40px 40px auto; */
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   width: 44px;
   height: 44px;
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
@@ -14,6 +10,10 @@
     rgb(158, 64, 186) 181.695%,
     rgb(112, 0, 255) 327.061%
   );
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1;
 }
 
 .container {
