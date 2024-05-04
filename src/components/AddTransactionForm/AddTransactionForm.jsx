@@ -85,6 +85,12 @@ const AddTransactionForm = ({ closeModal }) => {
                     border: "none",
                     borderBottom: "1px solid rgba(255, 255, 255, 0.4)",
                     paddingLeft: "20px",
+                    width: "280px",
+                    height: "35px",
+                  }),
+                  indicatorsContainer: (styles) => ({
+                    ...styles,
+                    height: "35px",
                   }),
                   valueContainer: (styles) => ({
                     ...styles,
@@ -121,6 +127,12 @@ const AddTransactionForm = ({ closeModal }) => {
                   dropdownIndicator: (styles) => ({
                     ...styles,
                     color: "rgb(251, 251, 251)",
+                    // width: "18px",
+                    // height: "9px",
+                  }),
+                  indicatorSeparator: (styles) => ({
+                    ...styles,
+                    display: "none",
                   }),
                 }}
                 options={categoriesArr}
@@ -138,7 +150,9 @@ const AddTransactionForm = ({ closeModal }) => {
           name="amount"
           className={`${css.input} ${css.input_number}`}
         />
-        <SelectDate startDate={startDate} setStartDate={setStartDate} />
+        <div className={css.wrapper}>
+          <SelectDate startDate={startDate} setStartDate={setStartDate} />
+        </div>
 
         <Field
           as="textarea"
