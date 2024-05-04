@@ -9,8 +9,11 @@
 }
 .content {
   position: relative;
-  /* background-color: rgb(226, 17, 233); */
   background-image: url("../../img/background/mobilebackMobile.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 320px;
+  /* height: 691px; */
   padding: 20px;
   overflow: hidden;
   max-width: 1000px;
