@@ -9,14 +9,29 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  fill: white;
+  fill: rgba(255, 255, 255, 0.446);
 }
-
+.statIcon {
+  width: 44px;
+  height: 44px;
+}
 .list {
-  margin: 40px 0px 28px 32px;
+  margin: 12px 62px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: row;
+  gap: 32px;
+}
+@media screen and (min-width: 768px) {
+  .list {
+    /* margin: 40px 0px 28px 16px; */
+    /* display: flex; */
+    flex-direction: column;
+    gap: 12px;
+  }
+  .statIcon {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 @media screen and (min-width: 1280px) {

@@ -3,7 +3,7 @@ import Currency from "../../components/Currency/Currency";
 import Navigation from "../../components/Navigation/Navigation";
 
 function DashboardPage() {
-  const isDesktop = useMediaQuery({ minWidth: 321 });
+  const isDesktop = useMediaQuery({ minWidth: 768 });
 
   return (
     <div className="dashboard">

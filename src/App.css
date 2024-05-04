@@ -155,7 +155,20 @@ img {
   font-size: 18px !important;
   font-weight: 700 !important;
   line-height: normal !important;
-  fill: #734aef !important;
+
+  .stat {
+    fill: #734aef !important;
+    background: white;
+    border-radius: 7px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .active {
+    .stat {
+      border-radius: 3px;
+    }
+  }
 }
 .layout-box {
   display: flex;

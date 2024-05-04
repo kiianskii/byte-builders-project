@@ -62,8 +62,53 @@
   background: transparent;
   stroke-opacity: 0.6;
   padding: 0;
+  color: var(--white-60, rgba(255, 255, 255, 0.6));
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.32px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .rowCenter {
   text-align: center;
+}
+
+.name {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.mobitem {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
+
+.moblist {
+  width: 280px;
+  height: 293px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobplus {
+  color: #ffb627;
+}
+
+.mobminus {
+  color: #ff868d;
+}
+
+.mob_border_minus {
+  border-left: 5px solid #ff868d;
+}
+.mob_border_plus {
+  border-left: 5px solid #ffb627;
 }
