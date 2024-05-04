@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { NavLink } from "react-router-dom";
@@ -6,6 +7,7 @@ import { Icon } from "../../img/Icon";
 import s from "./LoginForm.module.css";
 import { RegisterGrad } from "./RegistrGrad";
 import { LoginGrad } from "./LoginGrad";
+import ProgressBar from "./ProgressBar";
 
 export default function LoginForm({ type, onSubmit, initialValues }) {
   const [size, setSize] = useState(window.innerWidth);
@@ -40,7 +42,7 @@ export default function LoginForm({ type, onSubmit, initialValues }) {
             className={s.logo_wrapper}
             style={{ paddingBottom: type === "login" ? "11px" : "0px" }}
           >
-            <Icon size={size < 768 ? 34 : 26} id="logo-mob" />
+            <Icon size={size > 768 ? 34 : 26} id="logo-mob" />
             Money Guard
           </div>
           <Formik
@@ -49,10 +51,11 @@ export default function LoginForm({ type, onSubmit, initialValues }) {
             validationSchema={Validation(type)}
             context={{ type }}
           >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, values }) => (
               <Form className={s.form}>
                 {type === "register" && (
                   <div className={s.inputContainer}>
+                    <Icon size={24} id="user" className={s.svg} />
                     <Field
                       className={s.formInput}
                       type="text"
@@ -67,6 +70,7 @@ export default function LoginForm({ type, onSubmit, initialValues }) {
                   </div>
                 )}
                 <div className={s.inputContainer}>
+                  <Icon size={24} id="email" className={s.svg} />
                   <Field
                     className={s.formInput}
                     type="text"
@@ -81,6 +85,7 @@ export default function LoginForm({ type, onSubmit, initialValues }) {
                   />
                 </div>
                 <div className={s.inputContainer}>
+                  <Icon size={24} id="password" className={s.svg} />
                   <Field
                     className={s.formInput}
                     type="password"
@@ -93,9 +98,13 @@ export default function LoginForm({ type, onSubmit, initialValues }) {
                     component="div"
                     className={s.password_error}
                   />
+                  {type === "login" && (
+                    <ProgressBar password={values.password} />
+                  )}
                 </div>
                 {type === "register" && (
                   <div className={s.inputContainer}>
+                    <Icon size={24} id="password" className={s.svg} />
                     <Field
                       className={s.formInput}
                       type="password"
@@ -107,35 +116,24 @@ export default function LoginForm({ type, onSubmit, initialValues }) {
                       component="div"
                       className={s.confirm_error}
                     />
+                    <ProgressBar password={values.password} />
                   </div>
                 )}
-                {type === "login" ? (
-                  <div className={s.button_cont}>
-                    <button
-                      className={s.buttonSubmit}
-                      type="submit"
-                      disabled={isSubmitting}
-                    >
-                      log in
-                    </button>
-                    <NavLink className={s.buttonNoactive} to="/register">
-                      register
-                    </NavLink>
-                  </div>
-                ) : (
-                  <div className={s.button_cont}>
-                    <button
-                      className={s.buttonSubmit}
-                      type="submit"
-                      disabled={isSubmitting}
-                    >
-                      register
-                    </button>
-                    <NavLink className={s.buttonNoactive} to="/login">
-                      log in
-                    </NavLink>
-                  </div>
-                )}
+                <div className={s.button_cont}>
+                  <button
+                    className={s.buttonSubmit}
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    {type === "login" ? "log in" : "register"}
+                  </button>
+                  <NavLink
+                    className={s.buttonNoactive}
+                    to={type === "login" ? "/register" : "/login"}
+                  >
+                    {type === "login" ? "register" : "log in"}
+                  </NavLink>
+                </div>
               </Form>
             )}
           </Formik>
