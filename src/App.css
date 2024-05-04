@@ -61,6 +61,7 @@ body {
       url("./img/background/tabletbackTab.jpg") 1x,
       url("./img/background/tabletbackTab@2x.jpg") 2x
     );
+    height: 1024px;
   }
 }
 
@@ -72,6 +73,7 @@ body {
       url("./img/background/iMac.webp") 1x,
       url("./img/background/iMac@2x.webp") 2x
     );
+    height: 720px;
   }
 }
 
@@ -131,27 +133,60 @@ img {
 
 .container {
   max-width: 320px;
-  padding: 0 20px;
+  /* padding: 0 20px; */
   margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
-    padding: 0 32px;
+    /* padding: 0 32px; */
   }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
     max-width: 1280px;
-    padding: 0 16px;
+    /* padding: 0 16px; */
   }
 }
 
 .active {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: normal;
-  fill: #734aef;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: normal !important;
+
+  .stat {
+    fill: #734aef !important;
+    background: white;
+    border-radius: 7px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .active {
+    .stat {
+      border-radius: 3px;
+    }
+  }
+}
+.layout-box {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard {
+  /* border-right: 1px solid rgba(255, 255, 255, 0.6); */
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 1280px) {
+  .layout-box {
+    display: flex;
+    flex-direction: row;
+  }
+  .dashboard {
+    border-right: 1px solid rgba(255, 255, 255, 0.6);
+    flex-direction: column;
+  }
 }

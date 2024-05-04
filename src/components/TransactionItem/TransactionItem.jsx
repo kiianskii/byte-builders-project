@@ -18,7 +18,9 @@ function TransactionItem({ transaction }) {
   );
   return (
     <tr className={s.rowline}>
-      <td className={s.row}>{transaction.transactionDate.slice(0, 10)}</td>
+      <td className={s.row}>
+        {transaction.transactionDate.slice(0, 10).replaceAll("-", ".")}
+      </td>
       <td className={s.row + " " + s.rowCenter}>
         {transaction.type === "INCOME" ? "+" : "-"}
       </td>

@@ -3,7 +3,11 @@
   inset: 0;
   display: flex;
   justify-content: center;
-  background-image: url("../../../img/background/mobilebackMobile.jpg");
+  background-image: image-set(
+    url("../../../img/logoutBack/moblogout.jpg") 1x,
+    url("../../../img/logoutBack/moblogout@2x.jpg") 2x
+  );
+  background-position-y: -140px;
   background-size: cover;
   height: 100vh;
   background-repeat: no-repeat;
@@ -11,6 +15,6 @@
   margin-top: 60px;
   @media (min-width: 768px) {
     margin-top: 0;
-    /* background-image: none; */
+    background-image: none;
   }
 }

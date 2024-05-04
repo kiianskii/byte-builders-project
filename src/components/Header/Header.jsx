@@ -6,23 +6,25 @@ import { useToggle } from "../../hooks/useToggle";
 import HeaderModal from "./HeaderModal/HeaderModal";
 import { useEffect, useState } from "react";
 import ModalMobile from "./ModalHeaderMobile/ModalMobile";
+import { useDispatch } from "react-redux";
+import { refreshThunk } from "../../redux/auth/operations";
 
 const Header = () => {
   const user = useSelector(selectUser);
   const { openModal, isOpen, closeModal } = useToggle();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
 
     window.addEventListener("resize", handleResize);
-
+    dispatch(refreshThunk());
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={css.header}>
@@ -39,19 +41,20 @@ const Header = () => {
         </li>
       </ul>
       <div className={css.list}>
-        <p className={css.name}>{user.name}Name</p>
+        <p className={css.name}>{user.name}</p>
         {windowWidth >= 768 ? (
-          <Icon size={30} id="Vector-beetween-logo" className={css.icon} />
+          <Icon size={27} id="Vector-beetween-logo" className={css.icon} />
         ) : null}
         <button className={css.button_exit} onClick={openModal}>
           <Icon size={18} id="exit" />
+          {windowWidth >= 768 ? <p className={css.name}>Exit</p> : null}
         </button>
+
         {isOpen && (
           <ModalMobile>
             <HeaderModal closeModal={closeModal} />
           </ModalMobile>
         )}
-        {windowWidth >= 768 ? <p className={css.name}>Exit</p> : null}
       </div>
     </div>
   );

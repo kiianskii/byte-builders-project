@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 40px 73px;
 }
 .edit_toggle {
   display: flex;
@@ -23,12 +24,12 @@
 }
 .edit_modal_select {
   display: flex;
-  align-items: center;
   justify-content: center;
   gap: 32px;
 }
 .edit_amount {
   width: 181px;
+  height: 35px;
   text-align: center;
   background-color: transparent;
   color: white;
@@ -37,8 +38,9 @@
   font-size: 18px;
   border-bottom: 1px solid #ffffff;
   padding-bottom: 8px;
+  box-sizing: content-box;
 }
-.edit_comment {
+.edit_comment_input {
   width: 394px;
   padding-left: 8px;
   height: 35px;
@@ -51,6 +53,13 @@
   outline: transparent;
   resize: none;
 }
+.edit_comment {
+  margin: 0px auto 15px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
 .edit_buttons_wrapper {
   display: flex;
   flex-direction: column;
@@ -61,14 +70,12 @@
   width: 300px;
   height: 50px;
   border-radius: 20px;
-  background: -webkit-linear-gradient(
-    to right,
-    var(--yellow),
-    var(--icon-violet)
+  background: var(
+    --button-gradient,
+    linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
   );
   text-align: center;
   color: white;
-  box-shadow: 1px 9px 15px 0px;
   font-size: 18px;
   letter-spacing: 1.8px;
   text-transform: uppercase;
@@ -76,18 +83,17 @@
   transition: all 0.5s ease;
 }
 .edit_cancel_button {
-  padding: 13px 10px;
-  width: 300px;
   height: 50px;
-  border-radius: 20px;
-  background: var(--modal-accent-white);
-  text-align: center;
-  color: var(--text-button);
-  box-shadow: 1px 9px 15px 0px var(--modal-button-shadow);
-  font-family: "Poppins Regular";
-  font-size: 18px;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.5s ease;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  padding: 13px 10px;
+  font-size: 18px;
+  color: #623f8b;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  background-color: white;
+  text-align: center;
+  text-transform: uppercase;
+  transition: scale 250ms ease-in-out 0s, box-shadow 250ms ease-in-out 0s;
 }

@@ -1,7 +1,7 @@
-import React from 'react';
+
 import PasswordStrengthBar from 'react-password-strength-bar';
 
-import s from './LoginRegisterForm.module.css';
+import s from "./LoginForm.module.css";
 
 const ProgressBar = ({ password }) => {
   return (
