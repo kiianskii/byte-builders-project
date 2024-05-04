@@ -1,24 +1,23 @@
-import { Form, Formik, Field } from "formik";
-import { useState } from "react";
+import { Formik, Form, Field } from "formik";
+import { useState, useEffect } from "react";
 import s from "./EditTransactionForm.module.css";
 import { Icon } from "../../img/Icon";
 import { useDispatch, useSelector } from "react-redux";
 import { editTransactionThunk } from "../../redux/transactions/operations";
-import { categories } from "../../redux/transactions/selectors";
-
 import "react-datepicker/dist/react-datepicker.css";
 import ReactDatePicker from "react-datepicker";
-import { useEffect } from "react";
+import { selectCategories } from "../../redux/transactions/slice";
 
 const EditTransactionForm = ({ transaction, closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
+  const categoriesTransaction = useSelector(selectCategories);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const today = new Date();
 
   const onChange = (date) => setStartDate(date);
-
-  const dispatch = useDispatch();
-
-  const categoriesTransaction = useSelector(categories);
 
   useEffect(() => {
     if (transaction) {
@@ -30,22 +29,34 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
     (category) => category.id === transaction?.categoryId
   );
 
-  const handleSubmit = (values) => {
-    console.log("Submitting form with values:", values);
-    const id = transaction.id;
-    const formattedDate = startDate.toISOString().slice(0, 10);
-    const editedTransaction = {
-      transactionDate: `${formattedDate}`,
-      type: `${transaction?.type}`,
-      categoryId: `${transaction?.categoryId}`,
-      comment: `${values.comment}`,
-      amount:
-        transaction?.type === "INCOME"
-          ? Number(values.amount)
-          : Number(-values.amount),
-    };
-    dispatch(editTransactionThunk({ id, transaction: editedTransaction }));
-    closeModal();
+  const handleSubmit = async (values) => {
+    try {
+      setLoading(true);
+      console.log("Submitting form with values:", values);
+      const id = transaction.id;
+      const formattedDate = startDate.toISOString().slice(0, 10);
+      const editedTransaction = {
+        transactionDate: formattedDate,
+        type: transaction?.type,
+        categoryId: transaction?.categoryId,
+        comment: values.comment,
+        amount:
+          transaction?.type === "INCOME"
+            ? Number(values.amount)
+            : -Math.abs(Number(values.amount)),
+      };
+
+      const response = await dispatch(
+        editTransactionThunk({ id, credentials: editedTransaction })
+      );
+      console.log("Response from server:", response);
+      closeModal();
+    } catch (error) {
+      console.error("Error editing transaction:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const amountPlaceholder = Math.abs(transaction?.amount);
@@ -96,29 +107,37 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
               dateFormat="dd.MM.yyyy"
               maxDate={today}
             />
+
+            <Icon size={24} id="calendar" className={s.adit_svg} />
           </div>
         </div>
-
-        <Field
-          className={s.edit_comment}
-          required
-          name="comment"
-          placeholder={transaction?.comment}
-          maxLength={12}
-        />
+        <div className={s.edit_comment}>
+          <Field
+            className={s.edit_comment_input}
+            required
+            name="comment"
+            placeholder={transaction?.comment}
+          />
+        </div>
 
         <div className={s.edit_buttons_wrapper}>
-          <button type="submit" className={s.edit_save_button}>
-            Save
+          <button
+            type="submit"
+            className={s.edit_save_button}
+            disabled={loading}
+          >
+            {loading ? "Saving..." : "Save"}
           </button>
           <button
             className={s.edit_cancel_button}
             type="button"
             onClick={closeModal}
+            disabled={loading}
           >
             Cancel
           </button>
         </div>
+        {error && <div className={s.error_message}>{error}</div>}
       </Form>
     </Formik>
   );

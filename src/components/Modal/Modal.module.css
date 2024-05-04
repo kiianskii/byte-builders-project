@@ -21,16 +21,17 @@
 }
 .closeBtn {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 20px;
+  right: 20px;
   background-color: transparent;
   border: none;
   font-size: 20px;
   cursor: pointer;
+  color: white;
 }
 
 .title {
-  width: 280px;
+  /* width: 280px; */
   height: 31px;
   color: rgb(251, 251, 251);
   font-family: Poppins;
@@ -39,5 +40,5 @@
   line-height: 36px;
   letter-spacing: 0%;
   text-align: center;
-  margin-bottom: 32px;
+  /* margin-bottom: 32px; */
 }
