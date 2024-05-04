@@ -214,7 +214,7 @@ function StatisticsTab() {
               );
               data.datasets[0].backgroundColor.push(color.categoryColor);
               return (
-                <tr className={css.tr}>
+                <tr className={css.tr} key={el.id}>
                   <td className={css.thtd}>
                     <span
                       className={css.span}

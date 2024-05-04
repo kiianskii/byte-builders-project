@@ -87,32 +87,94 @@
   padding-bottom: 8px;
 }
 
-@media only screen and (max-width: 767.98px) {
-  .form {
-    display: flex;
-    flex-direction: column;
-    row-gap: 40px;
-  }
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 40px;
+}
 
-  .btn_wrapper {
+.input {
+  background-color: transparent;
+  border: none;
+  color: rgb(251, 251, 251);
+  padding: 0 20px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn_wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+@media only screen and (max-width: 767.98px) {
+  /* .form {
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
-  }
+    align-items: center;
+    justify-content: center;
+    row-gap: 40px;
+  } */
 
   .input {
     width: 280px;
     height: 35px;
     background-color: transparent;
     border: none;
+    color: rgb(251, 251, 251);
+    padding: 0 20px !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   }
+
+  .textarea {
+    height: 79px;
+    resize: none;
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0%;
+    text-align: left;
+  }
+}
+
+.amount_date_box {
+  display: flex;
+  gap: 32px;
+  width: 394px;
+}
+
+@media only screen and (min-width: 768px) {
+  .input_number {
+    width: 181px;
+    padding: 0 73px 8px 68px !important;
+    height: 35px;
+  }
+
+  .textarea {
+    width: 394px;
+    height: 35px;
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0%;
+    text-align: left;
+    resize: none;
+  }
+}
+
+.input_number {
+  color: rgb(251, 251, 251) !important;
 }
 
 .button_out {
   font-size: 18px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  padding: 13px 120px;
   text-align: center;
   color: #fbfbfb;
 
@@ -135,6 +197,7 @@
   text-transform: uppercase;
   text-align: center;
   color: #623f8b;
+  padding: 13px 100px;
 
   width: 280px;
   height: 50px;
@@ -145,4 +208,20 @@
   @media (min-width: 768px) {
     width: 300px;
   }
+}
+
+@media only screen and (min-width: 768px) {
+  .button_out {
+    width: 300px;
+    height: 50px;
+  }
+  .button_cancel {
+    width: 300px;
+    height: 50px;
+  }
+}
+
+.wrapper {
+  position: relative;
+  width: 280px;
 }

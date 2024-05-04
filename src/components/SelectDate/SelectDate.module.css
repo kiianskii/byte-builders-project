@@ -5,5 +5,24 @@
     background-color: transparent;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    /* position: absolute;
+    transform: translateY(-24px); */
+    position: relative;
+  }
+
+  .icon {
+    position: absolute;
+    left: 240px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .input_date {
+    width: 181px;
+    height: 35px;
+  }
+  .icon {
+    position: absolute;
+    left: 140px;
   }
 }
