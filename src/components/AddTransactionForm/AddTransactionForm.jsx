@@ -22,6 +22,7 @@ const AddTransactionForm = ({ closeModal }) => {
       label: category.name,
     })
   );
+  console.log(categoriesArr);
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   const WIDTH = !isMobile ? "394px" : "280px";
   const [toggle, setToggle] = useState(true);
@@ -33,7 +34,6 @@ const AddTransactionForm = ({ closeModal }) => {
   };
 
   const schema = Yup.object().shape({
-    // categoryId: Yup.string().required("Please choose any category"),
     categoryId:
       toggle &&
       Yup.object().shape({
@@ -42,7 +42,7 @@ const AddTransactionForm = ({ closeModal }) => {
       }),
     amount: Yup.number().required("Please enter amount"),
     comment: Yup.string().required("Please enter a comment"),
-    // transactionDate: Yup.string().required("Please choose a date"),
+    transactionDate: Yup.date().nullable("Please choose a date"),
   });
   function handleSubmit(data, options) {
     const query = {
@@ -54,6 +54,7 @@ const AddTransactionForm = ({ closeModal }) => {
       type: toggle ? "EXPENSE" : "INCOME",
       amount: toggle ? -data.amount : data.amount,
     };
+    if (query.transactionDate === null) return;
     dispatch(sendTransactionThunk(query));
     options.resetForm();
     closeModal();
@@ -143,7 +144,9 @@ const AddTransactionForm = ({ closeModal }) => {
                     display: "none",
                   }),
                 }}
-                options={categoriesArr}
+                options={categoriesArr.filter(
+                  (category) => category.type !== "INCOME"
+                )}
                 value={field.value}
                 onChange={(option) => {
                   form.setFieldValue(field.name, option);
