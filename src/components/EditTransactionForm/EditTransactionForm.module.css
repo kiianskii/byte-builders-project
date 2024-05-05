@@ -1,16 +1,19 @@
 .edit_body {
   display: flex;
-  width: 254px;
-  height: 44px;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  gap: 40px;
+  flex-direction: column;
+  background-position: center center;
 }
 
 .edit_toggle {
-  position: relative;
-  cursor: pointer;
-  border-radius: 30px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .expense_active {
   color: rgb(251, 189, 32);
@@ -21,11 +24,12 @@
 .edit_select {
   width: 280px;
   padding-left: 20px;
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   padding-bottom: 8px;
   font-size: 18px;
   text-align: left;
 }
+
 .edit_modal_select {
   display: flex;
   flex-direction: column;
@@ -37,14 +41,37 @@
   width: 280px;
   padding-left: 20px;
   text-align: start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fbfbfb !important;
+  font-weight: 600 !important;
+  font-size: 18px;
+}
+.edit_amount_date {
+  color: #fbfbfb !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+.edit_comment {
+  display: flex;
+}
+.edit_amount:focus {
+  padding-left: 20px;
 }
 .edit_comment_input {
-  width: 280px;
   padding-left: 20px;
-  border-bottom: 1px solid #ffffff;
-  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   font-size: 18px;
   text-align: left;
+  color: #fbfbfb !important;
+
+  height: 76px;
+  resize: none;
+  font-family: Poppins;
+
+  font-weight: 400;
+  line-height: 27px;
+}
+.edit_comment_input:focus {
+  padding-left: 20px;
 }
 /* .edit_comment {
   margin: 0px auto 15px;
@@ -56,7 +83,7 @@
   font-size: 18px;
   border: none;
   color: white;
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);;
   outline: transparent;
   resize: none;
 } */
@@ -67,7 +94,7 @@
 }
 .edit_save_button {
   padding: 13px 10px;
-  width: 300px;
+  width: 280px;
   height: 50px;
   border-radius: 20px;
   background: var(
@@ -105,57 +132,91 @@
   width: 24px;
   height: 24px;
 }
-@media only screen and (max-width: 767.98px) {
-  .edit_body {
-    gap: 40px;
-    border-radius: 0 0 5px 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 8px;
-    background-position: center center;
+@media screen and (min-width: 768px) {
+  .edit_select {
+    width: 394px;
   }
-  .edit_toggle {
+  .edit_modal_select {
+    justify-content: center;
+
+    display: flex;
+    gap: 32px;
+    width: 394px;
+    flex-direction: row;
+  }
+
+  .edit_amount {
+    padding-left: 0px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fbfbfb !important;
+    font-weight: 600 !important;
+    font-size: 18px;
+
+    width: 181px;
+    text-align: center;
+
+    padding-bottom: 8px;
+  }
+  .edit_datepicker_wrapper {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+  }
+  .edit_amount_date {
+    font-size: 18px;
+    font-weight: 400;
+    padding-left: 20px;
+    padding-bottom: 8px;
+    width: 181px;
+  }
+  .edit_save_button {
+    width: 300px;
+  }
+  /* .edit_amount {
+    width: 280px;
+    height: 35px;
+    background-color: transparent;
+    border: none;
+    color: rgb(251, 251, 251);
+    padding: 0 20px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  } */
+  /* .edit_amount {
+    width: 190px;
+  } */
+  /* .edit_toggle {
     display: flex;
     gap: 20px;
     align-items: center;
-  }
-  .edit_amount {
-    /* height: 35px;
-    text-align: center;
-    background-color: transparent;
-    color: white;
-    outline: transparent;
-    border: none;
-    font-size: 18px;
-    border-bottom: 1px solid #ffffff;
-    padding-bottom: 8px;
-    padding-left: 0px; */
-  }
-  .edit_comment_input {
-    /* width: 394px;
-  padding-left: 8px;
-  height: 35px;
-  background-color: transparent;
-  font-family: "Poppins Regular";
-  font-size: 18px;
-  border: none;
-  color: white;
-  border-bottom: 1px solid #ffffff;
-  outline: transparent;
-  resize: none; */
-  }
-  /* .edit_comment_input {
-  width: 280px;
-  padding-left: 20px;
-  height: 35px;
-  background-color: transparent;
-  color: white;
-  outline: transparent;
-  resize: none;
-} */
+  } */
+  /* .edit_modal_select {
+    width: 401px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    color: #fbfbfb;
+  } */
 }
+/* @media screen and (min-width: 1280px) {
+  .edit_amount {
+    width: 190px;
+  }
+  .edit_toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 12px;
+    width: 174px;
+  }
+  .edit_modal_select {
+    width: 401px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    color: #fbfbfb;
+  }
+}  */

@@ -106,7 +106,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
 
           <div className={s.edit_datepicker_wrapper}>
             <ReactDatePicker
-              className={s.edit_amount}
+              className={s.edit_amount_date}
               required
               name="date"
               selected={startDate}
@@ -121,6 +121,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
         <div className={s.edit_comment}>
           <Field
             className={s.edit_comment_input}
+            // as="textarea"
             required
             name="comment"
             placeholder="Enter a comment"
