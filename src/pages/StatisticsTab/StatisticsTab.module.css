@@ -10,7 +10,7 @@
 .SearchBox {
   display: flex;
   gap: 32px;
-  margin-right: 16px;
+  padding-top: 65px;
   margin-bottom: 20px;
 }
 
@@ -26,7 +26,7 @@
 
 .th {
   overflow: hidden;
-  width: 280px;
+  /* width: 280px; */
   /* text-align: center; */
   font-size: 22px;
   font-weight: 500;
@@ -41,6 +41,8 @@
 }
 
 .th:nth-child(2n) {
+  text-align: right;
+  padding: 16px 29px 16px 0;
   border-radius: 0px 8px 8px 0px;
 }
 
@@ -83,7 +85,7 @@
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(50px);
   color: aliceblue;
-  width: 395px;
+  /* width: 395px; */
   height: 56px;
   flex-shrink: 0;
 }
@@ -100,8 +102,11 @@
 .box {
   /* background: wheat; */
   /* position: absolute; */
-  right: 0;
+  /* right: 0; */
   display: flex;
+  margin-left: auto;
+  margin-right: 16px;
+  margin-top: 32px;
 }
 
 .span {
@@ -122,14 +127,6 @@
   padding: 0;
   /* position: relative; */
 }
-
-/* .selectAndTable{
-  display: ;
-} */
-
-/* .doughnut canvas {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
-} */
 
 .classExpenses {
   color: var(--white, #fbfbfb);
@@ -163,6 +160,7 @@
 .doughnutText {
   color: var(--white, #fbfbfb);
   margin-left: 20px;
+  margin-bottom: 20px;
   font-family: Poppins;
   font-size: 30px;
   font-style: normal;
@@ -176,4 +174,115 @@
 
   width: 40px !important;
   height: 40px !important;
+}
+
+.shadowData {
+  z-index: 222;
+  position: absolute;
+}
+
+.noTrasaction {
+  font-size: 24px;
+  display: block;
+  text-align: center;
+  margin: auto;
+  line-height: 1.28;
+  margin-top: 20px;
+}
+
+/* ======================================================================================================= */
+
+@media screen and (min-width: 768px) and (max-width: 1150px) {
+  .table {
+    width: 339px;
+  }
+
+  .th:nth-child(2n + 1) {
+    padding: 16px 0 16px 17px;
+  }
+
+  .th:nth-child(2n) {
+    text-align: right;
+    padding: 16px 17px 16px 0;
+  }
+
+  .thtd {
+    padding: 16px 0 16px 17px;
+  }
+
+  .tht {
+    padding: 16px 17px 16px 0;
+  }
+
+  .SearchBox {
+    display: flex;
+    gap: 16px;
+    padding-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .box {
+    margin-right: 32px;
+    margin-top: 40px;
+  }
+
+  .doughnut {
+    width: 336px;
+    height: 336px;
+  }
+}
+
+.doughnutText {
+  margin-left: 0px;
+}
+
+/* ================================================================================================ */
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .box {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .doughnut {
+    width: 280px;
+    height: 280px;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .doughnutText {
+    margin-bottom: 8px;
+    box-sizing: border-box;
+  }
+
+  .SearchBox {
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 auto 20px auto;
+  }
+
+  .table {
+    width: 280px;
+    margin: 0 auto;
+  }
+
+  .th:nth-child(2n + 1) {
+    padding: 16px 0 16px 17px;
+  }
+
+  .th:nth-child(2n) {
+    text-align: right;
+    padding: 16px 17px 16px 0;
+  }
+
+  .thtd {
+    padding: 16px 0 16px 17px;
+  }
+
+  .tht {
+    padding: 16px 17px 16px 0;
+  }
 }

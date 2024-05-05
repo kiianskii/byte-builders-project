@@ -10,6 +10,10 @@ import Select from "react-select";
 import "./MySelect.css";
 import clsx from "clsx";
 import { selectBalance } from "../../redux/auth/selectors";
+import "chartjs-plugin-annotation";
+import "chartjs-plugin-style";
+import { StyleDoughnutController } from "chartjs-plugin-style";
+// Chart.register(StyleDoughnutController);
 
 function StatisticsTab() {
   const balance = useSelector(selectBalance);
@@ -64,8 +68,8 @@ function StatisticsTab() {
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
-      width: 181,
-      height: 157,
+      // width: 181,
+      // height: 157,
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
@@ -74,8 +78,8 @@ function StatisticsTab() {
     }),
     input: (provided, state) => ({
       ...provided,
-      height: 50,
-      width: 181,
+      // height: 50,
+      // width: 181,
     }),
   };
 
@@ -90,28 +94,41 @@ function StatisticsTab() {
         // label: "# of Votes",
         data: [],
         backgroundColor: [],
-        borderColor: [],
-
-        borderWidth: 0,
-        shadowOffsetX: 6,
-        shadowOffsetY: 6,
-        shadowBlur: 16,
-        shadowColor: "rgba(0, 0, 0, 0.5)",
-        bevelWidth: 5,
-        bevelShadowColor: "rgba(0, 0, 0, 0.5)",
-        boxShadow: "0px 0px 8px 0px #000 inset",
+        borderColor: "transparent",
       },
     ],
   };
+
+  // const [cutoutValue, setCutoutValue] = useState();
+
+  // useEffect(() => {
+  //   if (window.matchMedia("(min-width: 768px)").matches) {
+  //     setCutoutValue(120);
+  //   }
+  //   if (window.matchMedia("(min-width: 769px)").matches) {
+  //     setCutoutValue(100);
+  //   }
+  // }, [cutoutValue, window]);
+
   const options = {
     cutout: 100,
     plugins: {
-      tooltips: {
-        shadowOffsetX: 6,
-        shadowOffsetY: 6,
-        shadowBlur: 16,
-        shadowColor: "rgba(0, 0, 0, 0.7)",
-        boxShadow: "0px 0px 8px 0px #000 inset",
+      style: {
+        // Налаштування ефекту bevel
+        bevel: {
+          // Розмір фаски
+          size: 5,
+          // Колір фаски
+          backgroundColor: "rgba(255, 255, 255, 0.5)",
+          // Колір тіні
+          shadowColor: "rgba(0, 0, 0, 0.5)",
+          // Прозорість тіні
+          shadowBlur: 10,
+          // Зсув тіні по горизонталі
+          shadowOffsetX: 3,
+          // Зсув тіні по вертикалі
+          shadowOffsetY: 3,
+        },
       },
     },
   };
@@ -120,8 +137,6 @@ function StatisticsTab() {
     id: "textCenter",
     beforeDatasetsDraw(chart, args, pluginOptions) {
       const { ctx, data } = chart;
-      console.log(balance);
-      // Перевірка, чи існують дані датасету
       if (
         chart.data.datasets.length > 0 &&
         chart.data.datasets[0].data.length > 0
@@ -136,8 +151,39 @@ function StatisticsTab() {
           chart.getDatasetMeta(0).data[0].x,
           chart.getDatasetMeta(0).data[0].y
         );
-        ctx.restore(); // Відновлення контексту канвасу
+        ctx.restore();
       }
+    },
+  };
+
+  const bevelPlugin = {
+    id: "bevelPlugin",
+    bevel: {
+      size: 5,
+      backgroundColor: "rgba(255, 255, 255, 0.5)",
+      shadowColor: "rgba(0, 0, 0, 1)",
+      shadowBlur: 10,
+      shadowOffsetX: 3,
+      shadowOffsetY: 3,
+      beforeDatasetsDraw(chart, args) {
+        const { ctx } = chart;
+        const {
+          size,
+          backgroundColor,
+          shadowColor,
+          shadowBlur,
+          shadowOffsetX,
+          shadowOffsetY,
+        } = this;
+
+        ctx.save();
+        ctx.lineWidth = size;
+        ctx.strokeStyle = backgroundColor;
+        ctx.shadowColor = shadowColor;
+        ctx.shadowBlur = shadowBlur;
+        ctx.shadowOffsetX = shadowOffsetX;
+        ctx.shadowOffsetY = shadowOffsetY;
+      },
     },
   };
 
@@ -166,7 +212,18 @@ function StatisticsTab() {
 
       <div className={css.doughnut}>
         <h2 className={css.doughnutText}>Statistics</h2>
-        <Doughnut data={data} options={options} plugins={[textCenter]} />
+        {/* <Doughnut data={data} options={options} plugins={[textCenter]} /> */}
+        {summary.expenseSummary !== 0 || summary.incomeSummary !== 0 ? (
+          <Doughnut
+            data={data}
+            options={options}
+            plugins={[textCenter, bevelPlugin]}
+          />
+        ) : (
+          <p className={css.noTrasaction}>
+            There are no transactions for this period
+          </p>
+        )}
       </div>
 
       {/* ========================================================================================== */}
@@ -180,6 +237,7 @@ function StatisticsTab() {
             classNamePrefix="input"
             styles={customStyles}
             className="selectInput"
+            placeholder="Please select a month"
           />
           {/* </div> */}
 
@@ -190,6 +248,7 @@ function StatisticsTab() {
             classNamePrefix="input"
             styles={customStyles}
             className="selectInput"
+            placeholder="Please select a year"
           />
         </div>
 
