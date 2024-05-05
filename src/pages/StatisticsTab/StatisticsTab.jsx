@@ -68,8 +68,8 @@ function StatisticsTab() {
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
-      width: 181,
-      height: 157,
+      // width: 181,
+      // height: 157,
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
@@ -78,8 +78,8 @@ function StatisticsTab() {
     }),
     input: (provided, state) => ({
       ...provided,
-      height: 50,
-      width: 181,
+      // height: 50,
+      // width: 181,
     }),
   };
 
@@ -98,6 +98,18 @@ function StatisticsTab() {
       },
     ],
   };
+
+  // const [cutoutValue, setCutoutValue] = useState();
+
+  // useEffect(() => {
+  //   if (window.matchMedia("(min-width: 768px)").matches) {
+  //     setCutoutValue(120);
+  //   }
+  //   if (window.matchMedia("(min-width: 769px)").matches) {
+  //     setCutoutValue(100);
+  //   }
+  // }, [cutoutValue, window]);
+
   const options = {
     cutout: 100,
     plugins: {
@@ -125,7 +137,6 @@ function StatisticsTab() {
     id: "textCenter",
     beforeDatasetsDraw(chart, args, pluginOptions) {
       const { ctx, data } = chart;
-      console.log(balance);
       if (
         chart.data.datasets.length > 0 &&
         chart.data.datasets[0].data.length > 0
@@ -142,6 +153,37 @@ function StatisticsTab() {
         );
         ctx.restore();
       }
+    },
+  };
+
+  const bevelPlugin = {
+    id: "bevelPlugin",
+    bevel: {
+      size: 5,
+      backgroundColor: "rgba(255, 255, 255, 0.5)",
+      shadowColor: "rgba(0, 0, 0, 1)",
+      shadowBlur: 10,
+      shadowOffsetX: 3,
+      shadowOffsetY: 3,
+      beforeDatasetsDraw(chart, args) {
+        const { ctx } = chart;
+        const {
+          size,
+          backgroundColor,
+          shadowColor,
+          shadowBlur,
+          shadowOffsetX,
+          shadowOffsetY,
+        } = this;
+
+        ctx.save();
+        ctx.lineWidth = size;
+        ctx.strokeStyle = backgroundColor;
+        ctx.shadowColor = shadowColor;
+        ctx.shadowBlur = shadowBlur;
+        ctx.shadowOffsetX = shadowOffsetX;
+        ctx.shadowOffsetY = shadowOffsetY;
+      },
     },
   };
 
@@ -170,7 +212,18 @@ function StatisticsTab() {
 
       <div className={css.doughnut}>
         <h2 className={css.doughnutText}>Statistics</h2>
-        <Doughnut data={data} options={options} plugins={[textCenter]} />
+        {/* <Doughnut data={data} options={options} plugins={[textCenter]} /> */}
+        {summary.expenseSummary !== 0 || summary.incomeSummary !== 0 ? (
+          <Doughnut
+            data={data}
+            options={options}
+            plugins={[textCenter, bevelPlugin]}
+          />
+        ) : (
+          <p className={css.noTrasaction}>
+            There are no transactions for this period
+          </p>
+        )}
       </div>
 
       {/* ========================================================================================== */}
@@ -184,6 +237,7 @@ function StatisticsTab() {
             classNamePrefix="input"
             styles={customStyles}
             className="selectInput"
+            placeholder="Please select a month"
           />
           {/* </div> */}
 
@@ -194,6 +248,7 @@ function StatisticsTab() {
             classNamePrefix="input"
             styles={customStyles}
             className="selectInput"
+            placeholder="Please select a year"
           />
         </div>
 
