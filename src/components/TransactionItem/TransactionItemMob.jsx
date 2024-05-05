@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useToggle } from "../../hooks/useToggle";
 import { Icon } from "../../img/Icon";
 import { deleteTransactionThunk } from "../../redux/transactions/operations";
@@ -14,6 +15,14 @@ function TransactionItemMob({ transaction }) {
     (item) => item.id === transaction.categoryId
   );
   const { openModal, closeModal, isOpen } = useToggle();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
 
   return (
     <ul
