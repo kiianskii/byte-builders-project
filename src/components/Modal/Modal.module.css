@@ -38,6 +38,8 @@
 @media only screen and (min-width: 768px) {
   .content {
     background-image: url("../../img/background/tabletbackTab.jpg");
+    padding: 40px 73px;
+    overflow: hidden;
   }
 }
 

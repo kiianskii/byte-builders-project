@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { sendTransactionThunk } from "../../redux/transactions/operations";
 import * as Yup from "yup";
+import { useMediaQuery } from "react-responsive";
 
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -21,6 +22,8 @@ const AddTransactionForm = ({ closeModal }) => {
       label: category.name,
     })
   );
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const WIDTH = !isMobile ? "394px" : "280px";
   const [toggle, setToggle] = useState(true);
   const initialValues = {
     categoryId: "",
@@ -53,6 +56,7 @@ const AddTransactionForm = ({ closeModal }) => {
     };
     dispatch(sendTransactionThunk(query));
     options.resetForm();
+    closeModal();
   }
   return (
     <Formik
@@ -85,8 +89,12 @@ const AddTransactionForm = ({ closeModal }) => {
                     border: "none",
                     borderBottom: "1px solid rgba(255, 255, 255, 0.4)",
                     paddingLeft: "20px",
-                    width: "280px",
+                    width: WIDTH,
                     height: "35px",
+                  }),
+                  input: (styles) => ({
+                    ...styles,
+                    color: "rgb(251, 251, 251)",
                   }),
                   indicatorsContainer: (styles) => ({
                     ...styles,
@@ -144,15 +152,31 @@ const AddTransactionForm = ({ closeModal }) => {
             )}
           </Field>
         )}
-        <Field
-          type="number"
-          placeholder="0.00"
-          name="amount"
-          className={`${css.input} ${css.input_number}`}
-        />
-        <div className={css.wrapper}>
-          <SelectDate startDate={startDate} setStartDate={setStartDate} />
-        </div>
+        {isMobile ? (
+          <>
+            <Field
+              type="number"
+              placeholder="0.00"
+              name="amount"
+              className={`${css.input} ${css.input_number}`}
+            />
+            <div className={css.wrapper}>
+              <SelectDate startDate={startDate} setStartDate={setStartDate} />
+            </div>
+          </>
+        ) : (
+          <div className={css.amount_date_box}>
+            <Field
+              type="number"
+              placeholder="0.00"
+              name="amount"
+              className={`${css.input} ${css.input_number}`}
+            />
+            <div className={css.wrapper}>
+              <SelectDate startDate={startDate} setStartDate={setStartDate} />
+            </div>
+          </div>
+        )}
 
         <Field
           as="textarea"
