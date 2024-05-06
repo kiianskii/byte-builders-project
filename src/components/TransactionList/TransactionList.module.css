@@ -49,7 +49,7 @@
 
 @media screen and (min-width: 1280px) {
   .container {
-    max-height: 500px;
+    max-height: 470px;
     max-width: 715px;
     display: flex;
     flex-direction: row;
