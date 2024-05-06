@@ -16,7 +16,6 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
   const categoriesTransaction = useSelector(selectCategories);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const [toggle, setToggle] = useState(true);
 
   const today = new Date();
 
@@ -67,12 +66,10 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
     }
   };
 
-  // const amountPlaceholder = Math.abs(transaction?.amount);
-
   return (
     <Formik
       initialValues={{
-        amount: transaction ? transaction.amount : "",
+        amount: transaction ? Math.abs(transaction.amount) : "",
         comment: transaction ? transaction.comment : "",
       }}
       onSubmit={handleSubmit}
