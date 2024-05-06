@@ -240,11 +240,7 @@ function StatisticsTab() {
         <h2 className={css.doughnutText}>Statistics</h2>
         {/* <Doughnut data={data} options={options} plugins={[textCenter]} /> */}
         {summary.expenseSummary !== 0 || summary.incomeSummary !== 0 ? (
-          <Doughnut
-            data={data}
-            options={options}
-            plugins={[textCenter, bevelPlugin]}
-          />
+          <Doughnut data={data} options={options} plugins={[textCenter]} />
         ) : (
           <p className={css.noTrasaction}>
             There are no transactions for this period
