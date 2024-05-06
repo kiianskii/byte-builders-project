@@ -8,6 +8,7 @@ import {
 } from "../transactions/operations";
 const initialState = {
   isLoading: false,
+
 };
 
 const slice = createSlice({
@@ -15,6 +16,7 @@ const slice = createSlice({
   initialState,
   selectors: {
     selectIsLoading: (state) => state.isLoading,
+    
   },
   extraReducers: (builder) => {
     builder

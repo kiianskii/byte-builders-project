@@ -14,6 +14,7 @@ const initialState = {
   },
   token: "",
   isLoggedIn: false,
+  isRefreshing: false,
   balance: "",
 };
 
@@ -24,6 +25,7 @@ const slice = createSlice({
     selectToken: (state) => state.token,
     selectUser: (state) => state.user,
     selectIsLoggedIn: (state) => state.isLoggedIn,
+    selectIsRefreshing: (state) => state.isRefreshing,
   },
   extraReducers: (builder) => {
     builder
@@ -38,6 +40,7 @@ const slice = createSlice({
         state.user.email = payload.email;
         state.token = payload.token;
         state.isLoggedIn = true;
+        
       })
       .addCase(signOutThunk.fulfilled, () => {
         return initialState;
@@ -47,12 +50,19 @@ const slice = createSlice({
         state.user.name = payload.username;
         state.user.email = payload.email;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
       .addCase(balanceThunk.fulfilled, (state, { payload }) => {
         state.balance = payload;
+      })
+      .addCase(refreshThunk.pending, state => {
+        state.isRefreshing = true
+      })
+      .addCase(refreshThunk.rejected, state => {
+        state.isRefreshing = false
       });
   },
 });
 
 export const authReducer = slice.reducer;
-export const { selectToken, selectIsLoggedIn, selectUser } = slice.selectors;
+export const { selectToken, selectIsLoggedIn, selectUser,selectIsRefreshing  } = slice.selectors;

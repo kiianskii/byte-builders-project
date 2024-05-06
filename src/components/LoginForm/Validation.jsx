@@ -6,12 +6,12 @@ export default function Validation(type) {
     username:
       type === "register"
         ? Yup.string()
-            .min(2, "Name: min 2 chars")
-            .max(50, "Name: max 50 chars")
+            .min(3, "Name: min 3 chars")
+            .max(15, "Name: max 15 chars")
             .required("Name is required")
         : Yup.string()
-            .min(2, "Name: min 2 chars")
-            .max(50, "Name: max 50 chars"),
+            .min(3, "Name: min 3 chars")
+            .max(15, "Name: max 15 chars"),
     email: Yup.string().email("Invalid email").required("Email is required"),
     password: Yup.string()
       .min(6, "Password: min 6 chars")
