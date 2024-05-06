@@ -45,14 +45,15 @@
 
 body {
   background-image: image-set(
-    url("./img/background/mobilebackMobile.jpg") 1x,
-    url("./img/background/mobilebackMobile@2x.jpg") 2x,
     url("./img/background/mobilebackMobile.webp") 1x,
-    url("./img/background/mobilebackMobile@2x.webp") 2x
+    url("./img/background/mobilebackMobile@2x.webp") 2x,
+    url("./img/background/mobilebackMobile.jpg") 1x,
+    url("./img/background/mobilebackMobile@2x.jpg") 2x
   );
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  min-height: 620px;
 }
 
 @media screen and (min-width: 768px) {
@@ -62,16 +63,17 @@ body {
       url("./img/background/tabletbackTab@2x.jpg") 2x
     );
     height: 1024px;
+    position: relative;
   }
 }
 
 @media screen and (min-width: 1280px) {
   body {
     background-image: image-set(
-      url("./img/background/iMac.jpg") 1x,
-      url("./img/background/iMac@2x.jpg") 2x,
       url("./img/background/iMac.webp") 1x,
-      url("./img/background/iMac@2x.webp") 2x
+      url("./img/background/iMac@2x.webp") 2x,
+      url("./img/background/iMac.jpg") 1x,
+      url("./img/background/iMac@2x.jpg") 2x
     );
     height: 720px;
   }

@@ -17,6 +17,13 @@
 }
 
 .container {
-  height: 640px;
+  /* height: 640px; */
   padding-bottom: 40px;
+}
+
+@media only screen and (min-width: 1280px) {
+  .container {
+    /* position: relative; */
+    width: 800px;
+  }
 }
