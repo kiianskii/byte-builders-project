@@ -42,25 +42,21 @@
 }
 
 .container {
-  /* width: 716px; */
   max-height: 600px;
   overflow-y: scroll;
-  margin: 20px 32px;
-  /* display: block; */
+  margin: 0 32px 20px 32px;
 }
-
-/* .container::-webkit-scrollbar {
-  width: 0;
-} */
 
 @media screen and (min-width: 1280px) {
   .container {
     max-height: 500px;
     max-width: 715px;
-
     display: flex;
     flex-direction: row;
-    margin: 46px 16px 46px 69px;
+    margin: 0px 16px 46px 69px;
+  }
+  .head_container {
+    margin-top: 46px !important;
   }
 }
 
@@ -68,8 +64,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 375px;
-  overflow: scroll;
 }
 
 .nodata {
@@ -77,4 +71,9 @@
   align-items: center;
   justify-content: center;
   margin: 50px auto;
+}
+
+.head_container {
+  margin-bottom: 0;
+  margin-top: 20px;
 }

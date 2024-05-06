@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { goitApi } from "../../config/goitApi";
+import { balanceThunk } from "../auth/operations";
 
 export const transactionsCategoriesThunk = createAsyncThunk(
   "trans/categories",
@@ -31,6 +32,7 @@ export const sendTransactionThunk = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const { data } = await goitApi.post("/api/transactions", credentials);
+      thunkApi.dispatch(balanceThunk());
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -46,6 +48,7 @@ export const editTransactionThunk = createAsyncThunk(
         `/api/transactions/${id}`,
         credentials
       );
+      thunkApi.dispatch(balanceThunk());
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -55,12 +58,13 @@ export const editTransactionThunk = createAsyncThunk(
 
 export const deleteTransactionThunk = createAsyncThunk(
   "trans/delete-transaction",
-  async (id, thunkAPI) => {
+  async (id, thunkApi) => {
     try {
       await goitApi.delete(`/api/transactions/${id}`);
+      thunkApi.dispatch(balanceThunk());
       return id;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );
@@ -78,28 +82,3 @@ export const transactionByDateThunk = createAsyncThunk(
     }
   }
 );
-
-// ЩО ПОТРІБНО ПЕРЕДАВАТИ
-// const foredit = {
-// id: "bb480de9-b9ab-4c81-87cc-a5dc7618c134",
-// credentials: {
-//   transactionDate: "2024-01-02",
-//   type: "INCOME",
-//   categoryId: "063f1132-ba5d-42b4-951d-44011ca46262",
-//   comment: "ALALALALA",
-//   amount: 0
-//    }
-// }
-
-// const forSend = {
-//   transactionDate: "2024-01-01",
-//   type: "INCOME",
-//   categoryId: "063f1132-ba5d-42b4-951d-44011ca46262",
-//   comment: "Test",
-//   amount: 10000
-// }
-
-//   const forTransactionsByDate = {
-//     month: 1,
-//     year: 2024
-// }

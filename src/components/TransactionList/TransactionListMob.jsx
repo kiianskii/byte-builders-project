@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
+
 import { selectTransactions } from "../../redux/transactions/slice";
 import TransactionItemMob from "../TransactionItem/TransactionItemMob";
+
 import s from "./TransactionList.module.css";
 
 function TransactionListMob() {
