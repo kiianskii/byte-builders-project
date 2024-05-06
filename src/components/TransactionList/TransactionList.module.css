@@ -9,6 +9,7 @@
 .table {
   table-layout: fixed;
   max-width: 715px;
+
   border-collapse: collapse;
 }
 
@@ -33,6 +34,10 @@
 }
 .headlineRight {
   text-align: right;
+}
+
+.tbody {
+  overflow: scroll;
 }
 
 .container {
