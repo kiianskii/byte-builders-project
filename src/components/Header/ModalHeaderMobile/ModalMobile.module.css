@@ -1,6 +1,7 @@
 .wrapper {
   position: absolute;
   inset: 0;
+  z-index: 289;
   display: flex;
   justify-content: center;
   background-image: image-set(
