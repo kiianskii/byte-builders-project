@@ -58,3 +58,15 @@ export const refreshThunk = createAsyncThunk(
     }
   }
 );
+
+export const balanceThunk = createAsyncThunk(
+  "auth/balance",
+  async (_, thunkApi) => {
+    try {
+      const { data } = await goitApi.get("/api/users/current");
+      return data.balance;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

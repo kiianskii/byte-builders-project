@@ -10,6 +10,10 @@ import Select from "react-select";
 import "./MySelect.css";
 import clsx from "clsx";
 import { selectBalance } from "../../redux/auth/selectors";
+import "chartjs-plugin-annotation";
+import "chartjs-plugin-style";
+import { StyleDoughnutController } from "chartjs-plugin-style";
+// Chart.register(StyleDoughnutController);
 
 function StatisticsTab() {
   const balance = useSelector(selectBalance);
@@ -64,8 +68,8 @@ function StatisticsTab() {
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
-      width: 181,
-      height: 157,
+      // width: 181,
+      // height: 157,
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
@@ -74,8 +78,8 @@ function StatisticsTab() {
     }),
     input: (provided, state) => ({
       ...provided,
-      height: 50,
-      width: 181,
+      // height: 50,
+      // width: 181,
     }),
   };
 
@@ -90,28 +94,50 @@ function StatisticsTab() {
         // label: "# of Votes",
         data: [],
         backgroundColor: [],
-        borderColor: [],
-
-        borderWidth: 0,
-        shadowOffsetX: 6,
-        shadowOffsetY: 6,
-        shadowBlur: 16,
-        shadowColor: "rgba(0, 0, 0, 0.5)",
-        bevelWidth: 5,
-        bevelShadowColor: "rgba(0, 0, 0, 0.5)",
-        boxShadow: "0px 0px 8px 0px #000 inset",
+        borderColor: "transparent",
       },
     ],
   };
+
+  const [cutoutValue, setCutoutValue] = useState();
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.matchMedia("(min-width: 1150px)").matches) {
+        setCutoutValue(100);
+      } else if (window.matchMedia("(min-width: 768px)").matches) {
+        setCutoutValue(120);
+      } else if (window.matchMedia("(min-width: 320px)").matches) {
+        setCutoutValue(100);
+      }
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const options = {
-    cutout: 100,
+    cutout: cutoutValue,
     plugins: {
-      tooltips: {
-        shadowOffsetX: 6,
-        shadowOffsetY: 6,
-        shadowBlur: 16,
-        shadowColor: "rgba(0, 0, 0, 0.7)",
-        boxShadow: "0px 0px 8px 0px #000 inset",
+      style: {
+        // Налаштування ефекту bevel
+        bevel: {
+          // Розмір фаски
+          size: 5,
+          // Колір фаски
+          backgroundColor: "rgba(255, 255, 255, 0.5)",
+          // Колір тіні
+          shadowColor: "rgba(0, 0, 0, 0.5)",
+          // Прозорість тіні
+          shadowBlur: 10,
+          // Зсув тіні по горизонталі
+          shadowOffsetX: 3,
+          // Зсув тіні по вертикалі
+          shadowOffsetY: 3,
+        },
       },
     },
   };
@@ -120,8 +146,6 @@ function StatisticsTab() {
     id: "textCenter",
     beforeDatasetsDraw(chart, args, pluginOptions) {
       const { ctx, data } = chart;
-      console.log(balance);
-      // Перевірка, чи існують дані датасету
       if (
         chart.data.datasets.length > 0 &&
         chart.data.datasets[0].data.length > 0
@@ -136,8 +160,56 @@ function StatisticsTab() {
           chart.getDatasetMeta(0).data[0].x,
           chart.getDatasetMeta(0).data[0].y
         );
-        ctx.restore(); // Відновлення контексту канвасу
+        ctx.restore();
       }
+    },
+  };
+
+  const bevelPlugin = {
+    id: "bevelPlugin",
+    beforeDatasetsDraw: function (chart, args) {
+      const { ctx } = chart;
+      const { x, y, outerRadius, innerRadius } = chart.chartArea;
+
+      const bevelSize = 5; // розмір фаски
+
+      ctx.save();
+
+      // Зовнішній круг
+      const outerGradient = ctx.createRadialGradient(
+        x,
+        y,
+        outerRadius,
+        x,
+        y,
+        outerRadius + bevelSize
+      );
+      outerGradient.addColorStop(0, "rgba(255, 255, 255, 0)");
+      outerGradient.addColorStop(1, "rgba(255, 255, 255, 0.1)");
+
+      ctx.beginPath();
+      ctx.arc(x, y, outerRadius + bevelSize, 0, Math.PI * 2);
+      ctx.fillStyle = outerGradient;
+      ctx.fill();
+
+      // Внутрішній круг
+      const innerGradient = ctx.createRadialGradient(
+        x,
+        y,
+        innerRadius,
+        x,
+        y,
+        innerRadius - bevelSize
+      );
+      innerGradient.addColorStop(0, "rgba(255, 255, 255, 0.1)");
+      innerGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+      ctx.beginPath();
+      ctx.arc(x, y, innerRadius - bevelSize, 0, Math.PI * 2);
+      ctx.fillStyle = innerGradient;
+      ctx.fill();
+
+      ctx.restore();
     },
   };
 
@@ -166,7 +238,14 @@ function StatisticsTab() {
 
       <div className={css.doughnut}>
         <h2 className={css.doughnutText}>Statistics</h2>
-        <Doughnut data={data} options={options} plugins={[textCenter]} />
+        {/* <Doughnut data={data} options={options} plugins={[textCenter]} /> */}
+        {summary.expenseSummary !== 0 || summary.incomeSummary !== 0 ? (
+          <Doughnut data={data} options={options} plugins={[textCenter]} />
+        ) : (
+          <p className={css.noTrasaction}>
+            There are no transactions for this period
+          </p>
+        )}
       </div>
 
       {/* ========================================================================================== */}
@@ -180,6 +259,7 @@ function StatisticsTab() {
             classNamePrefix="input"
             styles={customStyles}
             className="selectInput"
+            placeholder="Please select a month"
           />
           {/* </div> */}
 
@@ -190,48 +270,52 @@ function StatisticsTab() {
             classNamePrefix="input"
             styles={customStyles}
             className="selectInput"
+            placeholder="Please select a year"
           />
         </div>
 
         {/* ===================================================================================================*/}
 
-        <table className={css.table}>
-          <thead className={css.thead}>
-            <tr>
-              <th className={css.th}>Category</th>
-              <th className={css.th}>Sum</th>
-            </tr>
-          </thead>
-          <tbody className={css.tbody}>
-            {summary.categoriesSummary?.map((el) => {
-              data.datasets[0].data.push(el.total);
-              const color = categoryes.find(
-                (elem) => elem.categoryName === el.name
-              );
-              data.datasets[0].backgroundColor.push(color.categoryColor);
-              return (
-                <tr className={css.tr} key={el.id}>
-                  <td className={css.thtd}>
-                    <span
-                      className={css.span}
-                      style={{ backgroundColor: color.categoryColor }}
-                    ></span>
-                    {el.name}
-                  </td>
-                  <td className={css.tht}>{el.total}</td>
-                </tr>
-              );
-            })}
-            <tr>
-              <td className={classExpenses}>Expenses</td>
-              <td className={classExpensesValue}>{summary.expenseSummary}</td>
-            </tr>
-            <tr>
-              <td className={classExpenses}>Income</td>
-              <td className={classIncomeValue}>{summary.incomeSummary}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className={css.wrapper}>
+          <span>Category</span>
+          <span>Sum</span>
+        </div>
+        <div className={css.tbl}>
+          <table className={css.table}>
+            <tbody className={css.tbody}>
+              {summary.categoriesSummary?.map((el, idx) => {
+                data.datasets[0].data.push(el.total);
+                const color = categoryes.find(
+                  (elem) => elem.categoryName === el.name
+                );
+                data.datasets[0].backgroundColor.push(color.categoryColor);
+                return (
+                  <tr className={css.tr} key={idx}>
+                    <td className={css.thtd}>
+                      <span
+                        className={css.span}
+                        style={{ backgroundColor: color.categoryColor }}
+                      ></span>
+                      {el.name}
+                    </td>
+                    <td className={css.tht}>{el.total}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        <div className={css.footer}>
+          <div className={css.footerText}>
+            <span className={css.textSpan}>Expenses</span>
+            <span className={css.textSpan}>Income</span>
+          </div>
+          <div className={css.footerNumber}>
+            <span className={css.numberSpan}>{summary.expenseSummary}</span>
+            <span className={css.numberSpan}>{summary.incomeSummary}</span>
+          </div>
+        </div>
       </div>
     </div>
   );

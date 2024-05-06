@@ -15,8 +15,8 @@ export default function LoginPage() {
   };
 
   const initialValues = {
-    email: "stepan123123@mail.com",
-    password: "stepan123123@mail.com",
+    email: "",
+    password: "",
   };
 
   return (

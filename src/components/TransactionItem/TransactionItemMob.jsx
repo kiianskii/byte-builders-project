@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useToggle } from "../../hooks/useToggle";
 import { Icon } from "../../img/Icon";
 import { deleteTransactionThunk } from "../../redux/transactions/operations";
@@ -6,6 +7,7 @@ import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
 import Modal from "../Modal/Modal";
 import s from "./TransactionItem.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { balanceThunk } from "../../redux/auth/operations";
 
 function TransactionItemMob({ transaction }) {
   const dispatch = useDispatch();
@@ -14,6 +16,14 @@ function TransactionItemMob({ transaction }) {
     (item) => item.id === transaction.categoryId
   );
   const { openModal, closeModal, isOpen } = useToggle();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
 
   return (
     <ul
@@ -39,7 +49,7 @@ function TransactionItemMob({ transaction }) {
       </li>
       <li className={s.mobitem}>
         <span className={s.name}>Comment</span>
-        <span>{transaction.comment}</span>
+        <span className={s.comment}>{transaction.comment}</span>
       </li>
       <li className={s.mobitem}>
         <span className={s.name}>Sum</span>
@@ -54,7 +64,10 @@ function TransactionItemMob({ transaction }) {
       <li className={s.mobitem}>
         <button
           className={s.delete_btn}
-          onClick={() => dispatch(deleteTransactionThunk(transaction.id))}
+          onClick={() => {
+            dispatch(deleteTransactionThunk(transaction.id));
+            dispatch(balanceThunk());
+          }}
         >
           Delete
         </button>

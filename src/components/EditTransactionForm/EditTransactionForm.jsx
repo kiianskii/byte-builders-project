@@ -7,6 +7,8 @@ import { editTransactionThunk } from "../../redux/transactions/operations";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactDatePicker from "react-datepicker";
 import { selectCategories } from "../../redux/transactions/slice";
+import * as Yup from "yup";
+import { balanceThunk } from "../../redux/auth/operations";
 
 const EditTransactionForm = ({ transaction, closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -14,6 +16,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
   const categoriesTransaction = useSelector(selectCategories);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  // const [toggle, setToggle] = useState(true);
 
   const today = new Date();
 
@@ -28,6 +31,10 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
   const categoryName = categoriesTransaction?.find(
     (category) => category.id === transaction?.categoryId
   );
+  const schema = Yup.object().shape({
+    amount: Yup.number().required("Please enter amount"),
+    comment: Yup.string().required("Please enter a comment"),
+  });
 
   const handleSubmit = async (values) => {
     try {
@@ -49,6 +56,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
       const response = await dispatch(
         editTransactionThunk({ id, credentials: editedTransaction })
       );
+      dispatch(balanceThunk());
       console.log("Response from server:", response);
       closeModal();
     } catch (error) {
@@ -59,7 +67,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
     }
   };
 
-  const amountPlaceholder = Math.abs(transaction?.amount);
+  // const amountPlaceholder = Math.abs(transaction?.amount);
 
   return (
     <Formik
@@ -68,6 +76,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
         comment: transaction ? transaction.comment : "",
       }}
       onSubmit={handleSubmit}
+      validationSchema={schema}
     >
       <Form className={s.edit_body}>
         <div className={s.edit_toggle}>
@@ -93,30 +102,31 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
             className={s.edit_amount}
             name="amount"
             type="number"
-            placeholder={amountPlaceholder}
+            placeholder="Enter amount"
             required
           />
 
           <div className={s.edit_datepicker_wrapper}>
             <ReactDatePicker
-              className={s.edit_amount}
+              className={s.edit_amount_date}
               required
               name="date"
               selected={startDate}
               onChange={onChange}
               dateFormat="dd.MM.yyyy"
               maxDate={today}
+              showIcon
+              icon={<Icon size={24} id="calendar" className={s.adit_svg} />}
             />
-
-            <Icon size={24} id="calendar" className={s.adit_svg} />
           </div>
         </div>
         <div className={s.edit_comment}>
           <Field
-            className={s.edit_comment_input}
+            className={`${s.input} ${s.textarea}`}
+            as="textarea"
             required
             name="comment"
-            placeholder={transaction?.comment}
+            placeholder="Enter a comment"
           />
         </div>
 

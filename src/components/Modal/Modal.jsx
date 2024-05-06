@@ -35,12 +35,12 @@ const Modal = ({ children, title = "Default modal", closeModal }) => {
         <>
           <h2 className={s.title}>{title}</h2>
         </>
+
         {!isMobile && (
           <button onClick={closeModal} className={s.closeBtn}>
             <Icon size={16} id="close-btn" />
           </button>
         )}
-
         {children}
       </div>
     </div>

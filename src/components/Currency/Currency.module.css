@@ -3,6 +3,8 @@
   height: 214px;
   background-color: transparent;
   background-image: image-set(
+    url(../../img/background/currencyBG/mobile_currency@1x.webp) 1x,
+    url(../../img/background/currencyBG/mobile_currency@2x.webp) 2x,
     url(../../img/background/currencyBG/mobile_currency@1x.png) 1x,
     url(../../img/background/currencyBG/mobile_currency@2x.png) 2x
   );
@@ -14,7 +16,7 @@
   width: 320px;
   display: block;
   background: rgba(82, 59, 126, 0.6);
-  padding: 13px 18px;
+  padding: 13px 20px;
 }
 .table {
   display: block;
@@ -42,6 +44,9 @@
   text-align: center;
   color: #fff;
 }
+.tr:not(:last-child) {
+  margin-bottom: 12px;
+}
 
 .tbody {
   display: block;
@@ -61,12 +66,15 @@
     width: 336px;
     height: 214px;
     background-image: image-set(
+      url(../../img/background/currencyBG/tab_currency@1x.webp) 1x,
+      url(../../img/background/currencyBG/tab_currency@2x.webp) 2x,
       url(../../img/background/currencyBG/tab_currency@1x.png) 1x,
       url(../../img/background/currencyBG/tab_currency@2x.png) 2x
     );
   }
   .thead {
     width: 336px;
+    padding: 12px 20px;
   }
   .th:nth-child(1) {
     margin-right: 0px;
@@ -85,12 +93,15 @@
     width: 480px;
     height: 380px;
     background-image: image-set(
+      url(../../img/background/currencyBG/desk_currency@1x.webp) 1x,
+      url(../../img/background/currencyBG/desk_currency@2x.webp) 2x,
       url(../../img/background/currencyBG/desk_currency@1x.png) 1x,
       url(../../img/background/currencyBG/desk_currency@2x.png) 2x
     );
   }
   .thead {
     width: 480px;
+    padding: 16px 131px 16px 62px;
   }
   .th:nth-child(1) {
     margin-right: 0px;
@@ -98,8 +109,14 @@
   .th:nth-child(2) {
     margin-right: 0px;
   }
+  .tbody {
+    padding: 24px 131px 24px 62px;
+  }
   .tr {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
+  }
+  .tr:not(:last-child) {
+    margin-bottom: 24px;
   }
 }

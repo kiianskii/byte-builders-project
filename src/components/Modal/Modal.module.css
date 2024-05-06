@@ -15,7 +15,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   width: 540px;
-  /* height: 691px; */
+  height: auto;
   padding: 40px 20px;
   overflow: scroll;
   max-width: 1000px;
