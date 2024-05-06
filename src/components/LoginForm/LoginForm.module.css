@@ -349,6 +349,23 @@ margin-bottom: 8px;
   position: absolute;
   bottom: -8px;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  background: transparent;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.659); 
+  caret-color: rgba(255, 255, 255, 0.659); 
+  -webkit-box-shadow: transparent;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 @media screen and (min-width: 768px) {
   .loginSections {
     background-position: top left, bottom right;

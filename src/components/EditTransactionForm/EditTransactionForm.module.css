@@ -75,20 +75,7 @@
 .edit_comment_input:focus {
   padding-left: 20px;
 }
-/* .edit_comment {
-  margin: 0px auto 15px;
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  font-size: 18px;
-  border: none;
-  color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);;
-  outline: transparent;
-  resize: none;
-} */
+
 .edit_buttons_wrapper {
   display: flex;
   flex-direction: column;
@@ -198,8 +185,6 @@
   }
 
   .edit_amount {
-    /* padding-left: 0px; */
-
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     color: #fbfbfb !important;
     font-weight: 600 !important;
@@ -228,50 +213,4 @@
   .edit_comment {
     width: 394px;
   }
-  /* .edit_amount {
-    width: 280px;
-    height: 35px;
-    background-color: transparent;
-    border: none;
-    color: rgb(251, 251, 251);
-    padding: 0 20px !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  } */
-  /* .edit_amount {
-    width: 190px;
-  } */
-  /* .edit_toggle {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  } */
-  /* .edit_modal_select {
-    width: 401px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 40px;
-    color: #fbfbfb;
-  } */
 }
-/* @media screen and (min-width: 1280px) {
-  .edit_amount {
-    width: 190px;
-  }
-  .edit_toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    gap: 12px;
-    width: 174px;
-  }
-  .edit_modal_select {
-    width: 401px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 40px;
-    color: #fbfbfb;
-  }
-}  */
