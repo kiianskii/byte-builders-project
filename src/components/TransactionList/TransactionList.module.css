@@ -8,7 +8,7 @@
 
 .table {
   table-layout: fixed;
-  /* width: 100%; */
+  max-width: 715px;
   border-collapse: collapse;
 }
 
@@ -46,7 +46,7 @@
 @media screen and (min-width: 1280px) {
   .container {
     max-height: 500px;
-    width: 715px;
+    max-width: 715px;
 
     display: flex;
     flex-direction: row;

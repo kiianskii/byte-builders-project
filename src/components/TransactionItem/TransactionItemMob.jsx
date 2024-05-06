@@ -7,6 +7,7 @@ import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
 import Modal from "../Modal/Modal";
 import s from "./TransactionItem.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { balanceThunk } from "../../redux/auth/operations";
 
 function TransactionItemMob({ transaction }) {
   const dispatch = useDispatch();
@@ -63,7 +64,10 @@ function TransactionItemMob({ transaction }) {
       <li className={s.mobitem}>
         <button
           className={s.delete_btn}
-          onClick={() => dispatch(deleteTransactionThunk(transaction.id))}
+          onClick={() => {
+            dispatch(deleteTransactionThunk(transaction.id));
+            dispatch(balanceThunk());
+          }}
         >
           Delete
         </button>
