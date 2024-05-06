@@ -317,8 +317,7 @@ input:invalid{
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.6);
-
+  color: rgba(255, 255, 255, 0.659);
 }
 .svg{
 margin-left: 12px;
@@ -348,8 +347,7 @@ margin-bottom: 8px;
 .porgress_container {
   width: 280px;
   position: absolute;
-  bottom: 0;
-  margin-top: 5px;
+  bottom: -8px;
 }
 @media screen and (min-width: 768px) {
   .loginSections {
@@ -560,20 +558,19 @@ margin-bottom: 8px;
   }
   .background_img_container_login div:nth-child(1) {
     content: image-set(
-    url("../../img/loginBack/tabletloginTablet.jpg") 1x,
-    url("../../img/loginBack/tabletloginTablet@2x.jpg") 2x,
     url("../../img/loginBack/tabletloginTablet.webp") 1x,
-    url("../../img/loginBack/tabletloginTablet@2x.webp") 2x
-  );
+    url("../../img/loginBack/tabletloginTablet@2x.webp") 2x,
+    url("../../img/loginBack/tabletloginTablet.jpg") 1x,
+    url("../../img/loginBack/tabletloginTablet@2x.jpg") 2x
+    );
     top: -204px;
   }
-
   .background_img_container_registration div:nth-child(1) {
-    content: image-set(
+   content: image-set(
+    url("../../img/registerBack/tabletregisTab.webp") 1x,
+    url("../../img/registerBack/tabletregisTab@2x.webp") 2x,
     url("../../img/registerBack/tabletregisTab.jpg") 1x,
-    url("../../img/loginBack/tabletloginTablet@2x.jpg") 2x,
-    url("../../img/loginBack/tabletloginTablet.webp") 1x,
-    url("../../img/loginBack/tabletloginTablet@2x.webp") 2x
+    url("../../img/registerBack/tabletregisTab@2x.jpg") 2x
   );
     width: 120%;
     height: 130%;
@@ -696,8 +693,7 @@ margin-bottom: 8px;
   .porgress_container {
     width: 409px;
     position: absolute;
-    bottom: 0;
-    margin-top: 5px;
+    bottom: -8px;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -896,19 +892,19 @@ margin-bottom: 8px;
 
   .background_img_container_login div:nth-child(1) {
     content: image-set(
-      url("../../img/loginBack/iMaclogin.jpg") 1x,
-      url("../../img/loginBack/iMaclogin@2x.jpg") 2x,
       url("../../img/loginBack/iMaclogin.webp") 1x,
-      url("../../img/loginBack/iMaclogin@2x.webp") 2x
+      url("../../img/loginBack/iMaclogin@2x.webp") 2x,
+      url("../../img/loginBack/iMaclogin.jpg") 1x,
+      url("../../img/loginBack/iMaclogin@2x.jpg") 2x
     );
   }
 
   .background_img_container_registration div:nth-child(1) {
     content: image-set(
-      url("../../img/registerBack/iMacregister.jpg") 1x,
-      url("../../img/registerBack/iMacregister@2x.jpg") 2x,
       url("../../img/registerBack/iMacregister.webp") 1x,
-      url("../../img/registerBack/iMacregister@2x.webp") 2x
+      url("../../img/registerBack/iMacregister@2x.webp") 2x,
+      url("../../img/registerBack/iMacregister.jpg") 1x,
+      url("../../img/registerBack/iMacregister@2x.jpg") 2x
     );
     width: 120%;
     height: 130%;

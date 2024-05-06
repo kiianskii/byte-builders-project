@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { NavLink } from "react-router-dom";
@@ -98,9 +97,6 @@ export default function LoginForm({ type, onSubmit, initialValues }) {
                     component="div"
                     className={s.password_error}
                   />
-                  {type === "login" && (
-                    <ProgressBar password={values.password} />
-                  )}
                 </div>
                 {type === "register" && (
                   <div className={s.inputContainer}>
