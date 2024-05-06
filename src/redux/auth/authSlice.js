@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  balanceThunk,
   refreshThunk,
   registerThunk,
   signInThunk,
@@ -46,6 +47,9 @@ const slice = createSlice({
         state.user.name = payload.username;
         state.user.email = payload.email;
         state.isLoggedIn = true;
+      })
+      .addCase(balanceThunk.fulfilled, (state, { payload }) => {
+        state.balance = payload;
       });
   },
 });
