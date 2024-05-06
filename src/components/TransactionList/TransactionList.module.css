@@ -71,3 +71,10 @@
   height: 375px;
   overflow: scroll;
 }
+
+.nodata {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+}
