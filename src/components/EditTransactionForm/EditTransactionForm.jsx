@@ -8,7 +8,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import ReactDatePicker from "react-datepicker";
 import { selectCategories } from "../../redux/transactions/slice";
 import * as Yup from "yup";
-import { balanceThunk } from "../../redux/auth/operations";
 
 const EditTransactionForm = ({ transaction, closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -55,7 +54,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
       const response = await dispatch(
         editTransactionThunk({ id, credentials: editedTransaction })
       );
-      dispatch(balanceThunk());
+
       console.log("Response from server:", response);
       closeModal();
     } catch (error) {

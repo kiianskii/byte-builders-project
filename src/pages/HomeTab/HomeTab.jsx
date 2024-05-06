@@ -1,16 +1,17 @@
-import TransactionList from "../../components/TransactionList/TransactionList";
 import { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 import { useDispatch } from "react-redux";
+
 import {
   transactionsCategoriesThunk,
   userTransactionsThunk,
 } from "../../redux/transactions/operations";
+import { Icon } from "../../img/Icon";
 import { useToggle } from "../../hooks/useToggle";
 import css from "../../components/ButtonAddTransactions/ButtonAddTransactions.module.css";
 import AddTransactionForm from "../../components/AddTransactionForm/AddTransactionForm";
 import Modal from "../../components/Modal/Modal";
-import { Icon } from "../../img/Icon";
-import { useMediaQuery } from "react-responsive";
+import TransactionList from "../../components/TransactionList/TransactionList";
 import TransactionListMob from "../../components/TransactionList/TransactionListMob";
 
 function HomeTab() {

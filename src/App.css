@@ -53,7 +53,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  min-height: 620px;
+  min-height: 100vh;
 }
 
 @media screen and (min-width: 768px) {
@@ -62,7 +62,7 @@ body {
       url("./img/background/tabletbackTab.jpg") 1x,
       url("./img/background/tabletbackTab@2x.jpg") 2x
     );
-    height: 1024px;
+
     position: relative;
   }
 }
@@ -75,7 +75,6 @@ body {
       url("./img/background/iMac.jpg") 1x,
       url("./img/background/iMac@2x.jpg") 2x
     );
-    height: 720px;
   }
 }
 

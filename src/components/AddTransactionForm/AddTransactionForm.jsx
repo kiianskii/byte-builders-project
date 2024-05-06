@@ -10,8 +10,6 @@ import { sendTransactionThunk } from "../../redux/transactions/operations";
 import * as Yup from "yup";
 import { useMediaQuery } from "react-responsive";
 import { getStyles } from "./config";
-
-
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
@@ -51,7 +49,6 @@ const AddTransactionForm = ({ closeModal }) => {
     };
     if (query.transactionDate === null) return;
     dispatch(sendTransactionThunk(query));
-    dispatch(balanceThunk());
     options.resetForm();
     closeModal();
   }
