@@ -8,7 +8,9 @@ function TransactionList() {
   const transactions = useSelector(selectTransactions);
   //   const isLoading = useSelector(selectIsLoading);
 
-  return (
+  return !transactions.length ? (
+    <h2 className={s.nodata}>There are no transactions yet!</h2>
+  ) : (
     <div className={s.container}>
       <table className={s.table}>
         <thead className={s.thead}>
