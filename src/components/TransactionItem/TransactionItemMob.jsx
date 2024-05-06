@@ -49,7 +49,7 @@ function TransactionItemMob({ transaction }) {
       </li>
       <li className={s.mobitem}>
         <span className={s.name}>Comment</span>
-        <span>{transaction.comment}</span>
+        <span className={s.comment}>{transaction.comment}</span>
       </li>
       <li className={s.mobitem}>
         <span className={s.name}>Sum</span>
