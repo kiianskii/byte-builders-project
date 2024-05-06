@@ -10,20 +10,18 @@
     rgb(158, 64, 186) 181.695%,
     rgb(112, 0, 255) 327.061%
   );
-  position: absolute;
+  position: fixed;
   right: 20px;
   bottom: 20px;
   z-index: 1;
 }
 
 .container {
-  /* height: 640px; */
-  padding-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 @media only screen and (min-width: 1280px) {
   .container {
-    /* position: relative; */
     width: 800px;
   }
 }

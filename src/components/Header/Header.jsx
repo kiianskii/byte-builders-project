@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
-import css from "./Header.module.css";
 import { selectUser } from "../../redux/auth/authSlice";
-import { Icon } from "../../img/Icon";
 import { useToggle } from "../../hooks/useToggle";
-import HeaderModal from "./HeaderModal/HeaderModal";
 import { useEffect, useState } from "react";
-import ModalMobile from "./ModalHeaderMobile/ModalMobile";
 import { useDispatch } from "react-redux";
-import { refreshThunk } from "../../redux/auth/operations";
+//css
+import css from "./Header.module.css";
+//компоненти
+import ModalMobile from "./ModalHeaderMobile/ModalMobile";
+import HeaderModal from "./HeaderModal/HeaderModal";
+import { Icon } from "../../img/Icon";
 
 const Header = () => {
   const user = useSelector(selectUser);
@@ -20,7 +21,7 @@ const Header = () => {
     };
 
     window.addEventListener("resize", handleResize);
-    dispatch(refreshThunk());
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };

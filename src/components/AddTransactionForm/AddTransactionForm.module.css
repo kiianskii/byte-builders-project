@@ -101,6 +101,7 @@
   color: rgb(251, 251, 251);
   padding: 0 20px !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  outline: none;
 }
 
 .btn_wrapper {
@@ -146,8 +147,17 @@
 
 .amount_date_box {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   gap: 32px;
-  width: 394px;
+}
+
+@media only screen and (min-width: 768px) {
+  .amount_date_box {
+    flex-direction: row;
+    width: 394px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -228,6 +238,7 @@
 
 .wrapper {
   position: relative;
+  margin: 0 auto;
   width: 280px;
 }
 

@@ -8,7 +8,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import ReactDatePicker from "react-datepicker";
 import { selectCategories } from "../../redux/transactions/slice";
 import * as Yup from "yup";
-import { balanceThunk } from "../../redux/auth/operations";
 
 const EditTransactionForm = ({ transaction, closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -16,7 +15,6 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
   const categoriesTransaction = useSelector(selectCategories);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const [toggle, setToggle] = useState(true);
 
   const today = new Date();
 
@@ -56,7 +54,7 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
       const response = await dispatch(
         editTransactionThunk({ id, credentials: editedTransaction })
       );
-      dispatch(balanceThunk());
+
       console.log("Response from server:", response);
       closeModal();
     } catch (error) {
@@ -67,12 +65,10 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
     }
   };
 
-  // const amountPlaceholder = Math.abs(transaction?.amount);
-
   return (
     <Formik
       initialValues={{
-        amount: transaction ? transaction.amount : "",
+        amount: transaction ? Math.abs(transaction.amount) : "",
         comment: transaction ? transaction.comment : "",
       }}
       onSubmit={handleSubmit}

@@ -1,9 +1,10 @@
 .wrapper {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 289;
   display: flex;
   justify-content: center;
+  margin-top: 60px;
   background-image: image-set(
     url("../../../img/logoutBack/mobile-background.webp") 1x,
     url("../../../img/logoutBack/mobileBackground@2x.webp") 2x,
@@ -13,7 +14,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   backdrop-filter: blur(7px);
-  margin-top: 60px;
   @media (min-width: 768px) {
     margin-top: 0;
     background-image: none;
