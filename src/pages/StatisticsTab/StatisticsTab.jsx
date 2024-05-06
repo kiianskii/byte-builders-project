@@ -99,19 +99,28 @@ function StatisticsTab() {
     ],
   };
 
-  // const [cutoutValue, setCutoutValue] = useState();
+  const [cutoutValue, setCutoutValue] = useState();
 
-  // useEffect(() => {
-  //   if (window.matchMedia("(min-width: 768px)").matches) {
-  //     setCutoutValue(120);
-  //   }
-  //   if (window.matchMedia("(min-width: 769px)").matches) {
-  //     setCutoutValue(100);
-  //   }
-  // }, [cutoutValue, window]);
+  useEffect(() => {
+    function handleResize() {
+      if (window.matchMedia("(min-width: 1150px)").matches) {
+        setCutoutValue(100);
+      } else if (window.matchMedia("(min-width: 768px)").matches) {
+        setCutoutValue(120);
+      } else if (window.matchMedia("(min-width: 320px)").matches) {
+        setCutoutValue(100);
+      }
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const options = {
-    cutout: 100,
+    cutout: cutoutValue,
     plugins: {
       style: {
         // Налаштування ефекту bevel
@@ -158,32 +167,49 @@ function StatisticsTab() {
 
   const bevelPlugin = {
     id: "bevelPlugin",
-    bevel: {
-      size: 5,
-      backgroundColor: "rgba(255, 255, 255, 0.5)",
-      shadowColor: "rgba(0, 0, 0, 1)",
-      shadowBlur: 10,
-      shadowOffsetX: 3,
-      shadowOffsetY: 3,
-      beforeDatasetsDraw(chart, args) {
-        const { ctx } = chart;
-        const {
-          size,
-          backgroundColor,
-          shadowColor,
-          shadowBlur,
-          shadowOffsetX,
-          shadowOffsetY,
-        } = this;
+    beforeDatasetsDraw: function (chart, args) {
+      const { ctx } = chart;
+      const { x, y, outerRadius, innerRadius } = chart.chartArea;
 
-        ctx.save();
-        ctx.lineWidth = size;
-        ctx.strokeStyle = backgroundColor;
-        ctx.shadowColor = shadowColor;
-        ctx.shadowBlur = shadowBlur;
-        ctx.shadowOffsetX = shadowOffsetX;
-        ctx.shadowOffsetY = shadowOffsetY;
-      },
+      const bevelSize = 5; // розмір фаски
+
+      ctx.save();
+
+      // Зовнішній круг
+      const outerGradient = ctx.createRadialGradient(
+        x,
+        y,
+        outerRadius,
+        x,
+        y,
+        outerRadius + bevelSize
+      );
+      outerGradient.addColorStop(0, "rgba(255, 255, 255, 0)");
+      outerGradient.addColorStop(1, "rgba(255, 255, 255, 0.1)");
+
+      ctx.beginPath();
+      ctx.arc(x, y, outerRadius + bevelSize, 0, Math.PI * 2);
+      ctx.fillStyle = outerGradient;
+      ctx.fill();
+
+      // Внутрішній круг
+      const innerGradient = ctx.createRadialGradient(
+        x,
+        y,
+        innerRadius,
+        x,
+        y,
+        innerRadius - bevelSize
+      );
+      innerGradient.addColorStop(0, "rgba(255, 255, 255, 0.1)");
+      innerGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+      ctx.beginPath();
+      ctx.arc(x, y, innerRadius - bevelSize, 0, Math.PI * 2);
+      ctx.fillStyle = innerGradient;
+      ctx.fill();
+
+      ctx.restore();
     },
   };
 
@@ -214,11 +240,7 @@ function StatisticsTab() {
         <h2 className={css.doughnutText}>Statistics</h2>
         {/* <Doughnut data={data} options={options} plugins={[textCenter]} /> */}
         {summary.expenseSummary !== 0 || summary.incomeSummary !== 0 ? (
-          <Doughnut
-            data={data}
-            options={options}
-            plugins={[textCenter, bevelPlugin]}
-          />
+          <Doughnut data={data} options={options} plugins={[textCenter]} />
         ) : (
           <p className={css.noTrasaction}>
             There are no transactions for this period
