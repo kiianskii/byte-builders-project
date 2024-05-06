@@ -151,12 +151,12 @@
   justify-content: center;
   text-align: center;
   gap: 32px;
-  width: 394px;
 }
 
 @media only screen and (min-width: 768px) {
   .amount_date_box {
     flex-direction: row;
+    width: 394px;
   }
 }
 

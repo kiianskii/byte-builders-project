@@ -3,6 +3,7 @@ import { Icon } from "../../img/Icon";
 import { useMediaQuery } from "react-responsive";
 
 import s from "./Modal.module.css";
+
 const Modal = ({ children, title = "Default modal", closeModal }) => {
   const handleKeyDown = useCallback(
     (e) => {
