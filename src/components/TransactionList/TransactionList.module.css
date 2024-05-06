@@ -76,4 +76,5 @@
 .head_container {
   margin-bottom: 0;
   margin-top: 20px;
+  overflow: auto;
 }

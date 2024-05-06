@@ -24,6 +24,7 @@
 @media screen and (min-width: 1280px) {
   .balance_container {
     margin-bottom: 32px;
+    padding-left: 56px;
     width: auto;
     border-radius: 0;
   }

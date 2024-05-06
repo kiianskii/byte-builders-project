@@ -51,6 +51,7 @@
   ::-webkit-scrollbar-thumb {
     background: #7139f5;
     height: 20px;
+    border-radius: 15px;
   }
 }
 
