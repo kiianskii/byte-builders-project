@@ -122,8 +122,8 @@ const EditTransactionForm = ({ transaction, closeModal }) => {
         </div>
         <div className={s.edit_comment}>
           <Field
-            className={s.edit_comment_input}
-            // as="textarea"
+            className={`${s.input} ${s.textarea}`}
+            as="textarea"
             required
             name="comment"
             placeholder="Enter a comment"
