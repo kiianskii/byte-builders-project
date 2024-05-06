@@ -23,6 +23,7 @@
   height: auto;
   padding: 40px 20px;
   overflow-y: auto;
+  overflow-x: hidden;
   max-width: 1000px;
   border-radius: 5px;
   h1 {
