@@ -1,4 +1,4 @@
-import { Form, Formik, Field } from "formik";
+import { Form, Formik, Field, ErrorMessage } from "formik";
 import { useState } from "react";
 import css from "./AddTransactionForm.module.css";
 import { Icon } from "../../img/Icon";
@@ -23,7 +23,6 @@ const AddTransactionForm = ({ closeModal }) => {
       label: category.name,
     })
   );
-  console.log(categoriesArr);
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   const WIDTH = !isMobile ? "394px" : "280px";
   const [toggle, setToggle] = useState(true);
@@ -81,114 +80,136 @@ const AddTransactionForm = ({ closeModal }) => {
           <p className={!toggle ? css.switcher_text : css.expense}>Expense</p>
         </div>
         {toggle && (
-          <Field name="categoryId">
-            {({ field, form }) => (
-              <Select
-                placeholder="Select a category"
-                styles={{
-                  control: (styles) => ({
-                    ...styles,
-                    backgroundColor: "transparent",
-                    border: "none",
-                    borderBottom: "1px solid rgba(255, 255, 255, 0.4)",
-                    paddingLeft: "20px",
-                    width: WIDTH,
-                    height: "35px",
-                  }),
-                  input: (styles) => ({
-                    ...styles,
-                    color: "rgb(251, 251, 251)",
-                  }),
-                  indicatorsContainer: (styles) => ({
-                    ...styles,
-                    height: "35px",
-                  }),
-                  valueContainer: (styles) => ({
-                    ...styles,
-                    paddingLeft: "0",
-                  }),
-                  // option: (styles) => ({
-                  //   ...styles,
-                  //   backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  // }),
-                  singleValue: (styles) => ({
-                    ...styles,
-                    color: "rgb(251, 251, 251)",
-                  }),
-                  menuList: (styles) => {
-                    return {
+          <>
+            <Field name="categoryId">
+              {({ field, form }) => (
+                <Select
+                  placeholder="Select a category"
+                  styles={{
+                    control: (styles) => ({
                       ...styles,
-                      borderRadius: "8px",
-                      boxShadow: "0px 4px 60px 0px rgba(0, 0, 0, 0.25)",
-                      backdropFilter: "blur(100px)",
-                      background:
-                        "linear-gradient(0.00deg, rgba(83, 61, 186, 0.7),rgba(80, 48, 154, 0.7) 43.139%,rgba(106, 70, 165, 0.52) 73.27%,rgba(133, 93, 175, 0.13) 120.028%)",
-                    };
-                  },
-                  placeholder: (styles) => ({
-                    ...styles,
-                    color: "rgba(255, 255, 255, 0.6)",
-                    fontFamily: "Poppins",
-                    fontSize: "18px",
-                    fontWeight: "400",
-                    lineHeight: "1.5",
-                    letterSpacing: "0%",
-                    textAlign: "left",
-                  }),
-                  dropdownIndicator: (styles) => ({
-                    ...styles,
-                    color: "rgb(251, 251, 251)",
-                    // width: "18px",
-                    // height: "9px",
-                  }),
-                  indicatorSeparator: (styles) => ({
-                    ...styles,
-                    display: "none",
-                  }),
-                }}
-                options={categoriesArr.filter(
-                  (category) => category.type !== "INCOME"
-                )}
-                value={field.value}
-                onChange={(option) => {
-                  form.setFieldValue(field.name, option);
-                }}
-              />
-            )}
-          </Field>
+                      backgroundColor: "transparent",
+                      border: "none",
+                      borderBottom: "1px solid rgba(255, 255, 255, 0.4)",
+                      paddingLeft: "20px",
+                      width: WIDTH,
+                      height: "35px",
+                    }),
+                    input: (styles) => ({
+                      ...styles,
+                      color: "rgb(251, 251, 251)",
+                    }),
+                    indicatorsContainer: (styles) => ({
+                      ...styles,
+                      height: "35px",
+                    }),
+                    valueContainer: (styles) => ({
+                      ...styles,
+                      paddingLeft: "0",
+                    }),
+                    singleValue: (styles) => ({
+                      ...styles,
+                      color: "rgb(251, 251, 251)",
+                    }),
+                    menuList: (styles) => {
+                      return {
+                        ...styles,
+                        borderRadius: "8px",
+                        boxShadow: "0px 4px 60px 0px rgba(0, 0, 0, 0.25)",
+                        backdropFilter: "blur(100px)",
+                        background:
+                          "linear-gradient(0.00deg, rgba(83, 61, 186, 0.7),rgba(80, 48, 154, 0.7) 43.139%,rgba(106, 70, 165, 0.52) 73.27%,rgba(133, 93, 175, 0.13) 120.028%)",
+                      };
+                    },
+                    placeholder: (styles) => ({
+                      ...styles,
+                      color: "rgba(255, 255, 255, 0.6)",
+                      fontFamily: "Poppins",
+                      fontSize: "18px",
+                      fontWeight: "400",
+                      lineHeight: "1.5",
+                      letterSpacing: "0%",
+                      textAlign: "left",
+                    }),
+                    dropdownIndicator: (styles) => ({
+                      ...styles,
+                      color: "rgb(251, 251, 251)",
+                    }),
+                    indicatorSeparator: (styles) => ({
+                      ...styles,
+                      display: "none",
+                    }),
+                  }}
+                  options={categoriesArr.filter(
+                    (category) => category.type !== "INCOME"
+                  )}
+                  value={field.value}
+                  onChange={(option) => {
+                    form.setFieldValue(field.name, option);
+                  }}
+                />
+              )}
+            </Field>
+            {/* <ErrorMessage
+              name="categoryId"
+              component="div"
+              className={css.category_error}
+            /> */}
+          </>
         )}
         {isMobile ? (
           <>
-            <Field
-              type="number"
-              placeholder="0.00"
-              name="amount"
-              className={`${css.input} ${css.input_number}`}
-            />
+            <label className={css.label}>
+              <Field
+                type="number"
+                placeholder="0.00"
+                name="amount"
+                className={`${css.input} ${css.input_number}`}
+              />
+              <ErrorMessage
+                name="amount"
+                component="div"
+                className={css.amount_error}
+              />
+            </label>
             <div className={css.wrapper}>
               <SelectDate startDate={startDate} setStartDate={setStartDate} />
             </div>
           </>
         ) : (
           <div className={css.amount_date_box}>
-            <Field
-              type="number"
-              placeholder="0.00"
-              name="amount"
-              className={`${css.input} ${css.input_number}`}
-            />
+            <label className={css.label}>
+              <Field
+                type="number"
+                placeholder="0.00"
+                name="amount"
+                className={`${css.input} ${css.input_number}`}
+              />
+              <ErrorMessage
+                name="amount"
+                component="div"
+                className={css.amount_error}
+              />
+            </label>
             <div className={css.wrapper}>
               <SelectDate startDate={startDate} setStartDate={setStartDate} />
             </div>
           </div>
         )}
+        <label className={css.label}>
+          <Field
+            as="textarea"
+            placeholder="Comment"
+            name="comment"
+            className={`${css.input} ${css.textarea}`}
+          />
 
-        <Field
-          as="textarea"
-          placeholder="Comment"
-          name="comment"
-          className={`${css.input} ${css.textarea}`}
-        />
+          <ErrorMessage
+            name="comment"
+            component="div"
+            className={css.comment_error}
+          />
+        </label>
         <div className={css.btn_wrapper}>
           <button className={css.button_out} type="submit">
             Add

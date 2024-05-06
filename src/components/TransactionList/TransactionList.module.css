@@ -43,10 +43,14 @@
 .container {
   width: 716px;
   max-height: 600px;
-  overflow: scroll;
+  overflow-y: scroll;
   margin: 20px 32px;
   /* display: block; */
 }
+
+/* .container::-webkit-scrollbar {
+  width: 0;
+} */
 
 @media screen and (min-width: 1280px) {
   .container {

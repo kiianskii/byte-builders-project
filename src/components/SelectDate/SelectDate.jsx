@@ -9,7 +9,7 @@ const SelectDate = ({ startDate, setStartDate }) => {
       className={css.input_date}
       selected={startDate}
       onChange={(date) => setStartDate(date)}
-      dateFormat="dd/MM/yyyy"
+      dateFormat="dd.MM.yyyy"
       icon={<Icon size={18} id="calendar" className={css.icon} />}
     />
   );
