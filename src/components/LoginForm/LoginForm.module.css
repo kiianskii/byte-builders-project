@@ -356,7 +356,6 @@ margin-bottom: 8px;
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
@@ -371,11 +370,6 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: transparent;
   transition: background-color 5000s ease-in-out 0s;
 }
-
-
-
-
-
 
 @media screen and (min-width: 768px) {
   .loginSections {
