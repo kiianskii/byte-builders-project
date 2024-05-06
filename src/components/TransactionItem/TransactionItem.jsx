@@ -1,6 +1,6 @@
 import { useToggle } from "../../hooks/useToggle";
 import { Icon } from "../../img/Icon";
-import { balanceThunk } from "../../redux/auth/operations";
+
 import { deleteTransactionThunk } from "../../redux/transactions/operations";
 import { selectCategories } from "../../redux/transactions/slice";
 import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
@@ -41,7 +41,6 @@ function TransactionItem({ transaction }) {
             className={s.delete_btn}
             onClick={() => {
               dispatch(deleteTransactionThunk(transaction.id));
-              dispatch(balanceThunk());
             }}
           >
             Delete

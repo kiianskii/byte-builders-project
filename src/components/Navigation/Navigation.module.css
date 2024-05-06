@@ -16,7 +16,7 @@
   height: 44px;
 }
 .list {
-  margin: 12px 62px;
+  margin: 72px 62px 12px;
   display: flex;
   flex-direction: row;
   gap: 32px;

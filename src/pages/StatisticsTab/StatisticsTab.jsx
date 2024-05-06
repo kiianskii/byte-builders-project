@@ -13,63 +13,26 @@ import { selectBalance } from "../../redux/auth/selectors";
 import "chartjs-plugin-annotation";
 import "chartjs-plugin-style";
 import { StyleDoughnutController } from "chartjs-plugin-style";
-// Chart.register(StyleDoughnutController);
+import { categoryes } from "./constans";
+import { selectMonth } from "./constans";
+import { selectYear } from "./constans";
 
 function StatisticsTab() {
   const balance = useSelector(selectBalance);
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1;
+  const currentYear = currentDate.getFullYear();
 
-  const categoryes = [
-    { categoryName: "Main expenses", categoryColor: "#FED057" },
-    { categoryName: "Products", categoryColor: "#FFD8D0" },
-    { categoryName: "Car", categoryColor: "#FD9498" },
-    { categoryName: "Self care", categoryColor: "#C5BAFF" },
-    { categoryName: "Child care", categoryColor: "#6E78E8" },
-    { categoryName: "Household products", categoryColor: "#4A56E2" },
-    { categoryName: "Education", categoryColor: "#81E1FF" },
-    { categoryName: "Leisure", categoryColor: "#24CCA7" },
-    { categoryName: "Other expenses", categoryColor: "#00AD84" },
-    { categoryName: "Entertainment", categoryColor: "#FF868D" },
-    { categoryName: "Income", categoryColor: "#FFB627" },
-  ];
+  const nowMonth = selectMonth.find(
+    (el) => el.value === currentMonth.toString()
+  );
+  const nowYear = selectYear.find((el) => el.value === currentYear.toString());
 
-  // ==============================================================================================
-  const selectMonth = [
-    { value: "1", label: "January" },
-    { value: "2", label: "February" },
-    { value: "3", label: "March" },
-    { value: "4", label: "April" },
-    { value: "5", label: "May" },
-    { value: "6", label: "June" },
-    { value: "7", label: "July" },
-    { value: "8", label: "August" },
-    { value: "9", label: "September" },
-    { value: "10", label: "October" },
-    { value: "11", label: "November" },
-    { value: "12", label: "December" },
-  ];
-
-  const selectYear = [
-    { value: "2024", label: "2024" },
-    { value: "2023", label: "2023" },
-    { value: "2022", label: "2022" },
-    { value: "2021", label: "2021" },
-    { value: "2020", label: "2020" },
-    { value: "2019", label: "2019" },
-    { value: "2018", label: "2018" },
-    { value: "2017", label: "2017" },
-    { value: "2016", label: "2016" },
-    { value: "2015", label: "2015" },
-    { value: "2014", label: "2014" },
-    { value: "2013", label: "2013" },
-  ];
-
-  const [selectedMonth, setSelectedMonth] = useState("1");
-  const [selectedYear, setSelectedYear] = useState("1");
+  const [selectedMonth, setSelectedMonth] = useState(nowMonth);
+  const [selectedYear, setSelectedYear] = useState(nowYear);
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
-      // width: 181,
-      // height: 157,
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
@@ -78,8 +41,6 @@ function StatisticsTab() {
     }),
     input: (provided, state) => ({
       ...provided,
-      // height: 50,
-      // width: 181,
     }),
   };
 
@@ -91,7 +52,6 @@ function StatisticsTab() {
     labels: [],
     datasets: [
       {
-        // label: "# of Votes",
         data: [],
         backgroundColor: [],
         borderColor: "transparent",
@@ -155,61 +115,15 @@ function StatisticsTab() {
         ctx.fillStyle = "#FBFBFB";
         ctx.textAlign = "center";
         ctx.textBaseline = "center";
+        const formattedBalance = balance.toFixed(2);
+        // const balanceWithSymbol = `₴ ${formattedBalance}`;
         ctx.fillText(
-          balance,
+          `₴ ${formattedBalance}`,
           chart.getDatasetMeta(0).data[0].x,
           chart.getDatasetMeta(0).data[0].y
         );
         ctx.restore();
       }
-    },
-  };
-
-  const bevelPlugin = {
-    id: "bevelPlugin",
-    beforeDatasetsDraw: function (chart, args) {
-      const { ctx } = chart;
-      const { x, y, outerRadius, innerRadius } = chart.chartArea;
-
-      const bevelSize = 5; // розмір фаски
-
-      ctx.save();
-
-      // Зовнішній круг
-      const outerGradient = ctx.createRadialGradient(
-        x,
-        y,
-        outerRadius,
-        x,
-        y,
-        outerRadius + bevelSize
-      );
-      outerGradient.addColorStop(0, "rgba(255, 255, 255, 0)");
-      outerGradient.addColorStop(1, "rgba(255, 255, 255, 0.1)");
-
-      ctx.beginPath();
-      ctx.arc(x, y, outerRadius + bevelSize, 0, Math.PI * 2);
-      ctx.fillStyle = outerGradient;
-      ctx.fill();
-
-      // Внутрішній круг
-      const innerGradient = ctx.createRadialGradient(
-        x,
-        y,
-        innerRadius,
-        x,
-        y,
-        innerRadius - bevelSize
-      );
-      innerGradient.addColorStop(0, "rgba(255, 255, 255, 0.1)");
-      innerGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
-
-      ctx.beginPath();
-      ctx.arc(x, y, innerRadius - bevelSize, 0, Math.PI * 2);
-      ctx.fillStyle = innerGradient;
-      ctx.fill();
-
-      ctx.restore();
     },
   };
 
@@ -227,10 +141,6 @@ function StatisticsTab() {
   }, [date, dispatch, selectedMonth, selectedYear]);
 
   const summary = useSelector(selectSummary);
-
-  const classExpenses = clsx(css.thtd, css.classExpenses);
-  const classExpensesValue = clsx(css.tht, css.classExpensesValue);
-  const classIncomeValue = clsx(css.tht, css.classIncomeValue);
 
   return (
     <div className={css.box}>
@@ -259,7 +169,7 @@ function StatisticsTab() {
             classNamePrefix="input"
             styles={customStyles}
             className="selectInput"
-            placeholder="Please select a month"
+            // placeholder="Please select a month"
           />
           {/* </div> */}
 
@@ -283,14 +193,14 @@ function StatisticsTab() {
         <div className={css.tbl}>
           <table className={css.table}>
             <tbody className={css.tbody}>
-              {summary.categoriesSummary?.map((el) => {
+              {summary.categoriesSummary?.map((el, idx) => {
                 data.datasets[0].data.push(el.total);
                 const color = categoryes.find(
                   (elem) => elem.categoryName === el.name
                 );
                 data.datasets[0].backgroundColor.push(color.categoryColor);
                 return (
-                  <tr className={css.tr} key={el.id}>
+                  <tr className={css.tr} key={idx}>
                     <td className={css.thtd}>
                       <span
                         className={css.span}
