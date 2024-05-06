@@ -283,14 +283,14 @@ function StatisticsTab() {
         <div className={css.tbl}>
           <table className={css.table}>
             <tbody className={css.tbody}>
-              {summary.categoriesSummary?.map((el) => {
+              {summary.categoriesSummary?.map((el, idx) => {
                 data.datasets[0].data.push(el.total);
                 const color = categoryes.find(
                   (elem) => elem.categoryName === el.name
                 );
                 data.datasets[0].backgroundColor.push(color.categoryColor);
                 return (
-                  <tr className={css.tr} key={el.id}>
+                  <tr className={css.tr} key={idx}>
                     <td className={css.thtd}>
                       <span
                         className={css.span}
