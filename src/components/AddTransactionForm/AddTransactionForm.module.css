@@ -109,6 +109,10 @@
   row-gap: 20px;
 }
 
+.label {
+  position: relative;
+}
+
 @media only screen and (max-width: 767.98px) {
   /* .form {
     display: flex;
@@ -149,7 +153,8 @@
 @media only screen and (min-width: 768px) {
   .input_number {
     width: 181px;
-    padding: 0 73px 8px 68px !important;
+    padding: 0 0 8px 0 !important;
+    text-align: center;
     height: 35px;
   }
 
@@ -224,4 +229,25 @@
 .wrapper {
   position: relative;
   width: 280px;
+}
+
+.category_error,
+.amount_error {
+  color: red;
+  font-size: 10px;
+  font-weight: 200;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 30px;
+}
+
+.comment_error {
+  color: red;
+  font-size: 10px;
+  font-weight: 200;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: -12px;
 }

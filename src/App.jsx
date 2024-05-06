@@ -14,6 +14,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import { PrivateRoute } from "./routes/PrivateRoute";
 import { RestrictedRoute } from "./routes/RestrictedRoute";
 import { currencyThunk } from "./redux/currency/operations";
+import { RedirectRoute } from "./routes/RedirectRoute";
 
 const StatisticsTab = lazy(() => import("./pages/StatisticsTab/StatisticsTab"));
 const HomeTab = lazy(() => import("./pages/HomeTab/HomeTab"));
@@ -40,7 +41,10 @@ function App() {
           <Route index element={<HomeTab />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="statistics" element={<StatisticsTab />} />
-          <Route path="/currency" element={<CurrencyTab />} />
+          <Route
+            path="/currency"
+            element={<RedirectRoute component={<CurrencyTab />} />}
+          />
         </Route>
         <Route
           path="login"

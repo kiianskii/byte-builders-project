@@ -8,7 +8,9 @@
 
 .table {
   table-layout: fixed;
-  max-width: 715px;
+  /* max-width: 715px; */
+  width: 100%;
+
   border-collapse: collapse;
 }
 
@@ -35,13 +37,21 @@
   text-align: right;
 }
 
-.container {
-  width: 716px;
-  max-height: 600px;
+.tbody {
   overflow: scroll;
+}
+
+.container {
+  /* width: 716px; */
+  max-height: 600px;
+  overflow-y: scroll;
   margin: 20px 32px;
   /* display: block; */
 }
+
+/* .container::-webkit-scrollbar {
+  width: 0;
+} */
 
 @media screen and (min-width: 1280px) {
   .container {
@@ -60,4 +70,11 @@
   gap: 8px;
   height: 375px;
   overflow: scroll;
+}
+
+.nodata {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
 }

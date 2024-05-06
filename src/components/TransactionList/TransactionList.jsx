@@ -8,11 +8,13 @@ function TransactionList() {
   const transactions = useSelector(selectTransactions);
   //   const isLoading = useSelector(selectIsLoading);
 
-  return (
+  return !transactions.length ? (
+    <h2 className={s.nodata}>There are no transactions yet!</h2>
+  ) : (
     <div className={s.container}>
       <table className={s.table}>
         <thead className={s.thead}>
-          <tr>
+          <tr className={s.tr}>
             <th className={s.headline}>Date</th>
             <th className={s.headline}>Type</th>
             <th className={s.headline}>Category</th>
@@ -21,7 +23,7 @@ function TransactionList() {
             <th className={s.headline}></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={s.tbody}>
           {transactions.map((transaction) => {
             return (
               <TransactionItem key={transaction.id} transaction={transaction} />
