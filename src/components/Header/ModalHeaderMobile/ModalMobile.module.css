@@ -6,8 +6,8 @@
   justify-content: center;
   background-image: image-set(
     url("../../../img/logoutBack/mobile-background.webp") 1x,
-    url("../../../img/logoutBack/mobileBackground@2x.webp") 2x
-      url("../../../img/logoutBack/mobile-background.jpg") 1x,
+    url("../../../img/logoutBack/mobileBackground@2x.webp") 2x,
+    url("../../../img/logoutBack/mobile-background.jpg") 1x,
     url("../../../img/logoutBack/mobileBackground@2x.jpg") 2x
   );
   background-size: cover;
