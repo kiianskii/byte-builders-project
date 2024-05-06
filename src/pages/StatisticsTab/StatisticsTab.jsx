@@ -240,7 +240,11 @@ function StatisticsTab() {
         <h2 className={css.doughnutText}>Statistics</h2>
         {/* <Doughnut data={data} options={options} plugins={[textCenter]} /> */}
         {summary.expenseSummary !== 0 || summary.incomeSummary !== 0 ? (
-          <Doughnut data={data} options={options} plugins={[textCenter]} />
+          <Doughnut
+            data={data}
+            options={options}
+            plugins={[textCenter, bevelPlugin]}
+          />
         ) : (
           <p className={css.noTrasaction}>
             There are no transactions for this period
@@ -276,43 +280,46 @@ function StatisticsTab() {
 
         {/* ===================================================================================================*/}
 
-        <table className={css.table}>
-          <thead className={css.thead}>
-            <tr>
-              <th className={css.th}>Category</th>
-              <th className={css.th}>Sum</th>
-            </tr>
-          </thead>
-          <tbody className={css.tbody}>
-            {summary.categoriesSummary?.map((el) => {
-              data.datasets[0].data.push(el.total);
-              const color = categoryes.find(
-                (elem) => elem.categoryName === el.name
-              );
-              data.datasets[0].backgroundColor.push(color.categoryColor);
-              return (
-                <tr className={css.tr} key={el.id}>
-                  <td className={css.thtd}>
-                    <span
-                      className={css.span}
-                      style={{ backgroundColor: color.categoryColor }}
-                    ></span>
-                    {el.name}
-                  </td>
-                  <td className={css.tht}>{el.total}</td>
-                </tr>
-              );
-            })}
-            <tr>
-              <td className={classExpenses}>Expenses</td>
-              <td className={classExpensesValue}>{summary.expenseSummary}</td>
-            </tr>
-            <tr>
-              <td className={classExpenses}>Income</td>
-              <td className={classIncomeValue}>{summary.incomeSummary}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className={css.wrapper}>
+          <span>Category</span>
+          <span>Sum</span>
+        </div>
+        <div className={css.tbl}>
+          <table className={css.table}>
+            <tbody className={css.tbody}>
+              {summary.categoriesSummary?.map((el) => {
+                data.datasets[0].data.push(el.total);
+                const color = categoryes.find(
+                  (elem) => elem.categoryName === el.name
+                );
+                data.datasets[0].backgroundColor.push(color.categoryColor);
+                return (
+                  <tr className={css.tr} key={el.id}>
+                    <td className={css.thtd}>
+                      <span
+                        className={css.span}
+                        style={{ backgroundColor: color.categoryColor }}
+                      ></span>
+                      {el.name}
+                    </td>
+                    <td className={css.tht}>{el.total}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        <div className={css.footer}>
+          <div className={css.footerText}>
+            <span className={css.textSpan}>Expenses</span>
+            <span className={css.textSpan}>Income</span>
+          </div>
+          <div className={css.footerNumber}>
+            <span className={css.numberSpan}>{summary.expenseSummary}</span>
+            <span className={css.numberSpan}>{summary.incomeSummary}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
