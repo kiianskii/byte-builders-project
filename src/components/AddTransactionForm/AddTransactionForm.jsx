@@ -9,6 +9,7 @@ import Select from "react-select";
 import { sendTransactionThunk } from "../../redux/transactions/operations";
 import * as Yup from "yup";
 import { useMediaQuery } from "react-responsive";
+import { getStyles } from "./config";
 
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -33,12 +34,6 @@ const AddTransactionForm = ({ closeModal }) => {
   };
 
   const schema = Yup.object().shape({
-    categoryId:
-      toggle &&
-      Yup.object().shape({
-        value: Yup.string().required("Please choose any category"),
-        label: Yup.string().required("Please choose any category"),
-      }),
     amount: Yup.number().required("Please enter amount"),
     comment: Yup.string().required("Please enter a comment"),
     transactionDate: Yup.date().nullable("Please choose a date"),
@@ -47,7 +42,7 @@ const AddTransactionForm = ({ closeModal }) => {
     const query = {
       ...data,
       categoryId: toggle
-        ? data.categoryId.id
+        ? data.categoryId.id || "c9d9e447-1b83-4238-8712-edc77b18b739"
         : "063f1132-ba5d-42b4-951d-44011ca46262",
       transactionDate: startDate,
       type: toggle ? "EXPENSE" : "INCOME",
@@ -83,61 +78,7 @@ const AddTransactionForm = ({ closeModal }) => {
               {({ field, form }) => (
                 <Select
                   placeholder="Select a category"
-                  styles={{
-                    control: (styles) => ({
-                      ...styles,
-                      backgroundColor: "transparent",
-                      border: "none",
-                      borderBottom: "1px solid rgba(255, 255, 255, 0.4)",
-                      paddingLeft: "20px",
-                      width: WIDTH,
-                      height: "35px",
-                    }),
-                    input: (styles) => ({
-                      ...styles,
-                      color: "rgb(251, 251, 251)",
-                    }),
-                    indicatorsContainer: (styles) => ({
-                      ...styles,
-                      height: "35px",
-                    }),
-                    valueContainer: (styles) => ({
-                      ...styles,
-                      paddingLeft: "0",
-                    }),
-                    singleValue: (styles) => ({
-                      ...styles,
-                      color: "rgb(251, 251, 251)",
-                    }),
-                    menuList: (styles) => {
-                      return {
-                        ...styles,
-                        borderRadius: "8px",
-                        boxShadow: "0px 4px 60px 0px rgba(0, 0, 0, 0.25)",
-                        backdropFilter: "blur(100px)",
-                        background:
-                          "linear-gradient(0.00deg, rgba(83, 61, 186, 0.7),rgba(80, 48, 154, 0.7) 43.139%,rgba(106, 70, 165, 0.52) 73.27%,rgba(133, 93, 175, 0.13) 120.028%)",
-                      };
-                    },
-                    placeholder: (styles) => ({
-                      ...styles,
-                      color: "rgba(255, 255, 255, 0.6)",
-                      fontFamily: "Poppins",
-                      fontSize: "18px",
-                      fontWeight: "400",
-                      lineHeight: "1.5",
-                      letterSpacing: "0%",
-                      textAlign: "left",
-                    }),
-                    dropdownIndicator: (styles) => ({
-                      ...styles,
-                      color: "rgb(251, 251, 251)",
-                    }),
-                    indicatorSeparator: (styles) => ({
-                      ...styles,
-                      display: "none",
-                    }),
-                  }}
+                  styles={getStyles(WIDTH)}
                   options={categoriesArr.filter(
                     (category) => category.type !== "INCOME"
                   )}
@@ -148,52 +89,26 @@ const AddTransactionForm = ({ closeModal }) => {
                 />
               )}
             </Field>
-            {/* <ErrorMessage
-              name="categoryId"
+          </>
+        )}
+        <div className={css.amount_date_box}>
+          <label className={css.label}>
+            <Field
+              type="number"
+              placeholder="0.00"
+              name="amount"
+              className={`${css.input} ${css.input_number}`}
+            />
+            <ErrorMessage
+              name="amount"
               component="div"
-              className={css.category_error}
-            /> */}
-          </>
-        )}
-        {isMobile ? (
-          <>
-            <label className={css.label}>
-              <Field
-                type="number"
-                placeholder="0.00"
-                name="amount"
-                className={`${css.input} ${css.input_number}`}
-              />
-              <ErrorMessage
-                name="amount"
-                component="div"
-                className={css.amount_error}
-              />
-            </label>
-            <div className={css.wrapper}>
-              <SelectDate startDate={startDate} setStartDate={setStartDate} />
-            </div>
-          </>
-        ) : (
-          <div className={css.amount_date_box}>
-            <label className={css.label}>
-              <Field
-                type="number"
-                placeholder="0.00"
-                name="amount"
-                className={`${css.input} ${css.input_number}`}
-              />
-              <ErrorMessage
-                name="amount"
-                component="div"
-                className={css.amount_error}
-              />
-            </label>
-            <div className={css.wrapper}>
-              <SelectDate startDate={startDate} setStartDate={setStartDate} />
-            </div>
+              className={css.amount_error}
+            />
+          </label>
+          <div className={css.wrapper}>
+            <SelectDate startDate={startDate} setStartDate={setStartDate} />
           </div>
-        )}
+        </div>
         <label className={css.label}>
           <Field
             as="textarea"
