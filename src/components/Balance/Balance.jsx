@@ -10,7 +10,7 @@ function Balance() {
       <p className={s.balance}>your balance</p>
       <p className={s.summary}>
         <span className={s.hryvnia}>&#x20B4;</span>
-        {balance.toFixed(2)}
+        {balance?.toFixed(2)}
       </p>
     </div>
   );
