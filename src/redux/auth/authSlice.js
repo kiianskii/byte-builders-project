@@ -40,7 +40,7 @@ const slice = createSlice({
         state.user.email = payload.user.email;
         state.token = payload.token;
         state.isLoggedIn = true;
-        state.balance = payload.balance;
+        state.balance = payload.user.balance;
       })
       .addCase(signOutThunk.fulfilled, () => {
         return initialState;
