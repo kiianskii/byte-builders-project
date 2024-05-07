@@ -8,7 +8,7 @@ import {
 } from "../../redux/transactions/operations";
 import { Icon } from "../../img/Icon";
 import { useToggle } from "../../hooks/useToggle";
-import css from "../../components/ButtonAddTransactions/ButtonAddTransactions.module.css";
+import css from "./HomeTab.module.css";
 import AddTransactionForm from "../../components/AddTransactionForm/AddTransactionForm";
 import Modal from "../../components/Modal/Modal";
 import TransactionList from "../../components/TransactionList/TransactionList";

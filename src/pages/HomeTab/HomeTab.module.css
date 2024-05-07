@@ -1,0 +1,27 @@
+.add_btn {
+  width: 44px;
+  height: 44px;
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  background: linear-gradient(
+    166.82deg,
+    rgb(255, 199, 39) -125.559%,
+    rgb(158, 64, 186) 181.695%,
+    rgb(112, 0, 255) 327.061%
+  );
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1;
+}
+
+.container {
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 1280px) {
+  .container {
+    width: 800px;
+  }
+}

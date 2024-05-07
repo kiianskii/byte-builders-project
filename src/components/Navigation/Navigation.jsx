@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+
 import s from "./Navigation.module.css";
 import { Icon } from "../../img/Icon";
 import Balance from "../Balance/Balance";

@@ -1,13 +1,14 @@
-import { Formik, Form, Field } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { Formik, Form, Field } from "formik";
+import ReactDatePicker from "react-datepicker";
+import * as Yup from "yup";
+
 import s from "./EditTransactionForm.module.css";
 import { Icon } from "../../img/Icon";
-import { useDispatch, useSelector } from "react-redux";
 import { editTransactionThunk } from "../../redux/transactions/operations";
 import "react-datepicker/dist/react-datepicker.css";
-import ReactDatePicker from "react-datepicker";
 import { selectCategories } from "../../redux/transactions/slice";
-import * as Yup from "yup";
 
 const EditTransactionForm = ({ transaction, closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());

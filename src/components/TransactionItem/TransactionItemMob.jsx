@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { useToggle } from "../../hooks/useToggle";
 import { Icon } from "../../img/Icon";
 import { deleteTransactionThunk } from "../../redux/transactions/operations";
@@ -6,7 +8,6 @@ import { selectCategories } from "../../redux/transactions/slice";
 import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
 import Modal from "../Modal/Modal";
 import s from "./TransactionItem.module.css";
-import { useDispatch, useSelector } from "react-redux";
 
 function TransactionItemMob({ transaction }) {
   const dispatch = useDispatch();

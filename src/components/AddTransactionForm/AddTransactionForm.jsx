@@ -1,15 +1,18 @@
-import { Form, Formik, Field, ErrorMessage } from "formik";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Select from "react-select";
+import { useMediaQuery } from "react-responsive";
+import * as Yup from "yup";
+import { Form, Formik, Field, ErrorMessage } from "formik";
+
+import { selectCategories } from "../../redux/transactions/slice";
+import { sendTransactionThunk } from "../../redux/transactions/operations";
+
 import css from "./AddTransactionForm.module.css";
 import { Icon } from "../../img/Icon";
 import SelectDate from "../SelectDate/SelectDate";
-import { selectCategories } from "../../redux/transactions/slice";
-import { useDispatch, useSelector } from "react-redux";
-import Select from "react-select";
-import { sendTransactionThunk } from "../../redux/transactions/operations";
-import * as Yup from "yup";
-import { useMediaQuery } from "react-responsive";
 import { getStyles } from "./config";
+
 const AddTransactionForm = ({ closeModal }) => {
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();

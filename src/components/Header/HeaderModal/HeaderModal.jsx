@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+
 import { signOutThunk } from "../../../redux/auth/operations";
 import css from "./HeaderModal.module.css";
-import { useEffect, useState } from "react";
 import { Icon } from "../../../img/Icon";
 
 const HeaderModal = ({ closeModal }) => {
