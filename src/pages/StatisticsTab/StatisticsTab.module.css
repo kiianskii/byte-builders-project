@@ -58,7 +58,7 @@
 .footer {
   padding: 0 29px;
   margin-top: 16px;
-  width: 395px;
+  width: 385px;
   display: flex;
   justify-content: space-between;
 }
@@ -320,7 +320,7 @@
   }
 
   .footer {
-    width: 336px;
+    width: 326px;
     padding: 0 16px;
   }
 }

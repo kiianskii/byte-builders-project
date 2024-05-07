@@ -22,6 +22,8 @@ function StatisticsTab() {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1;
   const currentYear = currentDate.getFullYear();
+  const summary = useSelector(selectSummary);
+  const diff = summary.expenseSummary + summary.incomeSummary;
 
   const nowMonth = selectMonth.find(
     (el) => el.value === currentMonth.toString()
@@ -55,6 +57,7 @@ function StatisticsTab() {
         data: [],
         backgroundColor: [],
         borderColor: "transparent",
+        text: diff,
       },
     ],
   };
@@ -115,10 +118,10 @@ function StatisticsTab() {
         ctx.fillStyle = "#FBFBFB";
         ctx.textAlign = "center";
         ctx.textBaseline = "center";
-        const formattedBalance = balance.toFixed(2);
-        // const balanceWithSymbol = `₴ ${formattedBalance}`;
+        const formattedBalance = +data.datasets[0].text;
+        const formattedBalanceString = formattedBalance.toFixed(2);
         ctx.fillText(
-          `₴ ${formattedBalance}`,
+          `₴ ${formattedBalanceString}`,
           chart.getDatasetMeta(0).data[0].x,
           chart.getDatasetMeta(0).data[0].y
         );
@@ -139,8 +142,6 @@ function StatisticsTab() {
       })
     );
   }, [date, dispatch, selectedMonth, selectedYear]);
-
-  const summary = useSelector(selectSummary);
 
   return (
     <div className={css.box}>
