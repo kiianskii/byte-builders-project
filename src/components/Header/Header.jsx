@@ -9,6 +9,7 @@ import css from "./Header.module.css";
 import ModalMobile from "./ModalHeaderMobile/ModalMobile";
 import HeaderModal from "./HeaderModal/HeaderModal";
 import { Icon } from "../../img/Icon";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const user = useSelector(selectUser);
@@ -32,13 +33,19 @@ const Header = () => {
       <ul className={css.list_logo}>
         <li className={css.li}>
           {windowWidth >= 768 ? (
-            <Icon size={24} id="logo-deskt-tab" />
+            <Link to="/">
+              <Icon size={24} id="logo-deskt-tab" />
+            </Link>
           ) : (
-            <Icon size={17.1} id="logo-mob" />
+            <Link to="/">
+              <Icon size={17.1} id="logo-mob" />
+            </Link>
           )}
         </li>
         <li className={css.li}>
-          <p className={css.logo}>Money Guard</p>
+          <Link to="/" className={css.logo}>
+            Money Guard
+          </Link>
         </li>
       </ul>
       <div className={css.list}>
