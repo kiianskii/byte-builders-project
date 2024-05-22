@@ -1,8 +1,2 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Money Guard project
+Website is an interactive platform for tracking your income and expenses. The site is designed for filling and storing personal transactions, by each user separately in a personal account. Also, in the application, it is possible to view current amount of funds in the account, view statistics for the selected period, and even see the current exchange rate in monobank. Technologies used in this project: HTML, CSS, JS, React.js, Redux, Vite, REST API.
