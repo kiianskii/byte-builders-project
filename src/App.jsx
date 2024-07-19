@@ -1,4 +1,3 @@
-
 import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,18 +13,13 @@ import { RedirectRoute } from "./routes/RedirectRoute";
 
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import DashboardPage from "./pages/DashboardPage/DashboardPage";
-import HomeTab from "./pages/HomeTab/HomeTab";
 import StatisticsTab from "./pages/StatisticsTab/StatisticsTab";
-import Layout from "./components/Layout/Layout";
-import CurrencyTab from "./pages/CurrencyTab/CurrencyTab";
 
-const HomeTabLazy = lazy(() => import("./pages/HomeTab/HomeTab"));
-const LayoutLazy = lazy(() => import("./components/Layout/Layout"));
-const ErrorPageLazy = lazy(() => import("./pages/ErrorPage/ErrorPage"));
-const DashboardPageLazy = lazy(() => import("./pages/DashboardPage/DashboardPage"));
-const CurrencyTabLazy = lazy(() => import("./pages/CurrencyTab/CurrencyTab"));
+const HomeTab = lazy(() => import("./pages/HomeTab/HomeTab"));
+const Layout = lazy(() => import("./components/Layout/Layout"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage/ErrorPage"));
+const DashboardPage = lazy(() => import("./pages/DashboardPage/DashboardPage"));
+const CurrencyTab = lazy(() => import("./pages/CurrencyTab/CurrencyTab"));
 
 function App() {
   const dispatch = useDispatch();
@@ -67,5 +61,3 @@ function App() {
   );
 }
 export default App;
-
-
